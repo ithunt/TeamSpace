@@ -1,13 +1,25 @@
 package edu.rit.taskers.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "User")
 public class User {
+
+    @Id
+    @GeneratedValue
+    @Column(name = "UserId")
+    private int id;
 
     protected String login;
     protected String password;
     protected Contact primaryContact;
     protected List<Contact> contacts;
+
+    public User() {
+
+    }
 
     public User(String login, Contact primaryContact, List<Contact> contacts) {
         this.login = login;
@@ -15,6 +27,16 @@ public class User {
         this.contacts = contacts;
     }
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Column(name= "LoginName")
     public String getLogin() {
         return login;
     }
@@ -23,6 +45,7 @@ public class User {
         this.login = login;
     }
 
+    @Column(name = "Password")
     public String getPassword() {
         return password;
     }
