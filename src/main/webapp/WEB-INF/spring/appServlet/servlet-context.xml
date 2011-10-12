@@ -16,8 +16,8 @@
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
+		<!--<beans:property name="prefix" value="/WEB-INF/views/" />                                                                     x
+		<beans:property name="suffix" value=".jsp" />   -->
 	</beans:bean>
 	
 	<!-- Imports user-defined @Controller beans that process client requests -->
