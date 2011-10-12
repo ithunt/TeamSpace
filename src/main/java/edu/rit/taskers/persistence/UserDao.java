@@ -12,7 +12,7 @@ import java.util.List;
  * Date: 10/12/11
  * Time: 12:55 PM
  */
-@Repository
+@Repository("User")
 public class UserDao {
 
     @Autowired
@@ -27,7 +27,10 @@ public class UserDao {
     }
 
     public List<User> findAll() {
+        sessionFactory.getCurrentSession();
         return this.sessionFactory.getCurrentSession().createQuery("FROM User").list();
     }
+
+
 
 }

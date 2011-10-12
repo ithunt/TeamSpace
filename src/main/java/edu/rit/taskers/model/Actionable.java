@@ -1,9 +1,17 @@
 package edu.rit.taskers.model;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@Entity(name="ActionableItem")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Actionable {
+
+    @Id
+    @GeneratedValue
+    @Column(name="ItemID")
+    private int id;
 
     protected String name;
 	protected String description;
@@ -14,6 +22,8 @@ public abstract class Actionable {
 	protected List<Actionable> dependant;
 
     protected List<Comment> comments;
+
+    protected Actionable() {}
 
     protected Actionable(String name, String description, Contact creator, Date created, Contact assignedTo) {
         this.name = name;

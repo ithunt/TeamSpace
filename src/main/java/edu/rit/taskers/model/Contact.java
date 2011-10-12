@@ -1,8 +1,18 @@
 package edu.rit.taskers.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.net.URL;
 
+@Entity
 public class Contact {
+
+    @Id
+    @GeneratedValue
+    @Column(name = "ContactID")
+    private int id;
 
     protected String name;
     protected String phone;
@@ -10,6 +20,10 @@ public class Contact {
     protected String role;
     protected String bio;
     protected URL pictureURL;
+
+    public Contact() {
+
+    }
 
     public Contact(String name, String phone, String email, String role, String bio, URL pictureURL) {
         this.name = name;

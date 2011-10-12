@@ -1,9 +1,16 @@
 package edu.rit.taskers.model;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Event extends Actionable {
+
+    @Id
+    @GeneratedValue
+    @Column(name="EventId")
+    private int id;
 
     protected Date startTime;
     protected Date endTime;
@@ -12,8 +19,11 @@ public class Event extends Actionable {
     protected List<Contact> invited;
     protected List<Contact> attended;
 
+    public Event() {
+        super();
+    }
 
-    protected Event(String name, String description, Contact creator, Date created, Contact assignedTo) {
+    public Event(String name, String description, Contact creator, Date created, Contact assignedTo) {
         super(name, description, creator, created, assignedTo);
     }
 

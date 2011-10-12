@@ -4,12 +4,11 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "User")
 public class User {
 
     @Id
     @GeneratedValue
-    @Column(name = "UserId")
+    @Column(name = "UserID")
     private int id;
 
     protected String login;
