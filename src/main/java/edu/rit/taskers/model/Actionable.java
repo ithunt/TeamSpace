@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity(name="ActionableItem")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS )
 public abstract class Actionable {
 
     @Id

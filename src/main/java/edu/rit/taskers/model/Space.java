@@ -19,6 +19,9 @@ public class Space {
 
     protected List<Contact> users;
 
+    protected List<Task> tasks;
+    protected List<Event> events;
+
 
     public Space() {
 
@@ -61,5 +64,21 @@ public class Space {
 
     public void setUsers(List<Contact> users) {
         this.users = users;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 }

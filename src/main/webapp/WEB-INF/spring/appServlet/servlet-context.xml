@@ -16,8 +16,8 @@
     <beans:bean id="mysqlDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <beans:property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <beans:property name="url" value="jdbc:mysql://localhost/"/>
-        <beans:property name="username" value="sa"/>
-        <beans:property name="password" value=""/>
+        <beans:property name="username" value="root"/>
+        <beans:property name="password" value="d3v3l0p"/>
     </beans:bean>
 
     <beans:bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">

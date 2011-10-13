@@ -8,11 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * User: ddcihunt
- * Date: 10/12/11
- * Time: 12:26 PM
- */
 @Repository("Task")
 public class TaskDao {
 
