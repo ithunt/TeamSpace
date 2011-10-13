@@ -33,7 +33,7 @@
         </div>
         
         <div data-role="header" class="no-text-header" data-theme="none">
-			<a href="#" class="ui-btn-right" data-role="button" data-theme="b" data-icon="plus">Create Event</a>
+			<a href="newevent.htm" class="ui-btn-right" data-rel="dialog" data-role="button" data-theme="b" data-icon="plus">Create Event</a>
 		</div>
 
         <div data-role="content">
@@ -103,3 +103,4 @@
     </div>
 </body>
 </html>
+
