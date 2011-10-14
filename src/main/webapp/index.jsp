@@ -1,23 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8"/>
-    <title>Home</title>
-    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
-    <meta name="viewport" content="user-scalable=false"/>
-    <meta name="format-detection" content="telephone=yes"/>
-    <link rel="icon" href="favicon.ico" />
-    <link type="text/css" href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css?rc1" rel="stylesheet" />
-    <link type="text/css" href="http://dev.jtsage.com/cdn/datebox/latest/jquery.mobile.datebox.min.css?rc1" rel="stylesheet" /> 
-    <link rel="stylesheet" href="main.css?rc1" />
-    <link rel="stylesheet" media="only screen and (max-device-width: 320px)" href="phone.css">
-    <script src="http://code.jquery.com/jquery.min.js"></script>
-    <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
-	<script type="text/javascript" src="http://dev.jtsage.com/jquery.mousewheel.min.js"></script>
-	<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jquery.mobile.datebox.min.js"></script>
-</head>
+<%@ include file="header.htm" %>
 <body>
     <div data-role="page" id="home" data-title="TeamSpace | Home">
 	
@@ -51,9 +33,7 @@
             </fieldset>
         </div>
 
-        <div data-role="footer" class="footer-docs" data-theme="c" >
-            <p>&copy;2011 Anthony Barone</p>
-        </div>
+        <%@ include file="footer.htm" %>
 
     </div>
 </body>

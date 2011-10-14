@@ -1,26 +1,8 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8"/>
-    <title>Anthony C. Barone</title>
-    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
-    <meta name="viewport" content="user-scalable=false"/>
-    <meta name="format-detection" content="telephone=yes"/>
-    <link rel="icon" href="favicon.ico" />
-    <link type="text/css" href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css?rc1" rel="stylesheet" />
-    <link type="text/css" href="http://dev.jtsage.com/cdn/datebox/latest/jquery.mobile.datebox.min.css?rc1" rel="stylesheet" /> 
-    <link rel="stylesheet" href="main.css?rc1" />
-    <link rel="stylesheet" media="only screen and (max-device-width: 320px)" href="phone.css">
-    <script src="http://code.jquery.com/jquery.min.js"></script>
-    <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
-	<script type="text/javascript" src="http://dev.jtsage.com/jquery.mousewheel.min.js"></script>
-	<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jquery.mobile.datebox.min.js"></script>
-</head>
+<%@ include file="header.htm" %>
 <body>
     <div data-role="page" id="home" data-title="TeamSpace | Tasks">
-	
+    
         <div data-role="header" data-position="fixed" data-theme="c">
             <div data-role="navbar" class="custom-glyph" >
                 <ul>
@@ -32,9 +14,9 @@
             </div>
         </div>
         
-        <div data-role="header" class="no-text-header" data-theme="none">
-			<a href="#" class="ui-btn-right" data-role="button" data-theme="b" data-icon="plus">Create Task</a>
-		</div>
+        <div data-role="header" class="no-text-header" data-theme="none"> 
+            <a href="newtask.htm" class="ui-btn-right" data-transition="slideup" data-role="button" data-theme="b" data-icon="plus">Create Task</a>
+        </div>
 
         <div data-role="content">
             
@@ -84,10 +66,10 @@
                     
                 </a><a href="#">Mark Task 'Complete'</a>
                 </li>
-			</ul>
-			</div>
-			<div data-role="content">
-			<ul data-role="listview" data-theme="d" data-dividertheme="a" data-counttheme="b" data-split-icon="check" data-split-theme="a">
+            </ul>
+            </div>
+            <div data-role="content">
+            <ul data-role="listview" data-theme="d" data-dividertheme="a" data-counttheme="b" data-split-icon="check" data-split-theme="a">
                 <li data-role="list-divider">Completed</li>
                 <li><a href="about.htm"><p class="aside-spacing-task ui-li-aside">10/25/11</p>
                     <h3>Angela Smith</h3>

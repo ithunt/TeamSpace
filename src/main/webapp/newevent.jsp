@@ -1,32 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>New Event</title>
-    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
-    <meta name="viewport" content="user-scalable=false"/>
-    <meta name="format-detection" content="telephone=yes"/>
-    <link type="text/css" href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css" rel="stylesheet" />
-    <link type="text/css" href="http://dev.jtsage.com/cdn/datebox/latest/jquery.mobile.datebox.min.css" rel="stylesheet" /> 
-    <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" media="only screen and (max-device-width: 320px)" href="phone.css">
-    <script src="http://code.jquery.com/jquery.min.js"></script>
-    <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
-	<script type="text/javascript" src="http://dev.jtsage.com/jquery.mousewheel.min.js"></script>
-	<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jquery.mobile.datebox.min.js"></script>
-</head>
+<%@ page session="false" %>
+<%@ include file="header.htm" %>
 <body>
-    <div data-role="page" id="newevent" data-title="TeamSpace | New Event">
+    <div data-role="page" id="newevent" data-title="TeamSpace | New Event" >
 
         <div data-role="header" data-theme="c" data-position="inline" data-theme="none" >
+            <a href="events.htm" data-rel="back" data-iconpos="notext" data-icon="delete">Cancel</a>
             <h1>New Event</h1>
         </div>
 
         <div data-role="content" data-theme="c">
             <form action="test" method="post">
-				<fieldset>
-                    <div>
-					<div data-role="fieldcontain">
+                <fieldset>
+                    <div data-role="fieldcontain">
                         <label for="title">Title:</label>
                         <input type="text" name="title" id="title" value="" />
                     </div>
@@ -48,12 +33,7 @@
                         <textarea cols="40" rows="8" name="textarea" id="textarea"></textarea>
                     </div>
                     
-                    <div data-role="fieldcontain">
-                        <label for="url">URL:</label>
-                        <input type="url" name="url" id="url" value="" />
-                    </div>
-					<button type="submit" data-icon="check" data-theme="b" name="submit" value="submit-value">Create Event</button>
-                    </div>
+                    <button type="submit" data-icon="check" data-theme="b" name="submit" value="submit-value">Create Event</button>
                 </fieldset>
             </form> 
         </div>
