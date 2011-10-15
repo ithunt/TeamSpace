@@ -16,12 +16,12 @@
         </div>
         
         <div data-role="header" class="no-text-header" data-theme="none"> 
-            <a href="newtask.htm" class="ui-btn-right" data-transition="slideup" data-role="button" data-theme="b" data-icon="plus">Create Task</a>
+            <a href="newtask.htm" class="ui-btn-right" data-transition="slideup" data-role="button" data-theme="e" data-icon="plus">Create Task</a>
         </div>
 
         <div data-role="content">
             
-            <ul data-role="listview" data-theme="d" data-dividertheme="e" data-counttheme="b" data-split-icon="check" data-split-theme="c" >
+            <ul data-role="listview" data-theme="d" data-dividertheme="b" data-counttheme="e" data-split-icon="check" data-split-theme="c" >
                 <li data-role="list-divider">Important <span class="ui-li-count">2 New!</span></li>
                 <li><a href="edittask.htm"><p class="aside-spacing-task ui-li-aside"><strong>Due Today!</strong></p>
                         <h3>Stephen Weber</h3>
@@ -38,7 +38,7 @@
                 </a><a href="#">Mark Task 'Complete'</a>
                 </li>
                 <li data-role="list-divider">Approaching <span class="ui-li-count">1 New!</span></li>
-                <li><a href="about.htm"><p class="aside-spacing-task ui-li-aside">10/15/11</p>
+                <li data-theme="e"><a href="about.htm"><p class="aside-spacing-task ui-li-aside">10/15/11</p>
                     <h3>Avery Walker</h3>
                     <p><strong>Re: Dinner Tonight</strong></p>
                     <p>Sure, let's plan on meeting at Highland Kitchen at 8:00 tonight. Can't wait! </p>

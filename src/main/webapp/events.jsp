@@ -16,16 +16,16 @@
         </div>
         
         <div data-role="header" class="no-text-header" data-theme="none">
-            <a href="newevent.htm" class="ui-btn-right" data-transition="slideup" data-role="button" data-theme="b" data-icon="plus">Create Event</a>
+            <a href="newevent.htm" class="ui-btn-right" data-transition="slideup" data-role="button" data-theme="e" data-icon="plus">Create Event</a>
         </div>
 
         <div data-role="content">
-            <ul data-role="listview" data-theme="d" data-dividertheme="e" data-counttheme="b">
+            <ul data-role="listview" data-theme="d" data-dividertheme="b" data-counttheme="e">
                 <li data-role="list-divider">Friday, October 8, 2010
                     <span class="ui-li-count">1 New!</span>
                 </li>
                 
-                <li><a href="editevent.htm"><p class="aside-spacing ui-li-aside"><strong>6:24</strong>PM</p>
+                <li data-theme="e"><a href="editevent.htm"><p class="aside-spacing ui-li-aside"><strong>6:24</strong>PM</p>
                     <h3>Stephen Weber</h3>
                     <p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
                     <p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
