@@ -1,9 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false" %>
 <%@ include file="header.htm" %>
 <body>
     <div data-role="page" id="newtask" data-title="TeamSpace | New Task">
 
-        <div data-role="header" data-theme="c" data-position="inline" data-theme="none" >
+        <div data-role="header" data-theme="d" data-position="inline" data-theme="none" >
             <a href="tasks.htm" data-rel="back" data-iconpos="notext" data-icon="delete">Cancel</a>
             <h1>New Task</h1>
         </div>

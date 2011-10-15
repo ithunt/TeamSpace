@@ -2,31 +2,34 @@
 <%@ page session="false" %>
 <%@ include file="header.htm" %>
 <body>
-    <div data-role="page" id="newevent" data-title="TeamSpace | New Event" >
+    <div data-role="page" id="newtask" data-title="TeamSpace | View Task">
 
-        <div data-role="header" data-theme="d" data-position="inline" data-theme="none" >
-            <a href="events.htm" data-rel="back" data-iconpos="notext" data-icon="delete">Cancel</a>
-            <h1>New Event</h1>
+        <div data-role="header" data-theme="d" data-position="inline">
+            <a href="tasks.htm" data-rel="back" data-iconpos="notext" data-icon="arrow-l" data-theme="a">Back</a>
+            <h1>Task Details</h1>
         </div>
 
         <div data-role="content" data-theme="c">
             <form action="test" method="post">
-                <fieldset>
-                    <div data-role="fieldcontain">
+				<fieldset>
+					<div data-role="fieldcontain">
                         <label for="title">Title:</label>
                         <input type="text" name="title" id="title" value="" />
                     </div>
                     
                     <div data-role="fieldcontain">
-                        <label for="date">Date:</label>
+                        <label for="date">Due Date:</label>
                         <input name="date" id="date" type="date" data-role="datebox"
                            data-options='{"pickPageButtonTheme": "b", "mode": "calbox", "disableManualInput": true, "useDialogForceFalse": true}'>
                     </div>
                        
                     <div data-role="fieldcontain">
-                        <label for="time">Time:</label>
-                        <input name="time" id="time" type="date" data-role="datebox"
-                           data-options='{"pickPageButtonTheme": "c", "mode": "timebox",  "timeFormat": 12, "disableManualInput": true, "useDialogForceFalse": true}'>
+                       <label for="priority-select" class="select">Priority:</label>
+                       <select name="priority-select" id="priority-select" data-native-menu="false">
+                          <option value="high_priority">Normal</option>
+                          <option value="normal_priority">Low</option>
+                          <option value="low_priority">High</option>
+                       </select>
                     </div>
                     
                     <div data-role="fieldcontain">
@@ -34,7 +37,7 @@
                         <textarea cols="40" rows="8" name="textarea" id="textarea"></textarea>
                     </div>
                     
-                    <button type="submit" data-icon="check" data-theme="b" name="submit" value="submit-value">Create Event</button>
+					<button type="submit" data-icon="check" data-theme="b" name="submit" value="submit-value">Save Changes</button>
                 </fieldset>
             </form> 
         </div>

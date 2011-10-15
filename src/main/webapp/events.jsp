@@ -1,9 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false" %>
 <%@ include file="header.htm" %>
 <body>
     <div data-role="page" id="home" data-title="TeamSpace | Events">
     
-        <div data-role="header" data-position="fixed" data-theme="c">
+        <div data-role="header" data-theme="c">
             <div data-role="navbar" class="custom-glyph" >
                 <ul>
                     <li><a href="index.htm" id="navhome" data-theme="c" data-icon="custom" data-direction="reverse">Home</a></li>
@@ -24,7 +25,7 @@
                     <span class="ui-li-count">1 New!</span>
                 </li>
                 
-                <li><a href="about.htm"><p class="aside-spacing ui-li-aside"><strong>6:24</strong>PM</p>
+                <li><a href="editevent.htm"><p class="aside-spacing ui-li-aside"><strong>6:24</strong>PM</p>
                     <h3>Stephen Weber</h3>
                     <p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
                     <p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>

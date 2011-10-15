@@ -1,9 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false" %>
 <%@ include file="header.htm" %>
 <body>
     <div data-role="page" id="home" data-title="TeamSpace | People">
     
-        <div data-role="header" data-position="fixed" data-theme="c">
+        <div data-role="header" data-theme="c">
             <div data-role="navbar" class="custom-glyph" >
                 <ul>
                     <li><a href="index.htm" id="navhome" data-theme="c" data-icon="custom" data-direction="reverse">Home</a></li>
@@ -21,7 +22,7 @@
         <div data-role="content">
             <ul data-role="listview" data-theme="c" data-filter="true" data-filter-placeholder="Search People..." data-filter-theme="none">
 				<li data-role="list-divider">A</li>
-				<li><a href="#">Adam Kinkaid</a></li>
+				<li><a href="viewcontact.htm">Adam Kinkaid</a></li>
 				<li><a href="#">Alex Wickerham</a></li>
 				<li><a href="#">Avery Johnson</a></li>
 				<li data-role="list-divider">B</li>

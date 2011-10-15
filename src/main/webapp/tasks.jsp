@@ -1,9 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false" %>
 <%@ include file="header.htm" %>
 <body>
     <div data-role="page" id="home" data-title="TeamSpace | Tasks">
     
-        <div data-role="header" data-position="fixed" data-theme="c">
+        <div data-role="header" data-theme="c">
             <div data-role="navbar" class="custom-glyph" >
                 <ul>
                     <li><a href="index.htm" id="navhome" data-theme="c" data-icon="custom" data-direction="reverse">Home</a></li>
@@ -22,7 +23,7 @@
             
             <ul data-role="listview" data-theme="d" data-dividertheme="e" data-counttheme="b" data-split-icon="check" data-split-theme="c" >
                 <li data-role="list-divider">Important <span class="ui-li-count">2 New!</span></li>
-                <li><a href="about.htm"><p class="aside-spacing-task ui-li-aside"><strong>Due Today!</strong></p>
+                <li><a href="edittask.htm"><p class="aside-spacing-task ui-li-aside"><strong>Due Today!</strong></p>
                         <h3>Stephen Weber</h3>
                         <p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
                         <p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
