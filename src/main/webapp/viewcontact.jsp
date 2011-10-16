@@ -6,27 +6,28 @@
     
         <div data-role="header" data-theme="d" data-position="inline">
             <a href="people.htm" data-rel="back" data-iconpos="notext" data-icon="arrow-l" data-theme="a">Back</a>
-            <h1>Adam Kinkaid</h1>
+            <h1>Info</h1>
         </div>
 
-        <div data-role="content" data-theme="c">
-            <div id="portait-box" style="height:32px;width:32px;margin: 0px auto;">
-                <img height="32" width="32" src="http://icons.iconarchive.com/icons/deleket/soft-scraps/64/User-Coat-Blue-icon.png" alt="Portrait" />
-            </div>
-            
-            <table id="info-table" cellpadding="15" summary="Contact Information">
+        <div data-role="content" data-theme="c">            
+            <table id="info-table" cellpadding="7" summary="Contact Information">
                 <tbody>
+                    <tr class="bottomborder">
+                        <td>
+                            <img height="32" width="32" src="img/default-user.png" alt="Portrait" /></td>
+                        <td><h2>Adam Kinkaid</h2></td>
+                    </tr>
                     <tr class="bottomborder">
                         <td>Role:</td>
                         <td><b>Lead Developer</b></td>
                     </tr>
                     <tr class="bottomborder">
-                        <td>Email:</td>
-                        <td><b><a href="mailto:acb1485@rit.edu" id="email" name="email">acb1485@rit.edu</a></b></td>
-                    </tr>
-                    <tr class="bottomborder">
-                        <td>Cell:</td>
-                        <td><b>412-855-8218</b></td>
+                        <td colspan="2">
+                            <div data-role="controlgroup" data-type="vertical">
+                                <a data-role="button" data-icon="forward" href="mailto:acb1485@rit.edu" id="email" name="email">acb1485@rit.edu</a>
+                                <a data-role="button" data-icon="grid" href="tel:412-855-8218" id="email" name="email">412-855-8218</a>
+                            </div>
+                        </td>
                     </tr>
                     <tr class="bottomborder">
                         <td>Bio:</td>
