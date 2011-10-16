@@ -2,7 +2,7 @@
 <%@ page session="false" %>
 <%@ include file="header.htm" %>
 <body>
-    <div data-role="page" id="newevent" data-title="TeamSpace | View Contact" >
+    <div data-role="page" id="viewcontact" data-title="TeamSpace | View Contact" >
     
         <div data-role="header" data-theme="d" data-position="inline">
             <a href="people.htm" data-rel="back" data-iconpos="notext" data-icon="arrow-l" data-theme="a">Back</a>
