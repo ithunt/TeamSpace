@@ -4,13 +4,13 @@ import edu.rit.taskers.model.User;
 import edu.rit.taskers.persistence.UserDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 import static junit.framework.Assert.assertFalse;
@@ -19,12 +19,13 @@ import static junit.framework.Assert.assertFalse;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:/applicationContext.xml")
+@ContextConfiguration("classpath:test-config.xml")
 @TestExecutionListeners(listeners={DependencyInjectionTestExecutionListener.class})
-public final class UserTest {
+@Transactional
+public class UserTest {
 
 
-    @Resource(name = "UserDao")
+    @Autowired
     private UserDao userDao;
 
     @Test

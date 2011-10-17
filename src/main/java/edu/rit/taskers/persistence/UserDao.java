@@ -4,6 +4,7 @@ import edu.rit.taskers.model.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,20 +13,23 @@ import java.util.List;
  * Date: 10/12/11
  * Time: 12:55 PM
  */
-@Repository("User")
+@Repository
 public class UserDao {
 
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Transactional
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
+    @Transactional
     public void save(User user) {
         this.sessionFactory.getCurrentSession().save(user);
     }
 
+    @Transactional
     public List<User> findAll() {
         sessionFactory.getCurrentSession();
         return this.sessionFactory.getCurrentSession().createQuery("FROM User").list();
