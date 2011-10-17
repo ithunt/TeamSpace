@@ -1,25 +1,33 @@
 package edu.rit.taskers.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Inheritance
-public class Task extends Actionable {
+@Table(name = "Task")
+public class Task extends Actionable implements Serializable {
 
     @Id
     @GeneratedValue()
     @Column(name = "TaskID")
     private int id;
 
+    @Column(name = "Due")
     protected Date due;
+
+    @Column(name= "Priority")
     protected int priority;
 
-    public Task() {}
+    public Task() {
 
+    }
+
+    /*
     public Task(String name, String description, Contact creator, Date created, Contact assignedTo) {
         super(name, description, creator, created, assignedTo);
     }
+    */
 
     public int getId() {
         return this.id;
@@ -47,6 +55,6 @@ public class Task extends Actionable {
                 "id=" + id +
                 ", due=" + due +
                 ", priority=" + priority +
-                '}';
+                "} " + super.toString();
     }
 }

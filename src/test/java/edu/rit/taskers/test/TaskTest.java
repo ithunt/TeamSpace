@@ -4,13 +4,13 @@ import edu.rit.taskers.model.Task;
 import edu.rit.taskers.persistence.TaskDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 import static junit.framework.Assert.assertFalse;
@@ -22,19 +22,20 @@ import static junit.framework.Assert.assertFalse;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:/test-context.xml")
+@ContextConfiguration("classpath:test-config.xml")
 @TestExecutionListeners(listeners={DependencyInjectionTestExecutionListener.class})
-public final class TaskTest {
+@Transactional
+public class TaskTest {
 
 
-    @Resource(name = "TaskDao")
+    @Autowired
     private TaskDao taskDao;
 
     @Test
     @Transactional
-    public void testFindBySpace() {
+    public void testFindAll() {
 
-        List<Task> taskList = taskDao.findBySpace(1);
+        List<Task> taskList = taskDao.findAll();
         assertFalse(taskList.isEmpty());
 
         System.out.println(taskList.get(0));

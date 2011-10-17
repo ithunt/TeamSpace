@@ -22,10 +22,12 @@ public class Event extends Actionable {
     public Event() {
         super();
     }
+    /*
 
     public Event(String name, String description, Contact creator, Date created, Contact assignedTo) {
         super(name, description, creator, created, assignedTo);
     }
+    */
 
     public Date getStartTime() {
         return startTime;
