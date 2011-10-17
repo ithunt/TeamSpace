@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Inheritance
 public class Task extends Actionable {
 
     @Id
@@ -38,5 +39,14 @@ public class Task extends Actionable {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", due=" + due +
+                ", priority=" + priority +
+                '}';
     }
 }

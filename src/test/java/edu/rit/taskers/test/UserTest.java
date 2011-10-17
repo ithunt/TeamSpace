@@ -1,7 +1,7 @@
 package edu.rit.taskers.test;
 
-import edu.rit.taskers.model.Task;
-import edu.rit.taskers.persistence.TaskDao;
+import edu.rit.taskers.model.User;
+import edu.rit.taskers.persistence.UserDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -16,28 +16,27 @@ import java.util.List;
 import static junit.framework.Assert.assertFalse;
 
 /**
- * User: ddcihunt
- * Date: 10/12/11
- * Time: 7:27 PM
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:/test-context.xml")
+@ContextConfiguration("classpath:/applicationContext.xml")
 @TestExecutionListeners(listeners={DependencyInjectionTestExecutionListener.class})
-public final class TaskTest {
+public final class UserTest {
 
 
-    @Resource(name = "TaskDao")
-    private TaskDao taskDao;
+    @Resource(name = "UserDao")
+    private UserDao userDao;
 
     @Test
     @Transactional
-    public void testFindBySpace() {
+    public void testFindAll() {
 
-        List<Task> taskList = taskDao.findBySpace(1);
-        assertFalse(taskList.isEmpty());
+        List<User> users = userDao.findAll();
 
-        System.out.println(taskList.get(0));
+
+        assertFalse(users.isEmpty());
+
+        System.out.println(users.get(0));
 
 
     }

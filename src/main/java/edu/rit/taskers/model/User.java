@@ -68,4 +68,15 @@ public class User {
     public void setContacts(List<Contact> contacts) {
         this.contacts = contacts;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", primaryContact=" + primaryContact +
+                ", contacts=" + contacts +
+                '}';
+    }
 }

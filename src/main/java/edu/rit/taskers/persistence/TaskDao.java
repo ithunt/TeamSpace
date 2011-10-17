@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository("Task")
-public class TaskDao {
+public class  TaskDao {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -22,10 +22,14 @@ public class TaskDao {
         this.sessionFactory.getCurrentSession().save(task);
     }
 
-    public List<Task> findBySpace(int spaceId) {
+    public List findBySpace(int spaceId) {
         return this.sessionFactory.getCurrentSession()
                 .createQuery("FROM Task where Task.spaceId=?")
                 .setParameter(0, spaceId).list();
+    }
+
+    public Task findById(int id) {
+        return (Task)sessionFactory.getCurrentSession().get(Task.class, id);
     }
 
     public List<Task> findBySpace(Space space) {
