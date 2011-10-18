@@ -2,7 +2,7 @@
 <%@ page session="false" %>
 <%@ include file="header.htm" %>
 <body>
-    <div data-role="page" id="home" data-title="TeamSpace | People">
+    <div data-role="page" id="people" data-title="TeamSpace | People">
     
         <div data-role="header" data-theme="c">
             <div data-role="navbar" class="custom-glyph" >
