@@ -8,6 +8,9 @@ import java.util.Date;
 @Table(name = "Task")
 public class Task extends Actionable implements Serializable {
 
+
+    private static final long serialVersionUID = 2170818105613256934L;
+
     @Id
     @GeneratedValue()
     @Column(name = "TaskID")

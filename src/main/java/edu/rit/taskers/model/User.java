@@ -18,14 +18,6 @@ public class User {
     @Column(name = "Password")
     protected String password;
 
-    public User() {
-
-    }
-
-    public User(String login) {
-        this.login = login;
-    }
-
 
     public int getId() {
         return id;
@@ -35,7 +27,6 @@ public class User {
         this.id = id;
     }
 
-
     public String getLogin() {
         return login;
     }
@@ -43,7 +34,6 @@ public class User {
     public void setLogin(String login) {
         this.login = login;
     }
-
 
     public String getPassword() {
         return password;

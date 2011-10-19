@@ -8,6 +8,7 @@
     <session-factory>
         <mapping class="edu.rit.taskers.model.User" />
         <mapping class="edu.rit.taskers.model.Task" />
+        <mapping class="edu.rit.taskers.model.Event" />
 
     </session-factory>
 	    

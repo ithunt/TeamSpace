@@ -1,12 +1,13 @@
 package edu.rit.taskers.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 
 
 @MappedSuperclass
-public abstract class Actionable {
+public abstract class Actionable implements Serializable {
 
 
     @Column(name="Name")

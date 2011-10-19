@@ -1,13 +1,17 @@
 package edu.rit.taskers.controller;
 
+import edu.rit.taskers.persistence.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import edu.rit.taskers.model.User;
+
+import java.util.List;
 
 /**
  * Handles requests with a user account.
@@ -18,14 +22,26 @@ public class AccountController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
+    @Autowired
+    private UserDao userDao;
+
+    @RequestMapping(value = "/hello")
+    public @ResponseBody String helloWorld() {
+        return "Hello, World!";
+    }
+
+    @RequestMapping(value = "/one")
+    public @ResponseBody User getUser() {
+        return userDao.findAll().get(0);
+    }
+
 	/**
 	 * Fetch current account's details
 	 * @return Account details
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public User getAccount() {
-		//TODO - with session authentication
-		return null;
+	public @ResponseBody List<User> getAccounts() {
+		return userDao.findAll();
 	}
 
 	/**
