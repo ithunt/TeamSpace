@@ -1,7 +1,5 @@
 package edu.rit.taskers.model;
 
-import org.springframework.stereotype.Service;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -13,16 +11,14 @@ public class Event extends Actionable implements Serializable{
 
     @Id
     @GeneratedValue
-    @Column(name="EventId")
+    @Column(name="EventID")
     private int id;
 
-    @Column
-    protected Date startTime;
-    protected Date endTime;
-    //Todo: Abstract this?
-    protected String location;
-    protected List<Contact> invited;
-    protected List<Contact> attended;
+    @Column(name="When")
+    protected Date when;
+
+    //Todo: need to add more fields to schema/model
+
 
     public Event() {
         super();
@@ -34,43 +30,20 @@ public class Event extends Actionable implements Serializable{
     }
     */
 
-    public Date getStartTime() {
-        return startTime;
+    public int getId() {
+        return id;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Date getEndTime() {
-        return endTime;
+    public Date getWhen() {
+        return when;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    public void setWhen(Date when) {
+        this.when = when;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public List<Contact> getInvited() {
-        return invited;
-    }
-
-    public void setInvited(List<Contact> invited) {
-        this.invited = invited;
-    }
-
-    public List<Contact> getAttended() {
-        return attended;
-    }
-
-    public void setAttended(List<Contact> attended) {
-        this.attended = attended;
-    }
 }

@@ -1,20 +1,23 @@
 package edu.rit.taskers.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "Space")
 public class Space {
 
     @Id
     @GeneratedValue
     @Column(name = "SpaceID")
     protected String name;
+
+    @Column(name = "Created")
     protected Date created;
+
+    @Column(name = "Description")
+    protected String description;
     protected Contact creator;
 
     protected List<Contact> users;
@@ -80,5 +83,13 @@ public class Space {
 
     public void setEvents(List<Event> events) {
         this.events = events;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
