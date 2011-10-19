@@ -79,7 +79,7 @@
       <groupId>commons-pool</groupId>
       <artifactId>commons-pool</artifactId>
       <version>1.5.4</version>
-
+     </dependency>
 		<!-- @Inject -->
 		<dependency>
 			<groupId>javax.inject</groupId>
