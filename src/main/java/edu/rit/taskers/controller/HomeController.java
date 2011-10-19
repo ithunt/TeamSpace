@@ -19,8 +19,8 @@ public class HomeController {
 	 */
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String home() {
-		logger.info("Welcome home!");
-		return "home";
+		//TODO
+		return null;
 	}
 	
 }
