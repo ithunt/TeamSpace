@@ -1,6 +1,6 @@
 package edu.rit.taskers.persistence;
 
-import edu.rit.taskers.model.User;
+import edu.rit.taskers.model.Event;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,30 +9,27 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * @author ian hunt
+ * @author Ian Hunt
  */
 @Repository
-public class UserDao {
+public class EventDao {
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Transactional
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Transactional
-    public void save(User user) {
-        this.sessionFactory.getCurrentSession().save(user);
+    public void save(Event event) {
+        this.sessionFactory.getCurrentSession().save(event);
     }
 
     @Transactional
-    public List<User> findAll() {
-        sessionFactory.getCurrentSession();
-        return this.sessionFactory.getCurrentSession().createQuery("FROM User").list();
+    public List<Event> findAll() {
+        return this.sessionFactory.getCurrentSession()
+                .createQuery("FROM Event").list();
     }
-
-
 
 }
