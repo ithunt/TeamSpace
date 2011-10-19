@@ -1,11 +1,13 @@
 package edu.rit.taskers.model;
 
 import javax.persistence.*;
-import java.util.List;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "User")
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 7515400943255193820L;
 
     @Id
     @GeneratedValue

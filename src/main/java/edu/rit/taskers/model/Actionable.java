@@ -1,13 +1,12 @@
 package edu.rit.taskers.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
-
+import java.util.List;
 
 
 @MappedSuperclass
-public abstract class Actionable implements Serializable {
+public abstract class Actionable {
 
 
     @Column(name="Name")
@@ -23,7 +22,8 @@ public abstract class Actionable implements Serializable {
 
 	//protected List<Actionable> dependant;
 
-    //protected List<Comment> comments;
+
+    protected List<Comment> comments;
 
     protected Actionable() {}
     /*
@@ -87,6 +87,9 @@ public abstract class Actionable implements Serializable {
         this.dependant = dependant;
     }
 
+    */
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ItemID", nullable = false)
     public List<Comment> getComments() {
         return comments;
     }
@@ -94,7 +97,6 @@ public abstract class Actionable implements Serializable {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
-    */
 
     @Override
     public String toString() {

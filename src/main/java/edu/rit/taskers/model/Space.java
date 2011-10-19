@@ -18,13 +18,22 @@ public class Space {
 
     @Column(name = "Description")
     protected String description;
+
+    @OneToOne
+    @JoinColumn(name = "Creator")
     protected Contact creator;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "SpaceID")
     protected List<Contact> users;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "SpaceID")
     protected List<Task> tasks;
-    protected List<Event> events;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "SpaceID")
+    protected List<Event> events;
 
     public Space() {
 

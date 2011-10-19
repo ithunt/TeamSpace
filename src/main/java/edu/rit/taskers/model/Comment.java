@@ -3,17 +3,26 @@ package edu.rit.taskers.model;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Comment {
+public class Comment implements Serializable {
+
+    private static final long serialVersionUID = 6895747392066771173L;
 
     @Id
     @GeneratedValue
-    @Column(name = "CommentId")
+    @Column(name = "CommentID")
     private int id;
 
+    @ManyToOne
     protected Contact creator;
+
+    @Column(name = "Created")
     protected Date created;
+
+    @Column(name = "Text")
     protected String text;
 
     public Comment() {
