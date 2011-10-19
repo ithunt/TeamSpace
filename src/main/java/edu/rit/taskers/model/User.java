@@ -1,19 +1,40 @@
 package edu.rit.taskers.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "User")
 public class User {
 
-    protected String login;
-    protected String password;
-    protected Contact primaryContact;
-    protected List<Contact> contacts;
+    @Id
+    @GeneratedValue
+    @Column(name = "UserID")
+    private int id;
 
-    public User(String login, Contact primaryContact, List<Contact> contacts) {
-        this.login = login;
-        this.primaryContact = primaryContact;
-        this.contacts = contacts;
+    @Column(name= "LoginName")
+    protected String login;
+
+    @Column(name = "Password")
+    protected String password;
+
+    public User() {
+
     }
+
+    public User(String login) {
+        this.login = login;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     public String getLogin() {
         return login;
@@ -23,6 +44,7 @@ public class User {
         this.login = login;
     }
 
+
     public String getPassword() {
         return password;
     }
@@ -31,19 +53,12 @@ public class User {
         this.password = password;
     }
 
-    public Contact getPrimaryContact() {
-        return primaryContact;
-    }
-
-    public void setPrimaryContact(Contact primaryContact) {
-        this.primaryContact = primaryContact;
-    }
-
-    public List<Contact> getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(List<Contact> contacts) {
-        this.contacts = contacts;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
