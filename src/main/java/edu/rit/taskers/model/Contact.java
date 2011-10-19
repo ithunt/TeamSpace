@@ -1,15 +1,38 @@
 package edu.rit.taskers.model;
 
+import javax.persistence.*;
 import java.net.URL;
 
+@Entity
+@Table(name = "Contact")
 public class Contact {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "ContactID")
+    private int id;
+
+    @Column(name = "FirstName")
     protected String name;
+
+    @Column(name = "Phone")
     protected String phone;
+
+    @Column(name = "Email")
     protected String email;
+
+    @Column(name = "Role")
     protected String role;
+
+    @Column(name = "Bio")
     protected String bio;
+
+    @Column(name = "PictureURL")
     protected URL pictureURL;
+
+    public Contact() {
+
+    }
 
     public Contact(String name, String phone, String email, String role, String bio, URL pictureURL) {
         this.name = name;

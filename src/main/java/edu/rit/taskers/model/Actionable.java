@@ -1,20 +1,31 @@
 package edu.rit.taskers.model;
 
+import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
+
+
+@MappedSuperclass
 public abstract class Actionable {
 
+
+    @Column(name="Name")
     protected String name;
+
+    @Column(name="Description")
 	protected String description;
-	protected Contact creator;
+	//protected Contact creator;
+
+    @Column(name="Created")
 	protected Date created;
-	protected Contact assignedTo;
+	//protected Contact assignedTo;
 
-	protected List<Actionable> dependant;
+	//protected List<Actionable> dependant;
 
-    protected List<Comment> comments;
+    //protected List<Comment> comments;
 
+    protected Actionable() {}
+    /*
     protected Actionable(String name, String description, Contact creator, Date created, Contact assignedTo) {
         this.name = name;
         this.description = description;
@@ -22,6 +33,7 @@ public abstract class Actionable {
         this.created = created;
         this.assignedTo = assignedTo;
     }
+    */
 
     public String getName() {
         return name;
@@ -38,6 +50,7 @@ public abstract class Actionable {
     public void setDescription(String description) {
         this.description = description;
     }
+    /*
 
     public Contact getCreator() {
         return creator;
@@ -46,6 +59,7 @@ public abstract class Actionable {
     public void setCreator(Contact creator) {
         this.creator = creator;
     }
+    */
 
     public Date getCreated() {
         return created;
@@ -54,6 +68,7 @@ public abstract class Actionable {
     public void setCreated(Date created) {
         this.created = created;
     }
+    /*
 
     public Contact getAssignedTo() {
         return assignedTo;
@@ -77,5 +92,15 @@ public abstract class Actionable {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+    */
+
+    @Override
+    public String toString() {
+        return "Actionable{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", created=" + created +
+                '}';
     }
 }
