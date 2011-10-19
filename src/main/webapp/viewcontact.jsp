@@ -10,7 +10,7 @@
         </div>
 
         <div data-role="content" data-theme="c">            
-            <table id="info-table" cellpadding="7" summary="Contact Information">
+            <table id="info-table" summary="Contact Information">
                 <tbody>
                     <tr class="bottomborder">
                         <td>

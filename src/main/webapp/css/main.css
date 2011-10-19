@@ -100,3 +100,7 @@
     font-weight: bold;
     color: rgb(7,55,99);
 }
+
+#info-table tbody tr td {
+	padding: 7px;
+}
