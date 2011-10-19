@@ -22,6 +22,8 @@
 	<context:annotation-config />
 	<context:component-scan base-package="edu.rit.taskers" />
     <tx:annotation-driven />
+    
+    <mvc:resources mapping="/resources/**" location="/resources/" />
 
     <!--
 	<bean id="jspViewResolver"

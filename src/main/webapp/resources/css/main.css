@@ -40,22 +40,22 @@
 }
 
 #navhome .ui-icon {
-    background:  url(img/Home-icon.png) 50% 50% no-repeat;
+    background:  url(../img/Home-icon.png) 50% 50% no-repeat;
     background-size: 32px 32px;
 }
 
 #navpeople .ui-icon {
-    background:  url(img/User-Group-icon.png) 50% 50% no-repeat; 
+    background:  url(../img/User-Group-icon.png) 50% 50% no-repeat; 
     background-size: 32px 32px;
 }
 
 #navevents .ui-icon {
-    background:  url(img/Calendar-icon.png) 50% 50% no-repeat;
+    background:  url(../img/Calendar-icon.png) 50% 50% no-repeat;
     background-size: 32px 32px;
 }
 
 #navtasks .ui-icon {
-    background:  url(img/Task-icon.png) 50% 50% no-repeat;
+    background:  url(../img/Task-icon.png) 50% 50% no-repeat;
     background-size: 30px 30px;
 }
 
