@@ -1,4 +1,4 @@
-package edu.rit.taskers;
+package edu.rit.taskers.controller;
 
 import java.util.ArrayList;
 
