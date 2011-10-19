@@ -18,7 +18,7 @@ import edu.rit.taskers.model.Task;
 @RequestMapping("/tasks")
 public class TaskController {
 
-	private static final Logger logger = LoggerFactory.getLogger(PeopleController.class);
+	private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
 	/**
 	 * Fetch all tasks that belong to session space id

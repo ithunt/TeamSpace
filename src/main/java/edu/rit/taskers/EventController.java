@@ -18,7 +18,7 @@ import edu.rit.taskers.model.Event;
 @RequestMapping("/events")
 public class EventController {
 
-	private static final Logger logger = LoggerFactory.getLogger(PeopleController.class);
+	private static final Logger logger = LoggerFactory.getLogger(EventController.class);
 
 	/**
 	 * Fetch all events that belong to session space id
