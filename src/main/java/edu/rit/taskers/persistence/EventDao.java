@@ -26,7 +26,8 @@ public class EventDao {
         this.sessionFactory.getCurrentSession().save(event);
     }
 
-    @Transactional
+    @SuppressWarnings("unchecked")
+	@Transactional
     public List<Event> findAll() {
         return this.sessionFactory.getCurrentSession()
                 .createQuery("FROM Event").list();
