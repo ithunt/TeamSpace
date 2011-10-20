@@ -22,6 +22,7 @@
 	<context:annotation-config />
 	<context:component-scan base-package="edu.rit.taskers" />
     <mvc:annotation-driven />
+    <tx:annotation-driven />
     
     <mvc:resources mapping="/resources/**" location="/resources/" />
 
@@ -58,10 +59,12 @@
 		p:location="WEB-INF/jdbc.properties" />
 
 	<bean id="dataSource"
-		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
-		p:driverClassName="${jdbc.driverClassName}"
-		p:url="${jdbc.databaseurl}" p:username="${jdbc.username}"
-		p:password="${jdbc.password}" />
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.databaseurl}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">

@@ -3,7 +3,6 @@
     "-//Hibernate/Hibernate Configuration DTD//EN"
     "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 
- 
 <hibernate-configuration>
     <session-factory>
         <mapping class="edu.rit.taskers.model.Comment" />
@@ -12,11 +11,6 @@
         <mapping class="edu.rit.taskers.model.User" />
         <mapping class="edu.rit.taskers.model.Task" />
         <mapping class="edu.rit.taskers.model.Event" />
-
-
         <mapping class="edu.rit.taskers.model.Space" />
-
-
     </session-factory>
-
 </hibernate-configuration>
