@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
 import edu.rit.taskers.model.Contact;
 
 /**
@@ -25,9 +27,15 @@ public class PeopleController {
 	 * @return Collection of contact cards
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ArrayList<Contact> getAllContacts() {
+	public ModelAndView getAllContacts() {
 		//TODO
-		return null;
+		ArrayList<String> dummyPeopleNames = new ArrayList<String>();
+		dummyPeopleNames.add("A Person");
+		dummyPeopleNames.add("B Person");
+		dummyPeopleNames.add("C Person");
+		dummyPeopleNames.add("D Person");
+		ModelAndView test = new ModelAndView("people.jsp", "names", dummyPeopleNames);
+		return test;
 	}
 
 	/**

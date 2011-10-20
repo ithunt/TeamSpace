@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ page session="false" %>
 <%@ include file="header.jsp" %>
 <body>
@@ -21,6 +22,9 @@
 
         <div data-role="content">
             <ul data-role="listview" data-theme="c" data-filter="true" data-filter-placeholder="Search People..." data-filter-theme="none">
+            	<c:forEach items="${names}" var="item">
+					<li><a href="viewcontact.htm">${item}</a></li>
+				</c:forEach>
 				<li><a href="viewcontact.htm">Adam Kinkaid</a></li>
 				<li><a href="viewcontact.htm">Alex Wickerham</a></li>
 				<li><a href="viewcontact.htm">Avery Johnson</a></li>

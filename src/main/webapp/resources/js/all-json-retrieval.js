@@ -3,6 +3,11 @@ $("#home").live("pagebeforeshow",function(e,ui){
 });
 $("#people").live("pagebeforeshow",function(e,ui){
     // Make sure to call a .listview('refresh') on the modified list in DOM
+	$.getJSON("people", function(data) {
+		$.each(data, function(key, val) {
+		    console.log("key: " + key + ", value: " + val);
+		  });
+    });
 	$(this).find('#peoplelist').append('<li><a href="viewcontact.htm">Random Person</a></li>').listview('refresh');
 	sortUnorderedList($(this).find('#peoplelist'));
 	$(this).find('#peoplelist').listview('refresh');

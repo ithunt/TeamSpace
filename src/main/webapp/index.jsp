@@ -8,9 +8,9 @@
             <div data-role="navbar" class="custom-glyph" >
                 <ul>
                     <li><a href="#" class="ui-btn-active" id="navhome" data-theme="c" data-icon="custom" >Home</a></li>
-                    <li><a href="people.htm" id="navpeople" data-theme="c" data-iconpos="bottom" data-icon="custom">People</a></li>
-                    <li><a href="events.htm" id="navevents" data-theme="c" data-iconpos="bottom" data-icon="custom">Events</a></li>
-                    <li><a href="tasks.htm" id="navtasks" data-theme="c" data-iconpos="bottom" data-icon="custom">Tasks</a></li>
+                    <li><a href="people" id="navpeople" data-theme="c" data-iconpos="bottom" data-icon="custom">People</a></li>
+                    <li><a href="events" id="navevents" data-theme="c" data-iconpos="bottom" data-icon="custom">Events</a></li>
+                    <li><a href="tasks" id="navtasks" data-theme="c" data-iconpos="bottom" data-icon="custom">Tasks</a></li>
                 </ul>
             </div>
         </div>
