@@ -22,7 +22,7 @@ public class Event extends Actionable implements Serializable {
 
 
     public Event() {
-        super();
+
     }
     /*
 

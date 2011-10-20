@@ -1,41 +1,30 @@
 package edu.rit.taskers.model;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+
+@Entity
+@Table(name = "Comment")
 public class Comment implements Serializable {
 
     private static final long serialVersionUID = 6895747392066771173L;
 
-    @Id
-    @GeneratedValue
-    @Column(name = "CommentID")
+
     private int id;
-
-    @ManyToOne
     protected Contact creator;
-
-    @Column(name = "Created")
     protected Date created;
-
-    @Column(name = "Text")
     protected String text;
+    //protected Actionable item;
 
     public Comment() {
 
     }
 
-    public Comment(Contact creator, Date created, String text) {
-        this.creator = creator;
-        this.created = created;
-        this.text = text;
-    }
-
-
+    @Id
+    @GeneratedValue
+    @Column(name = "CommentID")
     public int getId() {
         return id;
     }
@@ -44,6 +33,8 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Creator")
     public Contact getCreator() {
         return creator;
     }
@@ -52,6 +43,7 @@ public class Comment implements Serializable {
         this.creator = creator;
     }
 
+    @Column(name = "Created")
     public Date getCreated() {
         return created;
     }
@@ -60,6 +52,7 @@ public class Comment implements Serializable {
         this.created = created;
     }
 
+    @Column(name = "Text")
     public String getText() {
         return text;
     }
@@ -67,4 +60,17 @@ public class Comment implements Serializable {
     public void setText(String text) {
         this.text = text;
     }
+
+    /*
+    @ManyToOne(})
+    @JoinColumn("")
+    public Actionable getItem() {
+        return item;
+    }
+
+    public void setItem(Actionable item) {
+        this.item = item;
+    }
+    */
 }
+

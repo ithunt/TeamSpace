@@ -2,66 +2,58 @@ package edu.rit.taskers.model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 
 @MappedSuperclass
 public abstract class Actionable {
 
 
-    @Column(name="Name")
-    protected String name;
 
-    @Column(name="Description")
+    protected String name;
 	protected String description;
 	//protected Contact creator;
-
-    @Column(name="Created")
 	protected Date created;
 	//protected Contact assignedTo;
-
 	//protected List<Actionable> dependant;
-
-
-    protected List<Comment> comments;
+    // protected Set<Comment> comments = new HashSet<Comment>(0);
 
     protected Actionable() {}
-    /*
-    protected Actionable(String name, String description, Contact creator, Date created, Contact assignedTo) {
-        this.name = name;
-        this.description = description;
-        this.creator = creator;
-        this.created = created;
-        this.assignedTo = assignedTo;
-    }
-    */
 
+    @Column(name="Name")
     public String getName() {
         return name;
     }
+
 
     public void setName(String name) {
         this.name = name;
     }
 
+    @Column(name="Description")
     public String getDescription() {
         return description;
     }
 
+
     public void setDescription(String description) {
         this.description = description;
     }
-    /*
 
+    /*
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "Creator")
     public Contact getCreator() {
         return creator;
     }
 
+
     public void setCreator(Contact creator) {
         this.creator = creator;
     }
-    */
+       */
 
+
+     @Column(name="Created")
     public Date getCreated() {
         return created;
     }
@@ -88,15 +80,18 @@ public abstract class Actionable {
     }
 
     */
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ItemID", nullable = false)
-    public List<Comment> getComments() {
+    /*
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Comment.class)
+    @JoinColumn(name = "ItemID")
+    public Set<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(List<Comment> comments) {
+    public void setComments(Set<Comment> comments) {
         this.comments = comments;
     }
+      */
 
     @Override
     public String toString() {
