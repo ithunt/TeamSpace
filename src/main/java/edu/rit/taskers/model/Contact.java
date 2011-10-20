@@ -7,27 +7,13 @@ import java.net.URL;
 @Table(name = "Contact")
 public class Contact {
 
-    @Id
-    @GeneratedValue
-    @Column(name = "ContactID")
+
     private int id;
-
-    @Column(name = "FirstName")
     protected String name;
-
-    @Column(name = "Phone")
     protected String phone;
-
-    @Column(name = "Email")
     protected String email;
-
-    @Column(name = "Role")
     protected String role;
-
-    @Column(name = "Bio")
     protected String bio;
-
-    @Column(name = "PictureURL")
     protected URL pictureURL;
 
     public Contact() {
@@ -42,7 +28,18 @@ public class Contact {
         this.bio = bio;
         this.pictureURL = pictureURL;
     }
+    @Id
+    @GeneratedValue
+    @Column(name = "ContactID")
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Column(name = "FirstName")
     public String getName() {
         return name;
     }
@@ -51,6 +48,7 @@ public class Contact {
         this.name = name;
     }
 
+    @Column(name = "Phone")
     public String getPhone() {
         return phone;
     }
@@ -59,6 +57,7 @@ public class Contact {
         this.phone = phone;
     }
 
+     @Column(name = "Email")
     public String getEmail() {
         return email;
     }
@@ -67,6 +66,7 @@ public class Contact {
         this.email = email;
     }
 
+     @Column(name = "Role")
     public String getRole() {
         return role;
     }
@@ -75,6 +75,7 @@ public class Contact {
         this.role = role;
     }
 
+    @Column(name = "Bio")
     public String getBio() {
         return bio;
     }
@@ -83,6 +84,7 @@ public class Contact {
         this.bio = bio;
     }
 
+    @Column(name = "PictureURL")
     public URL getPictureURL() {
         return pictureURL;
     }

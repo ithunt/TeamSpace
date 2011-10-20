@@ -1,24 +1,23 @@
 package edu.rit.taskers.model;
 
 import javax.persistence.*;
-import java.util.List;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "User")
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 7515400943255193820L;
+
+
+    private int id;
+    protected String login;
+    protected String password;
+    protected Contact primaryContact;
 
     @Id
     @GeneratedValue
     @Column(name = "UserID")
-    private int id;
-
-    @Column(name= "LoginName")
-    protected String login;
-
-    @Column(name = "Password")
-    protected String password;
-
-
     public int getId() {
         return id;
     }
@@ -27,6 +26,7 @@ public class User {
         this.id = id;
     }
 
+    @Column(name= "LoginName")
     public String getLogin() {
         return login;
     }
@@ -35,12 +35,23 @@ public class User {
         this.login = login;
     }
 
+    @Column(name = "Password")
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "UserID")
+    public Contact getPrimaryContact() {
+        return primaryContact;
+    }
+
+    public void setPrimaryContact(Contact primaryContact) {
+        this.primaryContact = primaryContact;
     }
 
     @Override

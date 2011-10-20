@@ -7,8 +7,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "Event")
-public class Event extends Actionable implements Serializable{
+public class Event extends Actionable implements Serializable {
 
+    private static final long serialVersionUID = -2783488290815458040L;
     @Id
     @GeneratedValue
     @Column(name="EventID")
@@ -21,7 +22,7 @@ public class Event extends Actionable implements Serializable{
 
 
     public Event() {
-        super();
+
     }
     /*
 

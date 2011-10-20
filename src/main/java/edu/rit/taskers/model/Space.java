@@ -8,23 +8,14 @@ import java.util.List;
 @Table(name = "Space")
 public class Space {
 
-    @Id
-    @GeneratedValue
-    @Column(name = "SpaceID")
+    protected int id;
     protected String name;
-
-    @Column(name = "Created")
     protected Date created;
-
-    @Column(name = "Description")
     protected String description;
     protected Contact creator;
-
     protected List<Contact> users;
-
     protected List<Task> tasks;
     protected List<Event> events;
-
 
     public Space() {
 
@@ -37,6 +28,18 @@ public class Space {
 
     }
 
+    @Id
+    @GeneratedValue
+    @Column(name = "SpaceID")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Column(name = "Name")
     public String getName() {
         return name;
     }
@@ -45,6 +48,7 @@ public class Space {
         this.name = name;
     }
 
+    @Column(name = "Created")
     public Date getCreated() {
         return created;
     }
@@ -53,6 +57,17 @@ public class Space {
         this.created = created;
     }
 
+    @Column(name = "Description")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "Creator")
     public Contact getCreator() {
         return creator;
     }
@@ -61,6 +76,8 @@ public class Space {
         this.creator = creator;
     }
 
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SpaceID")
     public List<Contact> getUsers() {
         return users;
     }
@@ -69,6 +86,8 @@ public class Space {
         this.users = users;
     }
 
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SpaceID")
     public List<Task> getTasks() {
         return tasks;
     }
@@ -77,6 +96,8 @@ public class Space {
         this.tasks = tasks;
     }
 
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SpaceID")
     public List<Event> getEvents() {
         return events;
     }
@@ -85,11 +106,5 @@ public class Space {
         this.events = events;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

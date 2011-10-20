@@ -23,7 +23,9 @@
 	<context:component-scan base-package="edu.rit.taskers" />
     <mvc:annotation-driven />
     
-    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <!--<mvc:resources mapping="/resources/**" location="/resources/" />   -->
+
+
 
     <!--
 	<bean id="jspViewResolver"

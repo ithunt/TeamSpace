@@ -11,15 +11,8 @@ public class Task extends Actionable implements Serializable {
 
     private static final long serialVersionUID = 2170818105613256934L;
 
-    @Id
-    @GeneratedValue()
-    @Column(name = "TaskID")
     private int id;
-
-    @Column(name = "Due")
     protected Date due;
-
-    @Column(name= "Priority")
     protected int priority;
 
     public Task() {
@@ -32,10 +25,18 @@ public class Task extends Actionable implements Serializable {
     }
     */
 
+    @Id
+    @GeneratedValue()
+    @Column(name = "TaskID")
     public int getId() {
         return this.id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Column(name = "Due")
     public Date getDue() {
         return due;
     }
@@ -44,6 +45,7 @@ public class Task extends Actionable implements Serializable {
         this.due = due;
     }
 
+    @Column(name= "Priority")
     public int getPriority() {
         return priority;
     }
