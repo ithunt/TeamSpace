@@ -2,14 +2,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ page session="false" %>
 <%@ include file="header.jsp" %>
-<c:url value="/" var="url"/>
 <body>
     <div data-role="page" id="people" data-title="TeamSpace | People">
     
         <div data-role="header" data-theme="c">
             <div data-role="navbar" class="custom-glyph" >
                 <ul>
-                    <li><a href="${url}" rel="external" id="navhome" data-theme="c" data-icon="custom" data-direction="reverse">Home</a></li>
+                    <li><a href="<%=request.getContextPath()%>" rel="external" id="navhome" data-theme="c" data-icon="custom" data-direction="reverse">Home</a></li>
                     <li><a href="#" class="ui-btn-active" id="navpeople" data-theme="c" data-iconpos="bottom" data-icon="custom" >People</a></li>
                     <li><a href="events" rel="external" id="navevents" data-theme="c" data-iconpos="bottom" data-icon="custom">Events</a></li>
                     <li><a href="tasks" rel="external" id="navtasks" data-theme="c" data-iconpos="bottom" data-icon="custom">Tasks</a></li>

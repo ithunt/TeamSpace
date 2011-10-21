@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false" %>
 <%@ include file="header.jsp" %>
-<c:url value="/" var="url"/>
 <body>
     <div data-role="page" id="tasks" data-title="TeamSpace | Tasks">
 	
         <div data-role="header" data-theme="c">
             <div data-role="navbar" class="custom-glyph" >
                 <ul>
-                    <li><a href="${url}" rel="external" id="navhome" data-theme="c" data-icon="custom" data-direction="reverse">Home</a></li>
+                    <li><a href="<%=request.getContextPath()%>" rel="external" id="navhome" data-theme="c" data-icon="custom" data-direction="reverse">Home</a></li>
                     <li><a href="people" rel="external" id="navpeople" data-theme="c" data-iconpos="bottom" data-icon="custom" data-direction="reverse">People</a></li>
                     <li><a href="events" rel="external" id="navevents" data-theme="c" data-iconpos="bottom" data-icon="custom" data-direction="reverse">Events</a></li>
                     <li><a href="#" class="ui-btn-active" id="navtasks" data-theme="c" data-iconpos="bottom" data-icon="custom">Tasks</a></li>
