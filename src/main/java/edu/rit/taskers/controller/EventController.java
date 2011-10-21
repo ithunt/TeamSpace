@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import edu.rit.taskers.model.Event;
 import edu.rit.taskers.persistence.EventDao;
@@ -29,9 +30,10 @@ public class EventController {
 	 * @return Collection of events
 	 */
     @RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody String getAllEvents() {
+    public ModelAndView getAllEvents() {
 		//TODO
-		return "All events";
+		ModelAndView test = new ModelAndView("events.jsp");
+		return test;
 	}
 
 	/**
