@@ -30,7 +30,7 @@ public class EventDao {
 	@Transactional
     public List<Event> findAll() {
         return this.sessionFactory.getCurrentSession()
-                .createQuery("FROM Event").list();
+                .createQuery("FROM Actionable where TypeID = 2").list();
     }
 
 }

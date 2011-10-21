@@ -1,22 +1,21 @@
 package edu.rit.taskers.model;
 
+import org.hibernate.annotations.ForceDiscriminator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "Event")
+@DiscriminatorValue("2")
+@ForceDiscriminator
 public class Event extends Actionable implements Serializable {
 
     private static final long serialVersionUID = -2783488290815458040L;
-    @Id
-    @GeneratedValue
-    @Column(name="EventID")
-    private int id;
 
-    @Column(name="When")
-    protected Date when;
+
+    //protected Date when;
 
     //Todo: need to add more fields to schema/model
 
@@ -31,20 +30,14 @@ public class Event extends Actionable implements Serializable {
     }
     */
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Date getWhen() {
-        return when;
-    }
-
-    public void setWhen(Date when) {
-        this.when = when;
-    }
+//    @Column(name="When")
+//    public Date getWhen() {
+//        return when;
+//    }
+//
+//    public void setWhen(Date when) {
+//        this.when = when;
+//    }
 
 }

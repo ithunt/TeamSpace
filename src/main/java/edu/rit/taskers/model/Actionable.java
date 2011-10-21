@@ -4,10 +4,15 @@ import javax.persistence.*;
 import java.util.Date;
 
 
-@MappedSuperclass
+@Entity(name = "Actionable")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(
+        name="TypeID",
+        discriminatorType = DiscriminatorType.INTEGER
+)
 public abstract class Actionable {
 
-
+    protected int id;
 
     protected String name;
 	protected String description;
@@ -18,6 +23,17 @@ public abstract class Actionable {
     // protected Set<Comment> comments = new HashSet<Comment>(0);
 
     protected Actionable() {}
+
+    @Id
+    @GeneratedValue
+    @Column(name = "ID")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Column(name="Name")
     public String getName() {
