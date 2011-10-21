@@ -26,15 +26,15 @@
     
     <mvc:resources mapping="resources/**" location="resources/" />
 
-    <!--
+    
 	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	-->
+	
 
     <!--
 	<bean id="messageSource"

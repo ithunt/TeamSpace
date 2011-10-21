@@ -5,7 +5,7 @@
     <div data-role="page" id="viewcontact" data-title="TeamSpace | View Contact" >
     
         <div data-role="header" data-theme="d" data-position="inline">
-            <a href="people.htm" data-rel="back" data-iconpos="notext" data-icon="arrow-l" data-theme="a">Back</a>
+            <a href="people" data-rel="back" data-iconpos="notext" data-icon="arrow-l" data-theme="a">Back</a>
             <h1>Info</h1>
         </div>
 
@@ -14,24 +14,30 @@
                 <tbody>
                     <tr class="bottomborder">
                         <td>
-                            <img height="32" width="32" src="img/default-user.png" alt="Portrait" /></td>
-                        <td><h2>Adam Kinkaid</h2></td>
+	                        <c:if test="${empty contact.pictureURL}">
+							    <img height="32" width="32" src="<%=request.getContextPath()%>resources/img/default-user.png" alt="Portrait" /></td>
+							</c:if>
+							<c:if test="${not empty contact.pictureURL}">
+							    <img height="32" width="32" src="${contact.pictureURL}" alt="Portrait" /></td>
+							</c:if>
+                            
+                        <td><h2>${contact.firstName} ${contact.lastName}</h2></td>
                     </tr>
                     <tr class="bottomborder">
                         <td>Role:</td>
-                        <td><b>Lead Developer</b></td>
+                        <td><b>${contact.role}</b></td>
                     </tr>
                     <tr class="bottomborder">
                         <td colspan="2">
                             <div data-role="controlgroup" data-type="vertical">
-                                <a data-role="button" data-icon="forward" href="mailto:acb1485@rit.edu" id="email" name="email">acb1485@rit.edu</a>
-                                <a data-role="button" data-icon="grid" href="tel:412-855-8218" id="email" name="email">412-855-8218</a>
+                                <a data-role="button" data-icon="forward" href="mailto:${contact.email}" id="email" name="email">${contact.email}</a>
+                                <a data-role="button" data-icon="grid" href="tel:${contact.phone}" id="email" name="email">${contact.phone}</a>
                             </div>
                         </td>
                     </tr>
                     <tr class="bottomborder">
                         <td>Bio:</td>
-                        <td><b>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</b></td>
+                        <td><b>${contact.bio}</b></td>
                     </tr>
                 </tbody> 
             </table>

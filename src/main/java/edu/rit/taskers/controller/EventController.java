@@ -32,7 +32,7 @@ public class EventController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getAllEvents() {
 		//TODO
-		ModelAndView test = new ModelAndView("events.jsp");
+		ModelAndView test = new ModelAndView("events");
 		return test;
 	}
 

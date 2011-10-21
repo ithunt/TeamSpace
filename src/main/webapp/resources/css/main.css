@@ -1,3 +1,7 @@
+html {
+	height: inherit !important;
+}
+
 .header-text h1 {
 	float: left;
 	margin: .8em 0 .7em 15px !important;

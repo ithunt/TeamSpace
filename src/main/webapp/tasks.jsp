@@ -26,7 +26,7 @@
                 <li><a href="edittask.htm">
                     <span class="aside-spacing-task ui-li-aside">
                         <p>Due Today!</p>
-                        <img class="priority-image" height="16" width="16" title="High Priority" alt="High Priority" src="<c:url value="/resources/img/exclam.png"/>" />
+                        <img class="priority-image" height="16" width="16" title="High Priority" alt="High Priority" src="<c:url value="<%=request.getContextPath()%>resources/img/exclam.png"/>" />
                     </span>
                     <h3>Finish Diagrams</h3>
                     <p>Clean up some of the highlights for the ER diagram and add the new columns to the relational diagram.</p>
@@ -36,7 +36,7 @@
                 <li><a href="about.htm">
                     <span class="aside-spacing-task ui-li-aside">
                         <p>10/18/11</p>
-                        <img class="priority-image" height="16" width="16" title="High Priority" alt="High Priority" src="<c:url value="/resources/img/exclam.png"/>" />
+                        <img class="priority-image" height="16" width="16" title="High Priority" alt="High Priority" src="<c:url value="<%=request.getContextPath()%>resources/img/exclam.png"/>" />
                     </span>
                     <h3>Plan Conference</h3>
                     <p class="invitor">[Assigned by: Tim Garvin]</p>

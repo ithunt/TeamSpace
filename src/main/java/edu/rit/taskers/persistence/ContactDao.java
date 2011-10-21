@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.rit.taskers.model.User;
+import edu.rit.taskers.model.Contact;
 
 /**
- * @author ian hunt
+ * @author acb
  */
 @Repository
-public class UserDao {
+public class ContactDao {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -24,19 +24,19 @@ public class UserDao {
     }
 
     @Transactional
-    public void save(User user) {
-        this.sessionFactory.getCurrentSession().save(user);
+    public void save(Contact contact) {
+        this.sessionFactory.getCurrentSession().save(contact);
     }
 
     @Transactional
-    public List<User> findAll() {
+    public List<Contact> findAll() {
         sessionFactory.getCurrentSession();
-        return this.sessionFactory.getCurrentSession().createQuery("FROM User").list();
+        return this.sessionFactory.getCurrentSession().createQuery("FROM Contact").list();
     }
 
     @Transactional
-    public User findById(int id) {
-        return (User) sessionFactory.getCurrentSession().get(User.class, id);
+    public Contact findById(int id) {
+        return (Contact) sessionFactory.getCurrentSession().get(Contact.class, id);
     }
     
 }

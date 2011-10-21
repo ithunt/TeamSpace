@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Handles requests for the application home page.
  */
 @Controller
+@RequestMapping("/")
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -18,10 +19,10 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value="/", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView goHome() {
 		//TODO
-		ModelAndView test = new ModelAndView("index.jsp");
+		ModelAndView test = new ModelAndView("index");
 		return test;
 	}
 }

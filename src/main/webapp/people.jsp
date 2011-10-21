@@ -22,8 +22,8 @@
 
         <div data-role="content">
             <ul data-role="listview" data-theme="c" data-filter="true" data-filter-placeholder="Search People..." data-filter-theme="none">
-            	<c:forEach items="${names}" var="item">
-					<li><a href="viewcontact.htm">${item}</a></li>
+            	<c:forEach items="${contacts}" var="contact">
+					<li><a href="<%=request.getContextPath()%>people/${contact.id}">${contact.firstName} ${contact.lastName}</a></li>
 				</c:forEach>
 				<li><a href="viewcontact.htm">Adam Kinkaid</a></li>
 				<li><a href="viewcontact.htm">Alex Wickerham</a></li>

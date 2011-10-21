@@ -9,7 +9,8 @@ public class Contact {
 
 
     private int id;
-    protected String name;
+    protected String firstName;
+    protected String lastName;
     protected String phone;
     protected String email;
     protected String role;
@@ -20,8 +21,9 @@ public class Contact {
 
     }
 
-    public Contact(String name, String phone, String email, String role, String bio, URL pictureURL) {
-        this.name = name;
+    public Contact(String firstName, String lastName, String phone, String email, String role, String bio, URL pictureURL) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phone = phone;
         this.email = email;
         this.role = role;
@@ -40,12 +42,21 @@ public class Contact {
     }
 
     @Column(name = "FirstName")
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    @Column(name = "LastName")
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Column(name = "Phone")

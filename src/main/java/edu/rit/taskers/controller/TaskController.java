@@ -32,7 +32,7 @@ public class TaskController {
 	@RequestMapping(method = RequestMethod.GET)
     public ModelAndView getAllTasks() {
 		//TODO
-		ModelAndView test = new ModelAndView("tasks.jsp");
+		ModelAndView test = new ModelAndView("tasks");
 		return test;
 	}
 
