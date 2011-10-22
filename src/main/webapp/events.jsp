@@ -21,6 +21,22 @@
 
         <div data-role="content">
             <ul data-role="listview" data-theme="d" data-dividertheme="b" data-counttheme="e">
+                
+                <!-- Database contents (dynamic) -->
+                
+            	<c:forEach items="${allevents}" var="event">
+					<li data-theme="e" ><a href="<%=request.getContextPath()%>events/${event.id}"><p class="aside-spacing ui-li-aside"><b>${event.when}</p>
+                    <h3>${event.name}</h3>
+                    
+                    <!-- TODO: Creator name -->
+                    
+                    <p><b>from Anthony Barone (Static)</b></p>
+                    <p>${event.description}</p>
+               		</a></li>
+				</c:forEach>
+            
+                <!-- Dummy data (static) -->
+                
                 <li data-role="list-divider">Today
                     <span class="ui-li-count">1 New!</span>
                 </li>

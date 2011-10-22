@@ -22,6 +22,37 @@
         <div data-role="content">
             
             <ul data-role="listview" data-theme="d" data-dividertheme="b" data-counttheme="e" data-split-icon="check" data-split-theme="c" >
+            
+                <!-- Database contents (dynamic) -->
+                
+            	<c:forEach items="${alltasks}" var="task">
+            	
+	            	<li><a href="edittask.htm">
+            	        <c:if test="${task.priority=='High'}">
+                            <span class="aside-spacing-task ui-li-aside">
+	                            <p>${task.due}</p>
+	                            <img class="priority-image" height="16" width="16" title="High Priority" alt="High Priority" src="<%=request.getContextPath()%>resources/img/exclam.png" />
+	                        </span>
+                        </c:if>
+                        <c:if test="${task.priority!='High'}">
+                            <p class="aside-spacing-task ui-li-aside">${task.due}</p>
+                        </c:if>
+                        
+                        <h3>${task.name}</h3>
+                        
+                        <!-- TODO: AssignedTo conditional -->
+                        
+                        <p>${task.description}</p>
+                        
+                        <!-- TODO: Implement 'Mark Task Complete' -->
+                        
+                        </a><a href="#">Mark Task 'Complete'</a>
+	                </li>
+                	</a></li>
+				</c:forEach>
+				
+				<!-- Dummy data (static) -->
+				
                 <li data-role="list-divider">Important</li>
                 <li><a href="edittask.htm">
                     <span class="aside-spacing-task ui-li-aside">
@@ -54,22 +85,19 @@
                 </li>
                 <li data-role="list-divider">Future Tasks</li>
                 <li><a href="about.htm"><p class="aside-spacing-task ui-li-aside">10/19/11</p>
-                    <h3>Amazon.com</h3>
-                    <p><strong>4-for-3 Books for Kids</strong></p>
+                    <h3>4-for-3 Books for Kids</h3>
                     <p>As someone who has purchased children's books from our 4-for-3 Store, you may be interested in these featured books.</p>
                     
                 </a><a href="#">Mark Task 'Complete'</a>
                 </li>
                 <li><a href="about.htm"><p class="aside-spacing-task ui-li-aside">10/22/11</p>
-                    <h3>Mike Taylor</h3>
-                    <p><strong>Re: This weekend in Maine</strong></p>
+                    <h3>Re: This weekend in Maine</h3>
                     <p>Hey little buddy, sorry but I can't make it up to vacationland this weekend. Maybe next weekend?</p>
                     
                 </a><a href="#">Mark Task 'Complete'</a>
                 </li>
                 <li><a href="about.htm"><p class="aside-spacing-task ui-li-aside">10/22/11</p>
-                    <h3>Redfin</h3>
-                    <p><strong>Redfin listing updates for today</strong></p>
+                    <h3>Redfin listing updates for today</h3>
                     <p>There are 3 updates for the home on your watchlist: 1 updated MLS listing and 2 homes under contract.</p>
                     
                 </a><a href="#">Mark Task 'Complete'</a>
@@ -80,15 +108,13 @@
 			<ul data-role="listview" data-theme="d" data-dividertheme="a" data-counttheme="b" data-split-icon="check" data-split-theme="a">
                 <li data-role="list-divider">Completed</li>
                 <li><a href="about.htm"><p class="aside-spacing-task ui-li-aside">10/25/11</p>
-                    <h3>Angela Smith</h3>
-                    <p><strong>Link Request</strong></p>
+                    <h3>Link Request</h3>
                     <p>My name is Angela Smith, SEO Consultant. I've greatly enjoyed looking through your site and I was wondering if you'd be interested in providing a link</p>
                     
                 </a><a href="#">Mark Task 'Complete'</a>
                 </li>
                 <li><a href="about.htm"><p class="aside-spacing-task ui-li-aside">10/29/11</p>
-                    <h3>Mike Taylor</h3>
-                    <p><strong>This weekend in Maine</strong></p>
+                    <h3>This weekend in Maine</h3>
                     <p>Sounds good, let me check into our plans.</p>
                     
                 </a><a href="#">Mark Task 'Complete'</a>
