@@ -30,7 +30,7 @@ public class PeopleController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView getAllContacts() {
 		//TODO - Session space ID
-		ModelAndView peopleJspAndContactsPage = new ModelAndView("people", "contacts", contactDao.findAll());
+		ModelAndView peopleJspAndContactsPage = new ModelAndView("people", "allcontacts", contactDao.findAll());
 		return peopleJspAndContactsPage;
 	}
 
@@ -39,8 +39,8 @@ public class PeopleController {
 	 */
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ModelAndView getContactDetails(@PathVariable int id) {
-		ModelAndView viewContactPage = new ModelAndView("viewcontact", "contact", contactDao.findById(id));
-		return viewContactPage;
+		ModelAndView contactDetailsPage = new ModelAndView("viewcontact", "contact", contactDao.findById(id));
+		return contactDetailsPage;
 	}
 
 	/**

@@ -28,7 +28,8 @@ public class UserDao {
         this.sessionFactory.getCurrentSession().save(user);
     }
 
-    @Transactional
+    @SuppressWarnings("unchecked")
+	@Transactional
     public List<User> findAll() {
         sessionFactory.getCurrentSession();
         return this.sessionFactory.getCurrentSession().createQuery("FROM User").list();

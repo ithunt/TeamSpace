@@ -7,10 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.rit.taskers.model.Task;
 import edu.rit.taskers.persistence.TaskDao;
 
 /**
@@ -27,26 +25,22 @@ public class TaskController {
 
 	/**
 	 * Fetch all tasks that belong to session space id
-	 * @return Collection of tasks
+	 * @return Collection of events
 	 */
-	@RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getAllTasks() {
-		//TODO
-		ModelAndView test = new ModelAndView("tasks");
-		return test;
+		//TODO - Session space ID
+		ModelAndView eventsMainPage = new ModelAndView("tasks", "alltasks", taskDao.findAll());
+		return eventsMainPage;
 	}
 
 	/**
-	 * Retrieve the task details from a selected task in the list
+	 * Retrieve the tasks details from a selected task in the list
 	 */
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public @ResponseBody Task getEventDetails(@PathVariable int id) {
-		logger.info("Retrieving task details [ID:" + id + "]");
-
-		//TODO
-		Task returnTask = null;
-
-		return returnTask;
+	public ModelAndView getEventDetails(@PathVariable int id) {
+		ModelAndView taskDetailsEditPage = new ModelAndView("edittask", "task", taskDao.findById(id));
+		return taskDetailsEditPage;
 	}
 
 	/**

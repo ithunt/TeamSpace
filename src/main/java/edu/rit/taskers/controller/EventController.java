@@ -7,10 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.rit.taskers.model.Event;
 import edu.rit.taskers.persistence.EventDao;
 
 /**
@@ -31,22 +29,18 @@ public class EventController {
 	 */
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getAllEvents() {
-		//TODO
-		ModelAndView test = new ModelAndView("events");
-		return test;
+		//TODO - Session space ID
+		ModelAndView eventsMainPage = new ModelAndView("events", "allevents", eventDao.findAll());
+		return eventsMainPage;
 	}
 
 	/**
 	 * Retrieve the event details from a selected event in the list
 	 */
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public @ResponseBody Event getEventDetails(@PathVariable int id) {
-		logger.info("Retrieving event details [ID:" + id + "]");
-
-		//TODO
-		Event returnEvent = null;
-
-		return returnEvent;
+	public ModelAndView getEventDetails(@PathVariable int id) {
+		ModelAndView eventDetailsEditPage = new ModelAndView("editevent", "event", eventDao.findById(id));
+		return eventDetailsEditPage;
 	}
 
 	/**

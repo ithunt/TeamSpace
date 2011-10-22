@@ -1,13 +1,13 @@
 package edu.rit.taskers.persistence;
 
-import edu.rit.taskers.model.Space;
-import edu.rit.taskers.model.Task;
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import edu.rit.taskers.model.Task;
 
 @Repository
 public class TaskDao {
@@ -15,16 +15,19 @@ public class TaskDao {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Transactional
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
+    @Transactional
     public void save(Task task) {
         this.sessionFactory.getCurrentSession().save(task);
     }
 
-    @Transactional
-    public List findBySpace(int spaceId) {
+    @SuppressWarnings("unchecked")
+	@Transactional
+    public List<Task> findBySpace(int spaceId) {
         return this.sessionFactory.getCurrentSession()
                 .createQuery("FROM Actionable where Actionable.SpaceID=?")
                 .setParameter(0, spaceId).list();
@@ -35,16 +38,9 @@ public class TaskDao {
         return (Task)sessionFactory.getCurrentSession().get(Task.class, id);
     }
 
-    @Transactional
-    public List<Task> findBySpace(Space space) {
-        //return findBySpace(space.getId());
-        return null;
-    }
-
-
+	@SuppressWarnings("unchecked")
 	@Transactional
     public List<Task> findAll() {
-        return this.sessionFactory.getCurrentSession()
-                .createQuery("FROM Actionable").list();
+        return this.sessionFactory.getCurrentSession().createQuery("FROM Actionable").list();
     }
 }

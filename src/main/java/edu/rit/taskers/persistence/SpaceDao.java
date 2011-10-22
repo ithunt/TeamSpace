@@ -1,14 +1,13 @@
 package edu.rit.taskers.persistence;
 
-import edu.rit.taskers.model.Space;
-import edu.rit.taskers.model.Task;
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.TaskScheduler;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import edu.rit.taskers.model.Space;
 
 /**
  * @author ian hunt
@@ -20,6 +19,7 @@ public class SpaceDao {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Transactional
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -29,10 +29,10 @@ public class SpaceDao {
         this.sessionFactory.getCurrentSession().save(space);
     }
 
-    @Transactional
+    @SuppressWarnings("unchecked")
+	@Transactional
     public List<Space> findAll() {
-        return this.sessionFactory.getCurrentSession()
-                .createQuery("FROM Space").list();
+        return this.sessionFactory.getCurrentSession().createQuery("FROM Space").list();
 
     }
 
