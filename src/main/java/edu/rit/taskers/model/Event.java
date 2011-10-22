@@ -1,14 +1,14 @@
 package edu.rit.taskers.model;
 
+import java.io.Serializable;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import org.hibernate.annotations.ForceDiscriminator;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-
 @Entity
-@DiscriminatorValue("2")
+@DiscriminatorValue("1")
 @ForceDiscriminator
 public class Event extends Actionable implements Serializable {
 

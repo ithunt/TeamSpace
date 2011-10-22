@@ -1,13 +1,14 @@
 package edu.rit.taskers.model;
 
+import java.io.Serializable;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import org.hibernate.annotations.ForceDiscriminator;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Date;
-
 @Entity
-@DiscriminatorValue("1")
+@DiscriminatorValue("2")
 @ForceDiscriminator
 public class Task extends Actionable implements Serializable {
 
