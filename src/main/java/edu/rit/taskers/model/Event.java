@@ -17,7 +17,7 @@ public class Event extends Actionable implements Serializable {
     private static final long serialVersionUID = -2783488290815458040L;
 
 
-    protected Date when;
+    //protected Date when;
 
     //Todo: need to add more fields to schema/model
 
@@ -27,19 +27,19 @@ public class Event extends Actionable implements Serializable {
     }
 
 
-    @Column(name="When")
-    public Date getWhen() {
-        return when;
-    }
-
-    public void setWhen(Date when) {
-        this.when = when;
-    }
+//    @Column(name="When")
+//    public Date getWhen() {
+//        return when;
+//    }
+//
+//    public void setWhen(Date when) {
+//        this.when = when;
+//    }
 
     @Override
     public String toString() {
         return "Event{" +
-                "when=" + when +
+                //"when=" + when +
                 "} " + super.toString();
     }
 }
