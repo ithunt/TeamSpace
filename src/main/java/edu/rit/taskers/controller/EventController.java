@@ -48,4 +48,13 @@ public class EventController {
 
 		return returnEvent;
 	}
+
+	/**
+	 * Create New Event page requested
+	 */
+	@RequestMapping(value="/new", method=RequestMethod.GET)
+	public ModelAndView getCreateEventPage() {
+		ModelAndView newEventPage = new ModelAndView("newevent");
+		return newEventPage;
+	}
 }

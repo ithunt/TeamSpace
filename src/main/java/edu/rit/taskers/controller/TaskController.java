@@ -48,4 +48,13 @@ public class TaskController {
 
 		return returnTask;
 	}
+
+	/**
+	 * Create New Task page requested
+	 */
+	@RequestMapping(value="/new", method=RequestMethod.GET)
+	public ModelAndView getCreateEventPage() {
+		ModelAndView newTaskPage = new ModelAndView("newTask");
+		return newTaskPage;
+	}
 }

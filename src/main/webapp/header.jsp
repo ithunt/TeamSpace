@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
     <meta name="viewport" content="user-scalable=false"/>
     <meta name="format-detection" content="telephone=yes"/>
-    <link rel="icon" href="<%=request.getContextPath()%>favicon.ico" />
+    <link rel="icon" type="image/png" href="<%=request.getContextPath()%>resources/img/favicon.png" />
     <link rel="apple-touch-icon" sizes="114x114" href="<%=request.getContextPath()%>resources/img/apple-icon.png" />
     <link type="text/css" href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css?rc1" rel="stylesheet" />
     <link type="text/css" href="http://dev.jtsage.com/cdn/datebox/latest/jquery.mobile.datebox.min.css?rc1" rel="stylesheet" /> 

@@ -16,7 +16,7 @@
         </div>
         
         <div data-role="header" class="no-text-header" data-theme="none">
-			<a href="newevent.htm" class="ui-btn-right" data-transition="slideup" data-role="button" data-theme="e" data-icon="plus">Create Event</a>
+			<a href="<%=request.getContextPath()%>events/new" class="ui-btn-right" data-transition="slideup" data-role="button" data-theme="e" data-icon="plus">Create Event</a>
 		</div>
 
         <div data-role="content">

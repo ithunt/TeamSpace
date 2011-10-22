@@ -30,8 +30,8 @@ public class PeopleController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView getAllContacts() {
 		//TODO - Session space ID
-		ModelAndView peopleJspAndContacts = new ModelAndView("people", "contacts", contactDao.findAll());
-		return peopleJspAndContacts;
+		ModelAndView peopleJspAndContactsPage = new ModelAndView("people", "contacts", contactDao.findAll());
+		return peopleJspAndContactsPage;
 	}
 
 	/**
@@ -39,7 +39,26 @@ public class PeopleController {
 	 */
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ModelAndView getContactDetails(@PathVariable int id) {
-		ModelAndView viewContact = new ModelAndView("viewcontact", "contact", contactDao.findById(id));
-		return viewContact;
+		ModelAndView viewContactPage = new ModelAndView("viewcontact", "contact", contactDao.findById(id));
+		return viewContactPage;
 	}
+
+	/**
+	 * Invite Contact page requested
+	 */
+	@RequestMapping(value="/invite", method=RequestMethod.GET)
+	public ModelAndView getInvitePage() {
+		ModelAndView inviteContactPage = new ModelAndView("invite");
+		return inviteContactPage;
+	}
+	
+	/**
+	 * Search contacts for with email address specified by client
+	 */
+//	@RequestMapping(value="/invite/{email}", method=RequestMethod.POST)
+//	public @ResponseBody boolean searchForContact(@RequestParam String email) {
+//		//TODO figure out email format validation location (probably client side)
+//		logger.info("Searching contacts with inputted email address [email:" + email + "]");
+//		return true;
+//	}
 }

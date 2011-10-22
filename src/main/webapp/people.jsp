@@ -17,7 +17,7 @@
         </div>
 		
 		<div data-role="header" class="no-text-header" data-theme="none">
-			<a href="invite.htm" class="ui-btn-right" data-role="button" data-theme="e" data-icon="plus">Invite</a>
+			<a href="<%=request.getContextPath()%>people/invite" class="ui-btn-right" data-role="button" data-theme="e" data-icon="plus">Invite</a>
 		</div>
 
         <div data-role="content">
