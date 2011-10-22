@@ -41,6 +41,6 @@ public class TaskDao {
 	@SuppressWarnings("unchecked")
 	@Transactional
     public List<Task> findAll() {
-        return this.sessionFactory.getCurrentSession().createQuery("FROM Actionable").list();
+        return this.sessionFactory.getCurrentSession().createQuery("FROM Actionable where TypeID=1").list();
     }
 }

@@ -1,5 +1,6 @@
 package edu.rit.taskers.test;
 
+import edu.rit.taskers.model.Actionable;
 import edu.rit.taskers.model.Task;
 import edu.rit.taskers.persistence.TaskDao;
 import org.junit.Test;
@@ -38,7 +39,9 @@ public class TaskTest {
         List<Task> taskList = taskDao.findAll();
         assertFalse(taskList.isEmpty());
 
-        System.out.println(taskList.get(0));
+        for(Actionable a : taskList) {
+            System.out.println(a);
+        }
 
 
     }

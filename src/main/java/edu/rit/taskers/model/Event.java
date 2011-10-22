@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import org.hibernate.annotations.ForceDiscriminator;
 
 @Entity
-@DiscriminatorValue("1")
+@DiscriminatorValue("2")
 @ForceDiscriminator
 public class Event extends Actionable implements Serializable {
 

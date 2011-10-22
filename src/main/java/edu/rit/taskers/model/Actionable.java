@@ -27,9 +27,9 @@ public abstract class Actionable {
 	protected Date created;
 	protected String description;
 	//TODO protected Contact assignedTo;
-	protected Date due;
-	protected String priority;
-	protected Date when;
+	//protected Date due;
+	//protected String priority;
+	//protected Date when;
 	//TODO protected List<Actionable> dependant;
     //TODO protected Set<Comment> comments = new HashSet<Comment>(0);
 
@@ -84,32 +84,32 @@ public abstract class Actionable {
         this.description = description;
     }
     
-    @Column(name="Due")
-  	public Date getDue() {
-      	return due;
-  	}
-
-  	public void setDue(Date due) {
-  		this.due = due;
-  	}
-    
-    @Column(name="Priority")
-    public String getPriority() {
-        return priority;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
-    
-    @Column(name="When")
-  	public Date getWhen() {
-      	return when;
-  	}
-
-  	public void setWhen(Date when) {
-  		this.when = when;
-  	}
+//    @Column(name="Due")
+//  	public Date getDue() {
+//      	return due;
+//  	}
+//
+//  	public void setDue(Date due) {
+//  		this.due = due;
+//  	}
+//
+//    @Column(name="Priority")
+//    public String getPriority() {
+//        return priority;
+//    }
+//
+//    public void setPriority(String priority) {
+//        this.priority = priority;
+//    }
+//
+//    @Column(name="When")
+//  	public Date getWhen() {
+//      	return when;
+//  	}
+//
+//  	public void setWhen(Date when) {
+//  		this.when = when;
+//  	}
 
 //    public Contact getAssignedTo() {
 //        return assignedTo;
