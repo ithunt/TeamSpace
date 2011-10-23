@@ -198,6 +198,7 @@
 				<version>1.0-beta-1</version>
 				<configuration>
 					<path>/</path>
+                    <warFile>/root/TeamSpace/target/TeamSpace.war</warFile>
 				</configuration>
 			</plugin>						
 		</plugins>
