@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>TeamSpace</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
     <meta name="viewport" content="user-scalable=false"/>
