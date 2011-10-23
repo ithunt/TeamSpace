@@ -48,7 +48,7 @@ public class TaskController {
 	 */
 	@RequestMapping(value="/new", method=RequestMethod.GET)
 	public ModelAndView getCreateEventPage() {
-		ModelAndView newTaskPage = new ModelAndView("newTask");
+		ModelAndView newTaskPage = new ModelAndView("newtask");
 		return newTaskPage;
 	}
 }

@@ -27,7 +27,7 @@ public abstract class Actionable {
 	protected Date created;
 	protected String description;
 	//TODO protected Contact assignedTo;
-	//protected Date due;
+	protected Date targetDate;
 	//protected String priority;
 	//protected Date when;
 	//TODO protected List<Actionable> dependant;
@@ -136,13 +136,23 @@ public abstract class Actionable {
 //    public void setComments(Set<Comment> comments) {
 //        this.comments = comments;
 //    }
+    
+    @Column(name="TargetDate")
+    public Date getTargetDate() {
+    	return targetDate;
+    }
+
+    public void setTargetDate(Date targetDate) {
+    	this.targetDate = targetDate;
+    }
 
     @Override
     public String toString() {
         return "Actionable{" +
                 "name='" + name + '\'' +
-                ", description='" + description + '\'' +
                 ", created=" + created +
+                ", description='" + description + '\'' +
+                ", targetDate=" + targetDate +
                 '}';
     }
 }

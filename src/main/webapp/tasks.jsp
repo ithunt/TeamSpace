@@ -30,12 +30,12 @@
 	            	<li><a href="edittask.htm">
             	        <c:if test="${task.priority=='High'}">
                             <span class="aside-spacing-task ui-li-aside">
-	                            <p>${task.due}</p>
+	                            <p><fmt:formatDate value="${task.targetDate}" pattern="MM/dd/yy"/></p>
 	                            <img class="priority-image" height="16" width="16" title="High Priority" alt="High Priority" src="<%=request.getContextPath()%>resources/img/exclam.png" />
 	                        </span>
                         </c:if>
                         <c:if test="${task.priority!='High'}">
-                            <p class="aside-spacing-task ui-li-aside">${task.due}</p>
+                            <p class="aside-spacing-task ui-li-aside"><fmt:formatDate value="${task.targetDate}" pattern="MM/dd/yy"/></p>
                         </c:if>
                         
                         <h3>${task.name}</h3>

@@ -24,8 +24,13 @@
                 
                 <!-- Database contents (dynamic) -->
                 
+                <!-- TODO: Data-theme:e for new/unseen -->
+                
             	<c:forEach items="${allevents}" var="event">
-					<li data-theme="e" ><a href="<%=request.getContextPath()%>events/${event.id}"><p class="aside-spacing ui-li-aside"><b>${event.when}</p>
+					<li><a href="<%=request.getContextPath()%>events/${event.id}">
+					<p class="aside-spacing ui-li-aside">
+					   <b><fmt:formatDate value="${event.targetDate}" pattern="MM/dd/yy"/></b>
+                    </p>
                     <h3>${event.name}</h3>
                     
                     <!-- TODO: Creator name -->
