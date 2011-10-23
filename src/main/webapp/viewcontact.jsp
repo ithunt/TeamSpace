@@ -15,7 +15,7 @@
                     <tr class="bottomborder">
                         <td>
 	                        <c:if test="${empty contact.pictureURL}">
-							    <img height="32" width="32" src="<%=request.getContextPath()%>resources/img/default-user.png" alt="Portrait" /></td>
+							    <img height="32" width="32" src="/resources/img/default-user.png" alt="Portrait" /></td>
 							</c:if>
 							<c:if test="${not empty contact.pictureURL}">
 							    <img height="32" width="32" src="${contact.pictureURL}" alt="Portrait" /></td>

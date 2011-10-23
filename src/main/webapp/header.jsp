@@ -9,15 +9,15 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
     <meta name="viewport" content="user-scalable=false"/>
     <meta name="format-detection" content="telephone=yes"/>
-    <link rel="icon" type="image/png" href="<%=request.getContextPath()%>resources/img/favicon.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="<%=request.getContextPath()%>resources/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="/resources/img/favicon.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/resources/img/apple-icon.png" />
     <link type="text/css" href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css?rc1" rel="stylesheet" />
     <link type="text/css" href="http://dev.jtsage.com/cdn/datebox/latest/jquery.mobile.datebox.min.css?rc1" rel="stylesheet" /> 
-    <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/main.css?rc1" />
-    <link rel="stylesheet" media="only screen and (max-device-width: 320px)" href="<%=request.getContextPath()%>resources/css/phone.css?rc1" />
+    <link rel="stylesheet" href="/resources/css/main.css?rc1" />
+    <link rel="stylesheet" media="only screen and (max-device-width: 320px)" href="/resources/css/phone.css?rc1" />
     <script src="http://code.jquery.com/jquery.min.js"></script>
     <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
 	<script type="text/javascript" src="http://dev.jtsage.com/jquery.mousewheel.min.js"></script>
 	<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jquery.mobile.datebox.min.js"></script>
-	<script type="text/javascript" src="<%=request.getContextPath()%>resources/js/all-json-retrieval.js"></script>
+	<script type="text/javascript" src="/resources/js/all-json-retrieval.js"></script>
 </head>
