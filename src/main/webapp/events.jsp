@@ -27,7 +27,7 @@
                 <!-- TODO: Data-theme:e for new/unseen -->
                 
             	<c:forEach items="${allevents}" var="event">
-					<li><a href="<%=request.getContextPath()%>events/${event.id}">
+					<li><a href="/events/${event.id}">
 					<p class="aside-spacing ui-li-aside">
 					   <b><fmt:formatDate value="${event.targetDate}" pattern="MM/dd/yy"/></b>
                     </p>

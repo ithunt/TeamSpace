@@ -26,9 +26,8 @@
                     <div data-role="fieldcontain">
                        <label for="priority-select" class="select">Priority:</label>
                        <select name="priority-select" id="priority-select" data-native-menu="false">
-                          <option value="high_priority">Normal</option>
-                          <option value="normal_priority">Low</option>
-                          <option value="low_priority">High</option>
+                          <option value="normal_priority">Normal</option>
+                          <option value="high_priority">High</option>
                        </select>
                     </div>
                     

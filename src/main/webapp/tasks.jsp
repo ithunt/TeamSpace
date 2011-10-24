@@ -16,7 +16,7 @@
         </div>
         
         <div data-role="header" class="no-text-header" data-theme="none"> 
-			<a href="<%=request.getContextPath()%>tasks/new" class="ui-btn-right" data-transition="slideup" data-role="button" data-theme="e" data-icon="plus">Create Task</a>
+			<a href="/tasks/new" class="ui-btn-right" data-transition="slideup" data-role="button" data-theme="e" data-icon="plus">Create Task</a>
 		</div>
 
         <div data-role="content">
@@ -27,7 +27,7 @@
                 
             	<c:forEach items="${alltasks}" var="task">
             	
-	            	<li><a href="edittask.htm">
+	            	<li><a href="/tasks/${task.id}">
             	        <c:if test="${task.priority=='High'}">
                             <span class="aside-spacing-task ui-li-aside">
 	                            <p><fmt:formatDate value="${task.targetDate}" pattern="MM/dd/yy"/></p>
@@ -35,7 +35,7 @@
 	                        </span>
                         </c:if>
                         <c:if test="${task.priority!='High'}">
-                            <p class="aside-spacing-task ui-li-aside"><fmt:formatDate value="${task.targetDate}" pattern="MM/dd/yy"/></p>
+                            <p class="aside-spacing-task ui-li-aside"><fmt:formatDate value="${task.targetDate}" pattern="yyyy-MM-dd"/></p>
                         </c:if>
                         
                         <h3>${task.name}</h3>

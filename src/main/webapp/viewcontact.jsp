@@ -13,7 +13,7 @@
             <table id="info-table" summary="Contact Information">
                 <tbody>
                     <tr class="bottomborder">
-                        <td>
+                        <td class="firstcol">
 	                        <c:if test="${empty contact.pictureURL}">
 							    <img height="32" width="32" src="/resources/img/default-user.png" alt="Portrait" /></td>
 							</c:if>
@@ -24,7 +24,7 @@
                         <td><h2>${contact.firstName} ${contact.lastName}</h2></td>
                     </tr>
                     <tr class="bottomborder">
-                        <td>Role:</td>
+                        <td class="firstcol">Role:</td>
                         <td><b>${contact.role}</b></td>
                     </tr>
                     <tr class="bottomborder">
@@ -36,7 +36,7 @@
                         </td>
                     </tr>
                     <tr class="bottomborder">
-                        <td>Bio:</td>
+                        <td class="firstcol">Bio:</td>
                         <td><b>${contact.bio}</b></td>
                     </tr>
                 </tbody> 

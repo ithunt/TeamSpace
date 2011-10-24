@@ -14,24 +14,24 @@
 				<fieldset>
 					<div data-role="fieldcontain">
                         <label for="title">Title:</label>
-                        <input type="text" name="title" id="title" value="" />
+                        <input type="text" name="title" id="title" value="${event.name}" />
                     </div>
                     
                     <div data-role="fieldcontain">
                         <label for="date">Date:</label>
-                        <input name="date" id="date" type="date" data-role="datebox"
+                        <input name="date" id="date" type="date" data-role="datebox" value="<fmt:formatDate value="${event.targetDate}" pattern="yyyy-MM-dd"/>"
                            data-options='{"pickPageButtonTheme": "b", "mode": "calbox", "disableManualInput": true, "useDialogForceFalse": true}'>
                     </div>
                        
                     <div data-role="fieldcontain">
                         <label for="time">Time:</label>
-                        <input name="time" id="time" type="date" data-role="datebox"
+                        <input name="time" id="time" type="date" data-role="datebox" value="<fmt:formatDate value="${event.targetDate}" pattern="h:m a"/>"
                            data-options='{"pickPageButtonTheme": "c", "mode": "timebox",  "timeFormat": 12, "disableManualInput": true, "useDialogForceFalse": true}'>
                     </div>
                     
                     <div data-role="fieldcontain">
                         <label for="textarea">Notes:</label>
-                        <textarea cols="40" rows="8" name="textarea" id="textarea"></textarea>
+                        <textarea cols="40" rows="8" name="textarea" id="textarea">${event.description}</textarea>
                     </div>
                     
 					<button type="submit" data-icon="check" data-theme="b" name="submit" value="submit-value">Save Changes</button>
