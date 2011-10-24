@@ -1,12 +1,15 @@
 package edu.rit.taskers.controller;
 
-import java.util.ArrayList;
+import edu.rit.taskers.model.Space;
+import edu.rit.taskers.persistence.SpaceDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import edu.rit.taskers.model.Space;
+
+import java.util.ArrayList;
 
 /**
  * Handles requests with space creation/listing/management.
@@ -14,6 +17,9 @@ import edu.rit.taskers.model.Space;
 @Controller
 @RequestMapping("/space")
 public class SpaceController {
+
+    @Autowired
+    private SpaceDao spaceDao;
 
 	private static final Logger logger = LoggerFactory.getLogger(SpaceController.class);
 
