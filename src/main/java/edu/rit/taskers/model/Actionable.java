@@ -1,5 +1,7 @@
 package edu.rit.taskers.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -19,6 +21,8 @@ import javax.persistence.InheritanceType;
         discriminatorType = DiscriminatorType.INTEGER
 )
 public abstract class Actionable {
+	
+	public static final String ACTION_UI_DATEFORMAT = "yyyy-MM-dd";
 
     protected int id;
     //TODO space id
@@ -27,7 +31,7 @@ public abstract class Actionable {
 	protected Date created;
 	protected String description;
 	//TODO protected Contact assignedTo;
-	protected Date targetDate;
+	protected Date targetdate;
 	//protected String priority;
 	//protected Date when;
 	//TODO protected List<Actionable> dependant;
@@ -139,11 +143,11 @@ public abstract class Actionable {
     
     @Column(name="TargetDate")
     public Date getTargetDate() {
-    	return targetDate;
+    	return targetdate;
     }
 
-    public void setTargetDate(Date targetDate) {
-    	this.targetDate = targetDate;
+    public void setTargetDate(Date targetdate) {
+    	this.targetdate = targetdate;
     }
 
     @Override
@@ -152,7 +156,7 @@ public abstract class Actionable {
                 "name='" + name + '\'' +
                 ", created=" + created +
                 ", description='" + description + '\'' +
-                ", targetDate=" + targetDate +
+                ", targetDate=" + targetdate +
                 '}';
     }
 }

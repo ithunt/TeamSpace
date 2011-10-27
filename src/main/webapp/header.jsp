@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="/resources/css/main.css?rc1" />
     <link rel="stylesheet" media="only screen and (max-device-width: 320px)" href="/resources/css/phone.css?rc1" />
     <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script type="text/javascript">
+        var jq = jQuery.noConflict();
+    </script>
     <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
 	<script type="text/javascript" src="http://dev.jtsage.com/jquery.mousewheel.min.js"></script>
 	<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jquery.mobile.datebox.min.js"></script>

@@ -10,7 +10,7 @@
         </div>
 
         <div data-role="content" data-theme="c">
-            <form action="test" method="post">
+            <form method="POST" action="new">
                 <fieldset>
                     <div data-role="fieldcontain">
                         <label for="title">Title:</label>
@@ -18,28 +18,32 @@
                     </div>
                     
                     <div data-role="fieldcontain">
-                        <label for="date">Due Date:</label>
-                        <input name="date" id="date" type="date" data-role="datebox"
+                        <label for="targetdate">Due Date:</label>
+                        <input name="targetdate" id="targetdate" type="date" data-role="datebox"
                            data-options='{"pickPageButtonTheme": "b", "mode": "calbox", "disableManualInput": true, "useDialogForceFalse": true}'>
                     </div>
                        
                     <div data-role="fieldcontain">
-                       <label for="priority-select" class="select">Priority:</label>
-                       <select name="priority-select" id="priority-select" data-native-menu="false">
-                          <option value="normal_priority">Normal</option>
-                          <option value="high_priority">High</option>
+                       <label for="priority" class="select">Priority:</label>
+                       <select name="priority" id="priority" data-native-menu="false">
+                          <option value="Normal">Normal</option>
+                          <option value="High">High</option>
                        </select>
                     </div>
                     
                     <div data-role="fieldcontain">
-                        <label for="textarea">Notes:</label>
-                        <textarea cols="40" rows="8" name="textarea" id="textarea"></textarea>
+                        <label for="description">Notes:</label>
+                        <textarea cols="40" rows="8" name="description" id="description"></textarea>
                     </div>
                     
-                    <button type="submit" data-icon="check" data-theme="b" name="submit" value="submit-value">Create Task</button>
+                    <button type="submit" data-icon="check" data-theme="b" name="submit" value="createtask" onclick="getResult()">Create Task</button>
                 </fieldset>
             </form> 
         </div>
+        
+        <script type="text/javascript">
+        
+        </script>
 
     </div>
 

@@ -1,5 +1,9 @@
 package edu.rit.taskers.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.rit.taskers.model.Actionable;
+import edu.rit.taskers.model.Task;
 import edu.rit.taskers.persistence.TaskDao;
 
 /**
@@ -50,5 +58,35 @@ public class TaskController {
 	public ModelAndView getCreateEventPage() {
 		ModelAndView newTaskPage = new ModelAndView("newtask");
 		return newTaskPage;
+	}
+
+	/**
+	 * Create New Task from form post data requested
+	 */
+	@RequestMapping(value="/new", method=RequestMethod.POST)
+	public @ResponseBody String createNewEvent(@RequestParam(value="title") String taskName,
+								 @RequestParam(value="targetdate") String targetDate,
+								 @RequestParam(value="priority") String priority,
+								 @RequestParam(value="description") String desc) {
+		String resultMsg = "";
+		try {
+			// Specify the date format received from the UI
+			DateFormat df = new SimpleDateFormat(Actionable.ACTION_UI_DATEFORMAT);
+			
+			// Create the new task object and persist it
+			Task newTask = new Task();
+			newTask.setName(taskName);
+			newTask.setTargetDate(df.parse(targetDate));
+			newTask.setPriority(priority);
+			newTask.setDescription(desc);
+			
+			taskDao.save(newTask);
+			resultMsg = "Task successfully created.";
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+			resultMsg = "An error occured while creating the task. Please try again.";
+		}
+		return resultMsg;
 	}
 }
