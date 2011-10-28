@@ -5,7 +5,7 @@
     <div data-role="page" id="invite" data-title="TeamSpace | Invite User" >
     
         <div data-role="header" data-theme="d" data-position="inline">
-            <a href="people.htm" data-rel="back" data-iconpos="notext" data-icon="arrow-l" data-theme="a">Back</a>
+            <a href="/people" data-rel="back" data-iconpos="notext" data-icon="arrow-l" data-theme="a">Back</a>
             <h1>Invite User</h1>
         </div>
 

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.rit.taskers.model.Event;
 
 /**
- * @author Ian Hunt
+ * @author Ian Hunt, Anthony Barone
  */
 @Repository
 public class EventDao {
@@ -28,16 +28,34 @@ public class EventDao {
         this.sessionFactory.getCurrentSession().save(event);
     }
 
+    @Transactional
+    public void update(Event event) {
+        this.sessionFactory.getCurrentSession().update(event);
+    }
+
+    @Transactional
+    public void delete(Event event) {
+        this.sessionFactory.getCurrentSession().delete(event);
+    }
+
     @SuppressWarnings("unchecked")
 	@Transactional
-    public List<Event> findAll() {
+    public List<Event> findBySpace(int spaceId) {
         return this.sessionFactory.getCurrentSession()
-                .createQuery("FROM Actionable where TypeID=2").list();
+                .createQuery("FROM Actionable WHERE Actionable.SpaceID=? AND TypeID=2")
+                .setParameter(0, spaceId).list();
     }
 
     @Transactional
     public Event findById(int id) {
         return (Event) sessionFactory.getCurrentSession().get(Event.class, id);
+    }
+
+    @SuppressWarnings("unchecked")
+	@Transactional
+    public List<Event> findAll() {
+        return this.sessionFactory.getCurrentSession()
+                .createQuery("FROM Actionable WHERE TypeID=2").list();
     }
 
 }

@@ -8,8 +8,8 @@
             <div data-role="navbar" class="custom-glyph" >
                 <ul>
                     <li><a href="/" rel="external" id="navhome" data-theme="c" data-icon="custom" data-direction="reverse">Home</a></li>
-                    <li><a href="people" rel="external" id="navpeople" data-theme="c" data-iconpos="bottom" data-icon="custom" data-direction="reverse">People</a></li>
-                    <li><a href="events" rel="external" id="navevents" data-theme="c" data-iconpos="bottom" data-icon="custom" data-direction="reverse">Events</a></li>
+                    <li><a href="/people" rel="external" id="navpeople" data-theme="c" data-iconpos="bottom" data-icon="custom" data-direction="reverse">People</a></li>
+                    <li><a href="/events" data-ajax="false" id="navevents" data-theme="c" data-iconpos="bottom" data-icon="custom" data-direction="reverse">Events</a></li>
                     <li><a href="#" class="ui-btn-active" id="navtasks" data-theme="c" data-iconpos="bottom" data-icon="custom">Tasks</a></li>
                 </ul>
             </div>
@@ -30,12 +30,12 @@
 	            	<li><a href="/tasks/${task.id}">
             	        <c:if test="${task.priority=='High'}">
                             <span class="aside-spacing-task ui-li-aside">
+                                <img class="priority-image" height="16" width="16" title="High Priority" alt="High Priority" src="/resources/img/exclam.png" />
 	                            <p><fmt:formatDate value="${task.targetDate}" pattern="MM/dd/yy"/></p>
-	                            <img class="priority-image" height="16" width="16" title="High Priority" alt="High Priority" src="<%=request.getContextPath()%>resources/img/exclam.png" />
 	                        </span>
                         </c:if>
                         <c:if test="${task.priority!='High'}">
-                            <p class="aside-spacing-task ui-li-aside"><fmt:formatDate value="${task.targetDate}" pattern="yyyy-MM-dd"/></p>
+                            <p class="aside-spacing-task ui-li-aside"><fmt:formatDate value="${task.targetDate}" pattern="MM/dd/yy"/></p>
                         </c:if>
                         
                         <h3>${task.name}</h3>
@@ -57,7 +57,7 @@
                 <li><a href="edittask.htm">
                     <span class="aside-spacing-task ui-li-aside">
                         <p>Due Today!</p>
-                        <img class="priority-image" height="16" width="16" title="High Priority" alt="High Priority" src="<%=request.getContextPath()%>resources/img/exclam.png" />
+                        <img class="priority-image" height="16" width="16" title="High Priority" alt="High Priority" src="/resources/img/exclam.png" />
                     </span>
                     <h3>Finish Diagrams</h3>
                     <p>Clean up some of the highlights for the ER diagram and add the new columns to the relational diagram.</p>

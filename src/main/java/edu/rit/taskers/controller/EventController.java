@@ -30,15 +30,15 @@ public class EventController {
 
 	private static final Logger logger = LoggerFactory.getLogger(EventController.class);
 
-    @Autowired
-    private EventDao eventDao;
-    
+	@Autowired
+	private EventDao eventDao;
+
 	/**
 	 * Fetch all events that belong to session space id
 	 * @return Collection of events
 	 */
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView getAllEvents() {
+	@RequestMapping(method = RequestMethod.GET)
+	public ModelAndView getAllEvents() {
 		//TODO - Session space ID
 		ModelAndView eventsMainPage = new ModelAndView("events", "allevents", eventDao.findAll());
 		return eventsMainPage;
@@ -54,6 +54,48 @@ public class EventController {
 	}
 
 	/**
+	 * Delete a event by id
+	 */
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public String delete(@PathVariable int id) {
+		Event retrievedEvent = eventDao.findById(id);
+		eventDao.delete(retrievedEvent);
+		return "redirect:/events";
+	}
+
+	/**
+	 * Update event details from a selected event in the list
+	 */
+	@RequestMapping(value="/{id}", method=RequestMethod.POST)
+	public @ResponseBody String updateEvent(@PathVariable int id, @RequestParam(value="title") String eventName,
+			@RequestParam(value="targetdate") String targetDate,
+			@RequestParam(value="targettime") String targetTime,
+			@RequestParam(value="description") String desc) {
+
+		if ( isEmpty( eventName ) ) {
+			return "Please specify a title.";
+		} else if ( isEmpty( targetDate ) ) {
+			return "Please specify a date.";
+		} else if ( isEmpty( targetTime ) ) {
+			return "Please specify a time.";
+		}
+
+		Date dateTimeResult = combineDateAndTime(targetDate, targetTime);
+		if ( dateTimeResult == null ) {
+			return "Invalid date/time specified.";
+		}
+		
+		// Create the new event object and persist it
+		Event fetchedEvent = new Event();
+		fetchedEvent.setName( eventName );
+		fetchedEvent.setTargetDate( dateTimeResult );
+		fetchedEvent.setDescription( desc );
+
+		eventDao.save( fetchedEvent );
+		return "Event successfully updated!";
+	}
+
+	/**
 	 * Create New Event page requested
 	 */
 	@RequestMapping(value="/new", method=RequestMethod.GET)
@@ -61,52 +103,75 @@ public class EventController {
 		ModelAndView newEventPage = new ModelAndView("newevent");
 		return newEventPage;
 	}
-	
+
 	/**
 	 * Create New Event from js function with form data parameters
 	 */
 	@RequestMapping(value="/new", method=RequestMethod.POST)
-	public @ResponseBody String createNewEvent(@RequestParam(value="title") String taskName,
-								 @RequestParam(value="targetdate") String targetDate,
-								 @RequestParam(value="targettime") String targettime,
-								 @RequestParam(value="description") String desc) {
-		String resultMsg = "";
+	public @ResponseBody String createNewEvent(@RequestParam(value="title") String eventName,
+			@RequestParam(value="targetdate") String targetDate,
+			@RequestParam(value="targettime") String targetTime,
+			@RequestParam(value="description") String desc) {
+
+		if ( isEmpty( eventName ) ) {
+			return "Please specify a title.";
+		} else if ( isEmpty( targetDate ) ) {
+			return "Please specify a date.";
+		} else if ( isEmpty( targetTime ) ) {
+			return "Please specify a time.";
+		}
+
+		Date dateTimeResult = combineDateAndTime( targetDate, targetTime );
+		if ( dateTimeResult == null ) {
+			return "Invalid date/time specified.";
+		}
+
+		// Create the new event object and persist it
+		Event newEvent = new Event();
+		newEvent.setName( eventName ) ;
+		newEvent.setTargetDate( dateTimeResult );
+		newEvent.setDescription( desc );
+
+		eventDao.save( newEvent );
+		return "Event successfully created!";
+	}
+
+	/**
+	 * Combine the date and time fields to create one Datetime
+	 */
+	private Date combineDateAndTime( String targetDate, String targetTime ) {
 		try {
-			// Specify the date format received from the UI
-			DateFormat df = new SimpleDateFormat(Actionable.ACTION_UI_DATEFORMAT);
-			DateFormat dft = new SimpleDateFormat("h:m a");
-			
 			// Heavyweight, ugly way to generate one datetime stamp from our separated date and time
 			// without the help of a third-party library (such as Joda time)
-			Date date = df.parse(targetDate);
-			Date time = dft.parse(targettime);
+			DateFormat df = new SimpleDateFormat( Actionable.ACTION_UI_DATEFORMAT );
+			DateFormat dft = new SimpleDateFormat( Actionable.ACTION_UI_TIMEFORMAT );
+
+			Date tempDate = df.parse( targetDate );
+			Date tempTime = dft.parse( targetTime );
 
 			Calendar calendarA = Calendar.getInstance();
-			calendarA.setTime(date);
+			calendarA.setTime( tempDate );
 
 			Calendar calendarB = Calendar.getInstance();
-			calendarB.setTime(time);
+			calendarB.setTime( tempTime );
 
-			calendarA.set(Calendar.HOUR_OF_DAY, calendarB.get(Calendar.HOUR_OF_DAY));
-			calendarA.set(Calendar.MINUTE, calendarB.get(Calendar.MINUTE));
-			calendarA.set(Calendar.SECOND, calendarB.get(Calendar.SECOND));
-			calendarA.set(Calendar.MILLISECOND, calendarB.get(Calendar.MILLISECOND));
+			calendarA.set( Calendar.HOUR_OF_DAY, calendarB.get( Calendar.HOUR_OF_DAY) );
+			calendarA.set( Calendar.MINUTE, calendarB.get( Calendar.MINUTE) );
+			calendarA.set( Calendar.SECOND, calendarB.get( Calendar.SECOND) );
+			calendarA.set( Calendar.MILLISECOND, calendarB.get(Calendar.MILLISECOND) );
 
-			Date resultDate = calendarA.getTime();
+			return calendarA.getTime();
 
-			// Create the new event object and persist it
-			Event newEvent = new Event();
-			newEvent.setName(taskName);
-			newEvent.setTargetDate(resultDate);
-			newEvent.setDescription(desc);
-			
-			eventDao.save(newEvent);
-			resultMsg = "Event successfully created.";
-			
-		} catch (ParseException e) {
+		} catch ( ParseException e ) {
 			e.printStackTrace();
-			resultMsg = "Please specify a date and time.";
+			return null;
 		}
-		return resultMsg;
+	}
+
+	/**
+	 * String isEmpty helper method
+	 */
+	private boolean isEmpty(String s) {
+		return ( s == null ) || ( "".equals(s) ) || ( s.length() == 0 );
 	}
 }

@@ -1,7 +1,5 @@
 package edu.rit.taskers.model;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -23,6 +21,8 @@ import javax.persistence.InheritanceType;
 public abstract class Actionable {
 	
 	public static final String ACTION_UI_DATEFORMAT = "yyyy-MM-dd";
+	public static final String ACTION_UI_TIMEFORMAT = "h:m a";
+	
 
     protected int id;
     //TODO space id

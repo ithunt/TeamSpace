@@ -1,3 +1,4 @@
+//Clear out newtask input fields
 jq("#newtask").live("pagebeforeshow",function(e,ui){
     jq("#title").val('');
     jq("#targetdate").val('');
@@ -6,6 +7,7 @@ jq("#newtask").live("pagebeforeshow",function(e,ui){
     jq("#result").html('');
 });
 
+//Clear out newevent input fields
 jq("#newevent").live("pagebeforeshow",function(e,ui){
     jq("#title").val('');
     jq("#targetdate").val('');

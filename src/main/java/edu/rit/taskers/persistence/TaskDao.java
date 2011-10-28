@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.rit.taskers.model.Task;
 
+/**
+ * @author Ian Hunt, Anthony Barone
+ */
 @Repository
 public class TaskDao {
 
@@ -25,11 +28,21 @@ public class TaskDao {
         this.sessionFactory.getCurrentSession().save(task);
     }
 
+    @Transactional
+    public void update(Task task) {
+        this.sessionFactory.getCurrentSession().update(task);
+    }
+
+    @Transactional
+    public void delete(Task task) {
+        this.sessionFactory.getCurrentSession().delete(task);
+    }
+
     @SuppressWarnings("unchecked")
 	@Transactional
     public List<Task> findBySpace(int spaceId) {
         return this.sessionFactory.getCurrentSession()
-                .createQuery("FROM Actionable where Actionable.SpaceID=?")
+                .createQuery("FROM Actionable WHERE Actionable.SpaceID=? AND TaskID=1")
                 .setParameter(0, spaceId).list();
     }
 
@@ -41,6 +54,8 @@ public class TaskDao {
 	@SuppressWarnings("unchecked")
 	@Transactional
     public List<Task> findAll() {
-            return this.sessionFactory.getCurrentSession().createQuery("FROM Actionable where TypeID=1").list();
+        return this.sessionFactory.getCurrentSession()
+                .createQuery("FROM Actionable WHERE TypeID=1").list();
     }
+	
 }

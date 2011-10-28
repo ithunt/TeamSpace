@@ -8,15 +8,15 @@
             <div data-role="navbar" class="custom-glyph" >
                 <ul>
                     <li><a href="/" rel="external" id="navhome" data-theme="c" data-icon="custom" data-direction="reverse">Home</a></li>
-                    <li><a href="people" rel="external" id="navpeople" data-theme="c" data-iconpos="bottom" data-icon="custom" data-direction="reverse">People</a></li>
+                    <li><a href="/people" rel="external" id="navpeople" data-theme="c" data-iconpos="bottom" data-icon="custom" data-direction="reverse">People</a></li>
                     <li><a href="#" class="ui-btn-active" id="navevents" data-theme="c" data-iconpos="bottom" data-icon="custom" >Events</a></li>
-                    <li><a href="tasks" rel="external" id="navtasks" data-theme="c" data-iconpos="bottom" data-icon="custom">Tasks</a></li>
+                    <li><a href="/tasks" data-ajax="false" id="navtasks" data-theme="c" data-iconpos="bottom" data-icon="custom">Tasks</a></li>
                 </ul>
             </div>
         </div>
         
         <div data-role="header" class="no-text-header" data-theme="none">
-			<a href="<%=request.getContextPath()%>events/new" class="ui-btn-right" data-transition="slideup" data-role="button" data-theme="e" data-icon="plus">Create Event</a>
+			<a href="/events/new" class="ui-btn-right" data-transition="slideup" data-role="button" data-theme="e" data-icon="plus">Create Event</a>
 		</div>
 
         <div data-role="content">

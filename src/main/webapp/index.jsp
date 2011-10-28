@@ -8,16 +8,16 @@
             <div data-role="navbar" class="custom-glyph" >
                 <ul>
                     <li><a href="#" class="ui-btn-active" id="navhome" data-theme="c" data-icon="custom" >Home</a></li>
-                    <li><a href="people" rel="external" id="navpeople" data-theme="c" data-iconpos="bottom" data-icon="custom">People</a></li>
-                    <li><a href="events" rel="external" id="navevents" data-theme="c" data-iconpos="bottom" data-icon="custom">Events</a></li>
-                    <li><a href="tasks" rel="external" id="navtasks" data-theme="c" data-iconpos="bottom" data-icon="custom">Tasks</a></li>
+                    <li><a href="/people" rel="external" id="navpeople" data-theme="c" data-iconpos="bottom" data-icon="custom">People</a></li>
+                    <li><a href="/events" rel="external" id="navevents" data-theme="c" data-iconpos="bottom" data-icon="custom">Events</a></li>
+                    <li><a href="/tasks" rel="external" id="navtasks" data-theme="c" data-iconpos="bottom" data-icon="custom">Tasks</a></li>
                 </ul>
             </div>
         </div>
         
         <div data-role="header" class="header-text" data-theme="e" >
             <h1>Welcome, <b>Anthony!</b></h1>
-            <a href="about.htm" data-icon="delete" data-theme="c" class=" ui-btn-right">Logout</a> <!-- custom-but-spacing -->
+            <a href="" data-icon="delete" data-theme="c" class=" ui-btn-right">Logout</a> <!-- custom-but-spacing -->
         </div>
 
         <div data-role="content">
