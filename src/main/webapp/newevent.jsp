@@ -10,33 +10,52 @@
         </div>
 
         <div data-role="content" data-theme="c">
-            <form action="test" method="post">
-                <fieldset>
                     <div data-role="fieldcontain">
                         <label for="title">Title:</label>
                         <input type="text" name="title" id="title" value="" />
                     </div>
                     
                     <div data-role="fieldcontain">
-                        <label for="date">Date:</label>
-                        <input name="date" id="date" type="date" data-role="datebox"
+                        <label for="targetdate">Date:</label>
+                        <input name="date" id="targetdate" type="targetdate" data-role="datebox"
                            data-options='{"pickPageButtonTheme": "b", "mode": "calbox", "disableManualInput": true, "useDialogForceFalse": true}'>
                     </div>
                        
                     <div data-role="fieldcontain">
-                        <label for="time">Time:</label>
-                        <input name="time" id="time" type="date" data-role="datebox"
+                        <label for="targettime">Time:</label>
+                        <input name="time" id="targettime" type="targettime" data-role="datebox"
                            data-options='{"pickPageButtonTheme": "c", "mode": "timebox",  "timeFormat": 12, "disableManualInput": true, "useDialogForceFalse": true}'>
                     </div>
                     
                     <div data-role="fieldcontain">
-                        <label for="textarea">Notes:</label>
-                        <textarea cols="40" rows="8" name="textarea" id="textarea"></textarea>
+                        <label for="description">Notes:</label>
+                        <textarea cols="40" rows="8" name="description" id="description"></textarea>
                     </div>
                     
-                    <button type="submit" data-icon="check" data-theme="b" name="submit" value="submit-value">Create Event</button>
-                </fieldset>
-            </form> 
+                    <button type="submit" data-icon="check" data-theme="b" name="submit" value="createevent" onclick="getResult()">Create Event</button>
+                
+                <br />
+                <div id="result" style="text-align:center;"></div>
+                
+        </div>
+        
+        <script type="text/javascript">
+        
+           function getResult() {
+             jq(function() {
+              jq.post("/events/new",
+                  { title:        jq("#title").val(),
+                    targetdate:   jq("#targetdate").val(),
+                    targettime:   jq("#targettime").val(),
+                    description:  jq("#description").val()
+                  },
+                  function(data){
+                   jq("#result").html(data);
+                 });
+             });
+            }
+        </script>
+                
         </div>
 
     </div>

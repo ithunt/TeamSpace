@@ -22,5 +22,5 @@
     <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
 	<script type="text/javascript" src="http://dev.jtsage.com/jquery.mousewheel.min.js"></script>
 	<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jquery.mobile.datebox.min.js"></script>
-	<script type="text/javascript" src="/resources/js/all-json-retrieval.js"></script>
+	<script type="text/javascript" src="/resources/js/helper-methods.js"></script>
 </head>

@@ -61,10 +61,10 @@ public class TaskController {
 	}
 
 	/**
-	 * Create New Task from form post data requested
+	 * Create New Task from js function with form data parameters
 	 */
 	@RequestMapping(value="/new", method=RequestMethod.POST)
-	public @ResponseBody String createNewEvent(@RequestParam(value="title") String taskName,
+	public @ResponseBody String createNewTask(@RequestParam(value="title") String taskName,
 								 @RequestParam(value="targetdate") String targetDate,
 								 @RequestParam(value="priority") String priority,
 								 @RequestParam(value="description") String desc) {
@@ -85,7 +85,7 @@ public class TaskController {
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
-			resultMsg = "An error occured while creating the task. Please try again.";
+			resultMsg = "Please specify a date.";
 		}
 		return resultMsg;
 	}

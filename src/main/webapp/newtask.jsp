@@ -10,8 +10,6 @@
         </div>
 
         <div data-role="content" data-theme="c">
-            <form method="POST" action="new">
-                <fieldset>
                     <div data-role="fieldcontain">
                         <label for="title">Title:</label>
                         <input type="text" name="title" id="title" value="" />
@@ -36,13 +34,28 @@
                         <textarea cols="40" rows="8" name="description" id="description"></textarea>
                     </div>
                     
-                    <button type="submit" data-icon="check" data-theme="b" name="submit" value="createtask" onclick="getResult()">Create Task</button>
-                </fieldset>
-            </form> 
+                    <button type="submit" data-icon="check" data-theme="b" name="submit" value="createtask" onclick="getResult();">Create Task</button>
+                    
+                <br />
+                <div id="result" style="text-align:center;"></div>
+                
         </div>
         
         <script type="text/javascript">
         
+           function getResult() {
+        	 jq(function() {
+        	  jq.post("/tasks/new",
+        	      { title:        jq("#title").val(),
+        		    targetdate:   jq("#targetdate").val(),
+        		    priority:     jq("#priority").val(),
+        		    description:  jq("#description").val()
+        		  },
+        	      function(data){
+        	       jq("#result").html(data);
+        	     });
+        	 });
+        	}
         </script>
 
     </div>
