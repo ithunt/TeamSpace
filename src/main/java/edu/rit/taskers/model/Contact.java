@@ -1,7 +1,12 @@
 package edu.rit.taskers.model;
 
-import javax.persistence.*;
 import java.net.URL;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "Contact")
@@ -15,13 +20,13 @@ public class Contact {
     protected String email;
     protected String role;
     protected String bio;
-    protected URL pictureURL;
+    protected String pictureURL;
 
     public Contact() {
 
     }
 
-    public Contact(String firstName, String lastName, String phone, String email, String role, String bio, URL pictureURL) {
+    public Contact(String firstName, String lastName, String phone, String email, String role, String bio, String pictureURL) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
@@ -96,11 +101,11 @@ public class Contact {
     }
 
     @Column(name = "PictureURL")
-    public URL getPictureURL() {
+    public String getPictureURL() {
         return pictureURL;
     }
 
-    public void setPictureURL(URL pictureURL) {
+    public void setPictureURL(String pictureURL) {
         this.pictureURL = pictureURL;
     }
 }
