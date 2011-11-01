@@ -86,12 +86,13 @@ public class EventController {
 		}
 		
 		// Create the new event object and persist it
-		Event fetchedEvent = new Event();
+		Event fetchedEvent = eventDao.findById(id);
 		fetchedEvent.setName( eventName );
 		fetchedEvent.setTargetDate( dateTimeResult );
 		fetchedEvent.setDescription( desc );
+		System.out.println(fetchedEvent.getId() + " " + eventName + " " + dateTimeResult.toString() + " " + desc );
 
-		eventDao.save( fetchedEvent );
+		eventDao.update( fetchedEvent );
 		return "Event successfully updated!";
 	}
 

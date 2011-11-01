@@ -79,6 +79,10 @@
 			<props>
 				<prop key="hibernate.dialect">${jdbc.dialect}</prop>
 				<prop key="hibernate.show_sql">true</prop>
+				
+				<!-- these are C3P0 (Hibernate-JDBC connection pool) properties -->
+				<prop key="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</prop>
+				<prop key="hibernate.c3p0.timeout">20000</prop>
 			</props>
 		</property>
 	</bean>
