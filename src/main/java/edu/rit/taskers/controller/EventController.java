@@ -90,7 +90,6 @@ public class EventController {
 		fetchedEvent.setName( eventName );
 		fetchedEvent.setTargetDate( dateTimeResult );
 		fetchedEvent.setDescription( desc );
-		System.out.println(fetchedEvent.getId() + " " + eventName + " " + dateTimeResult.toString() + " " + desc );
 
 		eventDao.update( fetchedEvent );
 		return "Event successfully updated!";
