@@ -1,15 +1,9 @@
 package edu.rit.taskers.model;
 
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity(name = "Actionable")
@@ -35,7 +29,7 @@ public abstract class Actionable {
 	//protected String priority;
 	//protected Date when;
 	//TODO protected List<Actionable> dependant;
-    //TODO protected Set<Comment> comments = new HashSet<Comment>(0);
+    protected Set<Comment> comments = new HashSet<Comment>(0);
 
     protected Actionable() {}
 
@@ -131,15 +125,15 @@ public abstract class Actionable {
 //        this.dependant = dependant;
 //    }
 //
-//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Comment.class)
-//    @JoinColumn(name = "ItemID")
-//    public Set<Comment> getComments() {
-//        return comments;
-//    }
-//
-//    public void setComments(Set<Comment> comments) {
-//        this.comments = comments;
-//    }
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Comment.class)
+    @JoinColumn(name = "ItemID")
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
     
     @Column(name="TargetDate")
     public Date getTargetDate() {
