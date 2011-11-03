@@ -16,8 +16,8 @@
         </div>
         
         <div data-role="header" class="header-text" data-theme="e" >
-            <h1>Welcome, <b>Anthony!</b></h1>
-            <a href="" data-icon="delete" data-theme="c" class=" ui-btn-right">Logout</a> <!-- custom-but-spacing -->
+            <h1>Welcome, <b>${username}</b></h1>
+            <a href="<c:url value='j_spring_security_logout' />" data-icon="delete" data-theme="c" class=" ui-btn-right" >Logout</a> <!-- custom-but-spacing -->
         </div>
 
         <div data-role="content">
