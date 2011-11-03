@@ -9,17 +9,27 @@
 
 
     <security:http auto-config="true">
-        <security:intercept-url pattern="/login*" access="ROLE_USER" />
+        <security:intercept-url pattern="/index.jsp" access="ROLE_USER"/>
+
+        <security:form-login login-page="/login.jsp" default-target-url="/index.jsp" authentication-failure-url="/loginfailed" />
+        <security:logout logout-success-url="/logout" />
     </security:http>
 
     <security:authentication-manager>
         <security:authentication-provider>
-            <security:user-service>
-                <security:user name="ian" password="ian" authorities="ROLE_USER" />
-            </security:user-service>
+            <security:jdbc-user-service data-source-ref="dataSource"
+
+              users-by-username-query="
+		      select LoginName, Password, Enabled
+		      from User where LoginName=?"
+
+              authorities-by-username-query="
+		      select u.LoginName, ur.Authority from User u, UserRoles ur
+		      where u.UserID = ur.UserID and u.LoginName=?  "
+
+                    />
         </security:authentication-provider>
     </security:authentication-manager>
-
 
 
 </beans>
