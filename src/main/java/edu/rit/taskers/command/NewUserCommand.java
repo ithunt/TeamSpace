@@ -27,6 +27,10 @@ public class NewUserCommand {
 
     public void execute() {
 
+        if(newUser == null) {
+            System.err.println("NewUserCommand with null NewUser");
+        }
+
         Contact c = new Contact();
         c.setFirstName(newUser.getName());
         c.setEmail( newUser.getEmail() );
