@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+    <security:http auto-config="true">
+
+        <security:intercept-url pattern="/login.jsp" access="ROLE_ANONYMOUS,ROLE_USER" />
+        <security:intercept-url pattern="/*" access="ROLE_USER"/>
+
+        <security:form-login login-page="/login.jsp" default-target-url="/index.jsp" authentication-failure-url="/loginfailed" />
+        <security:logout logout-success-url="/logout" />
+    </security:http>
+
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider>
+            <security:jdbc-user-service data-source-ref="dataSource"
+
+                                        users-by-username-query="
+		      select LoginName, Password, Enabled
+		      from User where LoginName=?"
+
+                                        authorities-by-username-query="
+		      select u.LoginName, ur.Authority from User u, UserRoles ur
+		      where u.UserID = ur.UserID and u.LoginName=?  "
+
+                    />
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+        <property name="allowIfAllAbstainDecisions" value="true"/>
+        <property name="decisionVoters">
+            <list>
+                <bean class="org.springframework.security.access.vote.RoleVoter"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--
+
+    <bean id="filterSecurityInterceptor"
+        class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+      <property name="authenticationManager" ref="authenticationManager"/>
+      <property name="accessDecisionManager" ref="accessDecisionManager"  />
+      <property name="securityMetadataSource">
+        <security:filter-security-metadata-source>
+          <security:intercept-url pattern='/login.jsp' access='ROLE_ANONYMOUS,ROLE_USER'/>
+          <security:intercept-url pattern='/**' access='ROLE_USER'/>
+        </security:filter-security-metadata-source>
+      </property>
+
+
+
+    </bean>
+-->
+
+
+
+
+
+
+
+</beans>
