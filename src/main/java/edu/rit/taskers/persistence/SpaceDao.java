@@ -1,13 +1,12 @@
 package edu.rit.taskers.persistence;
 
-import java.util.List;
-
+import edu.rit.taskers.model.Space;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.rit.taskers.model.Space;
+import java.util.List;
 
 /**
  * @author ian hunt
@@ -27,6 +26,11 @@ public class SpaceDao {
     @Transactional
     public void save(Space space) {
         this.sessionFactory.getCurrentSession().save(space);
+    }
+
+    @Transactional
+    public void update(Space space) {
+        this.sessionFactory.getCurrentSession().update(space);
     }
 
     @SuppressWarnings("unchecked")

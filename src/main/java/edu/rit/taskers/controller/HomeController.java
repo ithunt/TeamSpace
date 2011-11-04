@@ -1,5 +1,10 @@
 package edu.rit.taskers.controller;
 
+import java.security.Principal;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,9 +25,10 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView goHome() {
-		//TODO
-		ModelAndView test = new ModelAndView("index");
-		return test;
+	public ModelAndView goHome(HttpServletResponse response, Principal principal) {
+        String username = principal.getName();
+		response.addCookie(new Cookie("SPACE", "5"));
+		ModelAndView home = new ModelAndView("home", "username", username);
+		return home;
 	}
 }

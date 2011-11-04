@@ -10,10 +10,10 @@
 
     <security:http auto-config="true">
 
-        <security:intercept-url pattern="/login.jsp" access="ROLE_ANONYMOUS,ROLE_USER" />
+        <security:intercept-url pattern="/login" access="ROLE_ANONYMOUS,ROLE_USER" />
         <security:intercept-url pattern="/*" access="ROLE_USER"/>
 
-        <security:form-login login-page="/login.jsp" default-target-url="/index.jsp" authentication-failure-url="/loginfailed" />
+        <security:form-login login-page="/login" default-target-url="/" authentication-failure-url="/loginfailed" />
         <security:logout logout-success-url="/logout" />
     </security:http>
 
