@@ -19,14 +19,14 @@
 			</div>
 
 			<div data-role="fieldcontain">
-				<label for="targetdate">Date:</label> <input name="date"
-					id="targetdate" type="targetdate" data-role="datebox"
-					data-options='{"pickPageButtonTheme": "b", "mode": "calbox", "disableManualInput": true, "useDialogForceFalse": true}'>
+				<label for="targetdate">Date:</label> <input name="targetdate"
+					id="targetdate" type="date" data-role="datebox"
+					data-options='{"pickPageButtonTheme": "b", "mode": "calbox", "afterToday": true, "disableManualInput": true, "useDialogForceFalse": true}'>
 			</div>
 
 			<div data-role="fieldcontain">
-				<label for="targettime">Time:</label> <input name="time"
-					id="targettime" type="targettime" data-role="datebox"
+				<label for="targettime">Time:</label> <input name="targettime"
+					id="targettime" type="date" data-role="datebox"
 					data-options='{"pickPageButtonTheme": "c", "mode": "timebox",  "timeFormat": 12, "disableManualInput": true, "useDialogForceFalse": true}'>
 			</div>
 

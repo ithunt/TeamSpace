@@ -21,8 +21,11 @@
 
 	<context:annotation-config />
 	<context:component-scan base-package="edu.rit.taskers" />
+
     <mvc:annotation-driven />
     <tx:annotation-driven />
+
+
     
     <mvc:resources mapping="resources/**" location="resources/" />
 
@@ -59,11 +62,13 @@
 		p:location="WEB-INF/jdbc.properties" />
 
 	<bean id="dataSource"
-		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="${jdbc.driverClassName}" />
-		<property name="url" value="${jdbc.databaseurl}" />
-		<property name="username" value="${jdbc.username}" />
+		class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.databaseurl}" />
+		<property name="user" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
+		<property name="idleConnectionTestPeriod" value="20000" />
+        <property name="maxIdleTime" value="25000" />
 	</bean>
 
 	<bean id="sessionFactory"

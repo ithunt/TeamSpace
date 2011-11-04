@@ -85,7 +85,7 @@ public class TaskController {
 			fetchedTask.setPriority(priority);
 			fetchedTask.setDescription(desc);
 	
-			taskDao.save( fetchedTask );
+			taskDao.update( fetchedTask );
 			return "Task successfully updated!"; 
 			
 		} catch (ParseException e) {
