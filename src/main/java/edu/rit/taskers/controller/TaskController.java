@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,9 +36,9 @@ public class TaskController {
 	 * Fetch all tasks that belong to session space id
 	 */
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView getAllTasks() {
-		//TODO - Session space ID
-		ModelAndView tasksMainPage = new ModelAndView("tasks", "alltasks", taskDao.findAll());
+    public ModelAndView getSpaceTasks(@CookieValue("SPACE") int spaceId) {
+		
+		ModelAndView tasksMainPage = new ModelAndView("tasks", "alltasks", taskDao.findBySpace(spaceId));
 		return tasksMainPage;
 	}
 
