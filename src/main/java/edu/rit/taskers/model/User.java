@@ -60,6 +60,7 @@ public class User implements Serializable {
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
+                ", primaryContact=" + primaryContact +
                 '}';
     }
 }
