@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page session="false" %>
 <%@ include file="header.jsp" %>
 <body>
     <div data-role="page" id="home" data-title="TeamSpace | Home">
@@ -16,7 +15,7 @@
         </div>
         
         <div data-role="header" class="header-text" data-theme="e" >
-            <h1>Welcome, <b>${username}</b></h1>
+            <h1>Welcome, <b>${username}!</b></h1>
             <a href="<c:url value='j_spring_security_logout' />" data-icon="delete" data-theme="c" class=" ui-btn-right" >Logout</a> <!-- custom-but-spacing -->
         </div>
 
