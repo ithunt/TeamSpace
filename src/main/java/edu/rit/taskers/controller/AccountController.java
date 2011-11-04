@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import edu.rit.taskers.command.Command;
-import edu.rit.taskers.command.CommandFailure;
-import edu.rit.taskers.command.GetAccountInfoCommand;
 import edu.rit.taskers.model.User;
 
 import java.util.List;
@@ -40,21 +37,6 @@ public class AccountController {
     public @ResponseBody User getUser() {
         return userDao.findAll().get(0);
     }
-
-	/**
-	 * Fetch current account's details
-	 * @return Account details
-	 */
-	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody List<User> getAccounts() {
-		Command action = new GetAccountInfoCommand();
-		try {
-			return action.execute();
-		} catch (CommandFailure e) {
-			// TODO Auto-generated catch block
-			return null;
-		}
-	}
 
 	/**
 	 * Update the session user's account
