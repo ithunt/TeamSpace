@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page session="false"%>
 <%@ include file="header.jsp"%>
 <body>
 	<div data-role="page" id="editevent" data-title="TeamSpace | View Event">
