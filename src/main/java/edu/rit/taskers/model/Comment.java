@@ -16,7 +16,7 @@ public class Comment implements Serializable {
     protected Contact creator;
     protected Date created;
     protected String text;
-    //protected Actionable item;
+    protected Actionable item;
 
     public Comment() {
 
@@ -61,9 +61,9 @@ public class Comment implements Serializable {
         this.text = text;
     }
 
-    /*
-    @ManyToOne(})
-    @JoinColumn("")
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ItemID")
     public Actionable getItem() {
         return item;
     }
@@ -71,6 +71,6 @@ public class Comment implements Serializable {
     public void setItem(Actionable item) {
         this.item = item;
     }
-    */
+
 }
 

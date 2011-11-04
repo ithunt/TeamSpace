@@ -44,7 +44,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "UserID")
     public Contact getPrimaryContact() {
         return primaryContact;

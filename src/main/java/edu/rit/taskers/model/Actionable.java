@@ -20,11 +20,11 @@ public abstract class Actionable {
 
     protected int id;
     //TODO space id
-	//TODO protected Contact creator;
+	protected Contact creator;
     protected String name;
 	protected Date created;
 	protected String description;
-	//TODO protected Contact assignedTo;
+	protected Contact assignedTo;
 	protected Date targetdate;
 	//protected String priority;
 	//protected Date when;
@@ -53,16 +53,16 @@ public abstract class Actionable {
         this.name = name;
     }
 
-//    @OneToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "Creator")
-//    public Contact getCreator() {
-//        return creator;
-//    }
-//
-//
-//    public void setCreator(Contact creator) {
-//        this.creator = creator;
-//    }
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "Creator")
+    public Contact getCreator() {
+        return creator;
+    }
+
+
+    public void setCreator(Contact creator) {
+        this.creator = creator;
+    }
 
     @Column(name="Created")
     public Date getCreated() {
@@ -109,13 +109,15 @@ public abstract class Actionable {
 //  		this.when = when;
 //  	}
 
-//    public Contact getAssignedTo() {
-//        return assignedTo;
-//    }
-//
-//    public void setAssignedTo(Contact assignedTo) {
-//        this.assignedTo = assignedTo;
-//    }
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Contact.class)
+    @JoinColumn(name = "AssignedTo")
+    public Contact getAssignedTo() {
+        return assignedTo;
+    }
+
+    public void setAssignedTo(Contact assignedTo) {
+        this.assignedTo = assignedTo;
+    }
 //
 //    public List<Actionable> getDependant() {
 //        return dependant;
