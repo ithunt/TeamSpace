@@ -26,7 +26,7 @@ public abstract class Actionable {
 	protected String description;
 	protected Contact assignedTo;
 	protected Date targetdate;
-	protected String priority;
+	//protected String priority;
 	//protected Date when;
 	//TODO protected List<Actionable> dependant;
     protected Set<Comment> comments = new HashSet<Comment>(0);
@@ -82,15 +82,6 @@ public abstract class Actionable {
         this.description = description;
     }
 
-    @Column(name="Priority")
-    public String getPriority() {
-        return priority;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
-
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Contact.class)
     @JoinColumn(name = "AssignedTo")
     public Contact getAssignedTo() {
@@ -138,7 +129,6 @@ public abstract class Actionable {
                 ", description='" + description + '\'' +
                 ", assignedTo=" + assignedTo +
                 ", targetdate=" + targetdate +
-                ", priority='" + priority + '\'' +
                 ", comments=" + comments +
                 '}';
     }

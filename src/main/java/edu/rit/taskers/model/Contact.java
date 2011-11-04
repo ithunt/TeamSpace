@@ -2,11 +2,7 @@ package edu.rit.taskers.model;
 
 import java.net.URL;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Contact")
@@ -21,6 +17,8 @@ public class Contact {
     protected String role;
     protected String bio;
     protected String pictureURL;
+
+    protected Space space;
 
     public Contact() {
 
@@ -107,5 +105,29 @@ public class Contact {
 
     public void setPictureURL(String pictureURL) {
         this.pictureURL = pictureURL;
+    }
+
+    @OneToOne(fetch = FetchType.LAZY, targetEntity = Space.class)
+    @JoinColumn(name = "SpaceID")
+    public Space getSpace() {
+        return space;
+    }
+
+    public void setSpace(Space space) {
+        this.space = space;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                ", bio='" + bio + '\'' +
+                ", pictureURL='" + pictureURL + '\'' +
+                '}';
     }
 }
