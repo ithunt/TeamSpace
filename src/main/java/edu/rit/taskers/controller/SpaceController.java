@@ -1,7 +1,10 @@
 package edu.rit.taskers.controller;
 
 import edu.rit.taskers.model.Space;
+import edu.rit.taskers.model.User;
 import edu.rit.taskers.persistence.SpaceDao;
+import edu.rit.taskers.persistence.UserDao;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import edu.rit.taskers.command.UpdateSpaceCommand;
 
+import java.security.Principal;
 import java.util.ArrayList;
 
 /**
@@ -21,6 +25,9 @@ public class SpaceController {
 
     @Autowired
     private SpaceDao spaceDao;
+    
+    @Autowired
+    private UserDao userDao;
 
 	private static final Logger logger = LoggerFactory.getLogger(SpaceController.class);
 
@@ -29,9 +36,13 @@ public class SpaceController {
 	 * @return Spaces
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ArrayList<Space> getAvailableSpaces() {
-		//TODO - with session authentication
-		return null;
+	public ArrayList<Space> getAvailableSpaces(Principal principal) {
+		//XXX - For now, users only belong to one space.
+		String username = principal.getName();
+		Space space = userDao.findByUsername(username).getPrimaryContact().getSpace();
+		ArrayList<Space> returnable = new ArrayList<Space>();
+		returnable.add(space);
+		return returnable;
 	}
 
 	/**
