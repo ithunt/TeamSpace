@@ -1,13 +1,12 @@
 package edu.rit.taskers.persistence;
 
-import java.util.List;
-
+import edu.rit.taskers.model.Contact;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.rit.taskers.model.Contact;
+import java.util.List;
 
 /**
  * @author acb
@@ -26,6 +25,11 @@ public class ContactDao {
     @Transactional
     public void save(Contact contact) {
         this.sessionFactory.getCurrentSession().save(contact);
+    }
+
+    @Transactional
+    public void update(Contact contact) {
+        this.sessionFactory.getCurrentSession().update(contact);
     }
 
     @SuppressWarnings("unchecked")

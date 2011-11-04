@@ -9,6 +9,8 @@ import edu.rit.taskers.model.Task;
 import edu.rit.taskers.persistence.TaskDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Calendar;
+
 
 public class UpdateTaskCommand{
 
@@ -21,7 +23,16 @@ public class UpdateTaskCommand{
         this.task = task;
     }
 
-    public void execute(){
-        taskdao.update(task);
+    public void execute() {
+
+        //TODO: task.setCreator( )
+        task.setCreated(Calendar.getInstance().getTime());
+
+        if(task.getId() != 0) {
+            taskdao.update(task);
+        } else {
+            taskdao.save(task);
+        }
+
     }
 }
