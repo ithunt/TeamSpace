@@ -53,5 +53,4 @@ public class ContactDao {
         return this.sessionFactory.getCurrentSession()
         		.createQuery("FROM Contact WHERE SpaceID=?").list();
     }
-      
 }

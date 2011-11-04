@@ -44,4 +44,11 @@ public class UserDao {
         return (User) sessionFactory.getCurrentSession().get(User.class, id);
     }
     
+    public User findByUsername(String username) {
+    	return (User) this.sessionFactory.getCurrentSession()
+    			.createQuery("FROM User WHERE LoginName=?")
+    			.setParameter(0, username)
+    			.uniqueResult();
+    }
+    
 }
