@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,9 +29,9 @@ public class PeopleController {
 	 * @return Collection of contact cards
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView getAllContacts() {
+	public ModelAndView getAllContacts(@CookieValue("SPACEID") int id) {
 		//TODO - Session space ID
-		ModelAndView peopleJspAndContactsPage = new ModelAndView("people", "allcontacts", contactDao.findAll());
+		ModelAndView peopleJspAndContactsPage = new ModelAndView("people", "allcontacts", contactDao.findBySpace(id));
 		return peopleJspAndContactsPage;
 	}
 

@@ -1,6 +1,8 @@
 package edu.rit.taskers.persistence;
 
 import edu.rit.taskers.model.Contact;
+import edu.rit.taskers.model.Task;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -44,4 +46,12 @@ public class ContactDao {
         return (Contact) sessionFactory.getCurrentSession().get(Contact.class, id);
     }
     
+    @SuppressWarnings("unchecked")
+    @Transactional    
+    public List<Contact> findBySpace(int id) {
+        sessionFactory.getCurrentSession();
+        return this.sessionFactory.getCurrentSession()
+        		.createQuery("FROM Contact WHERE SpaceID=?").list();
+    }
+      
 }
