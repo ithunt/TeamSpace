@@ -15,6 +15,9 @@ public class User implements Serializable {
     protected String password;
     protected Contact primaryContact;
 
+    protected Space lastViewedSpace;
+
+
     @Id
     @GeneratedValue
     @Column(name = "UserID")
@@ -42,6 +45,16 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @OneToOne(fetch = FetchType.LAZY, targetEntity = Space.class)
+    @JoinColumn(name = "LastViewedSpace")
+    public Space getLastViewedSpace() {
+        return lastViewedSpace;
+    }
+
+    public void setLastViewedSpace(Space lastViewedSpace) {
+        this.lastViewedSpace = lastViewedSpace;
     }
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
