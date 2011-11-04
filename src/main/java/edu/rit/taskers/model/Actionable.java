@@ -26,7 +26,7 @@ public abstract class Actionable {
 	protected String description;
 	protected Contact assignedTo;
 	protected Date targetdate;
-	//protected String priority;
+	protected String priority;
 	//protected Date when;
 	//TODO protected List<Actionable> dependant;
     protected Set<Comment> comments = new HashSet<Comment>(0);
@@ -81,33 +81,15 @@ public abstract class Actionable {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-//    @Column(name="Due")
-//  	public Date getDue() {
-//      	return due;
-//  	}
-//
-//  	public void setDue(Date due) {
-//  		this.due = due;
-//  	}
-//
-//    @Column(name="Priority")
-//    public String getPriority() {
-//        return priority;
-//    }
-//
-//    public void setPriority(String priority) {
-//        this.priority = priority;
-//    }
-//
-//    @Column(name="When")
-//  	public Date getWhen() {
-//      	return when;
-//  	}
-//
-//  	public void setWhen(Date when) {
-//  		this.when = when;
-//  	}
+
+    @Column(name="Priority")
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Contact.class)
     @JoinColumn(name = "AssignedTo")
@@ -126,7 +108,7 @@ public abstract class Actionable {
 //    public void setDependant(List<Actionable> dependant) {
 //        this.dependant = dependant;
 //    }
-//
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Comment.class)
     @JoinColumn(name = "ItemID")
     public Set<Comment> getComments() {
@@ -149,10 +131,15 @@ public abstract class Actionable {
     @Override
     public String toString() {
         return "Actionable{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", creator=" + creator +
+                ", name='" + name + '\'' +
                 ", created=" + created +
                 ", description='" + description + '\'' +
-                ", targetDate=" + targetdate +
+                ", assignedTo=" + assignedTo +
+                ", targetdate=" + targetdate +
+                ", priority='" + priority + '\'' +
+                ", comments=" + comments +
                 '}';
     }
 }
