@@ -1,6 +1,7 @@
 package edu.rit.taskers.controller;
 
 import java.security.Principal;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,8 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.rit.taskers.command.UpdateSpaceCommand;
+import edu.rit.taskers.model.Actionable;
+import edu.rit.taskers.model.Contact;
+import edu.rit.taskers.model.Space;
+import edu.rit.taskers.model.Task;
 import edu.rit.taskers.model.User;
 import edu.rit.taskers.persistence.SpaceDao;
 import edu.rit.taskers.persistence.UserDao;
@@ -31,7 +39,7 @@ public class SpaceController {
 	private static final Logger logger = LoggerFactory.getLogger(SpaceController.class);
 
 	/**
-	 * Fetch all spaces.  Period.
+	 * Fetch all spaces.  Period.  Return as a jsp.
 	 * @return Spaces
 	 */
 	@RequestMapping(method = RequestMethod.GET)
@@ -69,12 +77,29 @@ public class SpaceController {
 	}
 	
 	/**
-	 * Create a new space given details
+	 * Create a new space given details.  
 	 * @return if Space was created successfully
 	 */
-	@RequestMapping(method = RequestMethod.POST)
-	public boolean createSpace() {
-		//TODO
-		return true;
+	@RequestMapping(value="/new", method=RequestMethod.POST)
+	public @ResponseBody String createSpace(Principal principal,
+			                     @RequestParam(value="name") String spaceName,
+								 @RequestParam(value="description") String desc) {
+			
+			String username = principal.getName();
+			
+			Contact creator = userDao.findByUsername(username).getPrimaryContact();
+	
+			// Create the new task object and persist it
+			Space newSpace = new Space();
+			newSpace.setName(spaceName);
+			newSpace.setDescription(desc);
+			newSpace.setCreated(new Date());
+			newSpace.setCreator(creator);
+			
+			UpdateSpaceCommand command =  new UpdateSpaceCommand(newSpace);
+			
+			command.execute();			
+			return "Task successfully created!"; 
 	}
+
 }
