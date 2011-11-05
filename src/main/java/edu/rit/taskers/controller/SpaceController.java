@@ -39,7 +39,6 @@ public class SpaceController {
 		//TODO Account for more than one space (due to time constraints, for now
 		//     we will assume a user/contact only belongs to one space).
 		String username = principal.getName();
-		System.out.println("In SpaceController, username is: " + username );
 		ModelAndView spaces = new ModelAndView("spaces", "space", 
 				userDao.findByUsername(username).getPrimaryContact().getSpace());
 		return spaces;
