@@ -21,7 +21,13 @@ public class UpdateSpaceCommand {
 
 
     public void execute(){
-        spacedao.save(space);
+
+
+        if(space.getId() != 0){
+            spacedao.update(space);
+        }else{
+            spacedao.save(space);
+        }
     }
 
 }
