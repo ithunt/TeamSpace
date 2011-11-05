@@ -15,7 +15,10 @@
 
         <div data-role="content">
             <ul data-role="listview" data-theme="c" data-filter="true" data-filter-placeholder="Search Spaces..." data-filter-theme="none">
-					<li><a href="/spaces/${space.id}">${space.name}</a></li>
+					
+				<c:forEach items="${spaces}" var="space">
+                    <li><a href="/spaces/${space.id}">${space.name}</a></li>
+                </c:forEach>
 			</ul>
         </div>
 
