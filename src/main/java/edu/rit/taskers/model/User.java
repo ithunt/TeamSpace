@@ -14,8 +14,7 @@ public class User implements Serializable {
     protected String login;
     protected String password;
     protected Contact primaryContact;
-
-    protected Space lastViewedSpace;
+    protected int lastViewedSpace;
 
 
     @Id
@@ -47,13 +46,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, targetEntity = Space.class)
-    @JoinColumn(name = "LastViewedSpace")
-    public Space getLastViewedSpace() {
+    @Column(name = "LastViewedSpace")
+    public int getLastViewedSpace() {
         return lastViewedSpace;
     }
 
-    public void setLastViewedSpace(Space lastViewedSpace) {
+    public void setLastViewedSpace(int lastViewedSpace) {
         this.lastViewedSpace = lastViewedSpace;
     }
 

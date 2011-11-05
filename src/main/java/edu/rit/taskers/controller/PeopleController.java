@@ -29,7 +29,7 @@ public class PeopleController {
 	 * @return Collection of contact cards
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView getAllContacts(@CookieValue("SPACEID") int id) {
+	public ModelAndView getAllContacts(@CookieValue("SPACE") int id) {
 		//TODO - Session space ID
 		ModelAndView peopleJspAndContactsPage = new ModelAndView("people", "allcontacts", contactDao.findBySpace(id));
 		return peopleJspAndContactsPage;

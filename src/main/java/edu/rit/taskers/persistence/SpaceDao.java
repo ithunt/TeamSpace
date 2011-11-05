@@ -48,7 +48,7 @@ public class SpaceDao {
     @Transactional
     public Space findByName(String name) {
         return (Space) sessionFactory.getCurrentSession()
-                .createQuery("FROM Space space where space.name=?")
+                .createQuery("FROM Space WHERE Name=?")
                 .setParameter(0, name);
     }
 

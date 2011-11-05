@@ -4,8 +4,6 @@
     <div data-role="page" id="login" data-title="TeamSpace | Login">
 
         <div data-role="header" data-theme="c">
-            <a href="index.htm" data-theme="a" data-rel="back" data-icon="arrow-l" data-iconpos="notext">Back</a>
-
             <h1>User Login</h1>
         </div>
 
@@ -17,7 +15,7 @@
                         ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
                 </div>
             </c:if>
-            <form action="<c:url value='j_spring_security_check' />" method="POST">
+            <form action="<c:url value='j_spring_security_check' />" data-ajax="false" method="POST">
 
                 <div data-role="fieldcontain">
                     <label for="username">Username:</label>
@@ -29,7 +27,7 @@
                     <input type="password" name="j_password" id="password"/>
                 </div>
 
-                <input type="submit" name="login" value="submit" data-theme="b" />
+                <input type="submit" name="login" value="Submit" data-theme="b" />
                 
             </form>
         </div>

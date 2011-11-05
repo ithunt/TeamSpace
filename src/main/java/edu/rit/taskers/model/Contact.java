@@ -107,7 +107,7 @@ public class Contact {
         this.pictureURL = pictureURL;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, targetEntity = Space.class)
+    @OneToOne(fetch = FetchType.EAGER, targetEntity = Space.class)
     @JoinColumn(name = "SpaceID")
     public Space getSpace() {
         return space;

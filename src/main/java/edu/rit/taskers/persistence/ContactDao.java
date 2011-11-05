@@ -51,6 +51,7 @@ public class ContactDao {
     public List<Contact> findBySpace(int id) {
         sessionFactory.getCurrentSession();
         return this.sessionFactory.getCurrentSession()
-        		.createQuery("FROM Contact WHERE SpaceID=?").list();
+        		.createQuery("FROM Contact WHERE SpaceID=?")
+                .setParameter(0, id).list();
     }
 }

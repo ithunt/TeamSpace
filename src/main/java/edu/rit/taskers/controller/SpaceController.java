@@ -1,26 +1,25 @@
 package edu.rit.taskers.controller;
 
-import edu.rit.taskers.model.Space;
-import edu.rit.taskers.model.User;
-import edu.rit.taskers.persistence.SpaceDao;
-import edu.rit.taskers.persistence.UserDao;
+import java.security.Principal;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import edu.rit.taskers.command.UpdateSpaceCommand;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.security.Principal;
-import java.util.ArrayList;
+import edu.rit.taskers.model.User;
+import edu.rit.taskers.persistence.SpaceDao;
+import edu.rit.taskers.persistence.UserDao;
 
 /**
  * Handles requests with space creation/listing/management.
  */
 @Controller
-@RequestMapping("/space")
+@RequestMapping("/spaces")
 public class SpaceController {
 
     @Autowired
@@ -36,13 +35,27 @@ public class SpaceController {
 	 * @return Spaces
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ArrayList<Space> getAvailableSpaces(Principal principal) {
-		//XXX - For now, users only belong to one space.
+	public ModelAndView getAvailableSpaces(Principal principal) {
+		//TODO Account for more than one space (due to time constraints, for now
+		//     we will assume a user/contact only belongs to one space).
 		String username = principal.getName();
-		Space space = userDao.findByUsername(username).getPrimaryContact().getSpace();
-		ArrayList<Space> returnable = new ArrayList<Space>();
-		returnable.add(space);
-		return returnable;
+		System.out.println("In SpaceController, username is: " + username );
+		ModelAndView spaces = new ModelAndView("spaces", "space", 
+				userDao.findByUsername(username).getPrimaryContact().getSpace());
+		return spaces;
+	}
+	
+	/**
+	 * User has selected a space, change DB and switch to home view
+	 */
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public String getContactDetails(@PathVariable int id, Principal principal) {
+		String username = principal.getName();
+		User tempUser = userDao.findByUsername(username);
+		tempUser.setLastViewedSpace(id);
+		userDao.update(tempUser);
+		
+		return "redirect:/";
 	}
 
 	/**

@@ -42,7 +42,7 @@ public class TaskDao {
 	@Transactional
     public List<Task> findBySpace(int spaceId) {
         return this.sessionFactory.getCurrentSession()
-                .createQuery("FROM Actionable WHERE Actionable.SpaceID=? AND TaskID=1")
+                .createQuery("FROM Actionable WHERE SpaceID=? AND TypeID=1")
                 .setParameter(0, spaceId).list();
     }
 

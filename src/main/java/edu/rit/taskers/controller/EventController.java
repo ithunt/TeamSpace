@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,9 +39,8 @@ public class EventController {
 	 * @return Collection of events
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView getAllEvents() {
-		//TODO - Session space ID
-		ModelAndView eventsMainPage = new ModelAndView("events", "allevents", eventDao.findAll());
+	public ModelAndView getAllEvents(@CookieValue("SPACE") int id) {
+		ModelAndView eventsMainPage = new ModelAndView("events", "allevents", eventDao.findBySpace(id));
 		return eventsMainPage;
 	}
 

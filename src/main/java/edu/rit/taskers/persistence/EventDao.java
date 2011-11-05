@@ -42,7 +42,7 @@ public class EventDao {
 	@Transactional
     public List<Event> findBySpace(int spaceId) {
         return this.sessionFactory.getCurrentSession()
-                .createQuery("FROM Actionable WHERE Actionable.SpaceID=? AND TypeID=2")
+                .createQuery("FROM Actionable WHERE SpaceID=? AND TypeID=2")
                 .setParameter(0, spaceId).list();
     }
 
