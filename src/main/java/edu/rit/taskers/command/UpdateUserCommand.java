@@ -21,10 +21,12 @@ public class UpdateUserCommand{
     }
 
     public void execute(){
+        if(user.getId() != 0){
+            userdao.update(user);
+        } else {
+            userdao.save(user);
+        }
 
-
-
-        userdao.save(user);
     }
 
 }
