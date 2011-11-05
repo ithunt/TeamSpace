@@ -31,7 +31,7 @@ public class SpaceController {
 	private static final Logger logger = LoggerFactory.getLogger(SpaceController.class);
 
 	/**
-	 * Fetch all spaces visible to session user (spaces they have created + been invited to)
+	 * Fetch all spaces.  Period.
 	 * @return Spaces
 	 */
 	@RequestMapping(method = RequestMethod.GET)
@@ -41,7 +41,7 @@ public class SpaceController {
 		String username = principal.getName();
 		System.out.println("In SpaceController, username is: " + username );
 		ModelAndView spaces = new ModelAndView("spaces", "space", 
-				userDao.findByUsername(username).getPrimaryContact().getSpace());
+				spaceDao.findAll());
 		return spaces;
 	}
 	
