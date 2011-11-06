@@ -6,6 +6,9 @@ import edu.rit.taskers.persistence.ContactDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class UpdateContactCommand {
+	
+	@Autowired
+	private ContactDao contactDao;
 
     private Contact contact;
 
