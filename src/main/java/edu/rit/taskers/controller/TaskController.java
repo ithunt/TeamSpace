@@ -41,7 +41,7 @@ public class TaskController {
 	 * Retrieve the task details from a selected task in the list
 	 */
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ModelAndView getEventDetails(@PathVariable int id) {
+	public ModelAndView getTaskDetails(@PathVariable int id) {
 		ModelAndView taskEditPage = new ModelAndView("edittask", "task", taskDao.findById(id));
 		return taskEditPage;
 	}
@@ -136,6 +136,19 @@ public class TaskController {
 			e.printStackTrace();
 			return "Invalid date specified.";
 		}
+	}
+	
+	/**
+	 * Retrieve comments for a given task
+	 */
+	@RequestMapping(value="/{id}/comments", method=RequestMethod.GET)
+	public String getTaskComments(@PathVariable int id) {
+		taskDao.findById(id).getComments(); //Use this for whatever we're returning.
+		
+		//TODO - Hook into JSP?
+		//ModelAndView taskEditPage = new ModelAndView("edittask", "task", taskDao.findById(id));
+		//return taskEditPage;
+		return "TBD";
 	}
 
 	/**
