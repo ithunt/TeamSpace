@@ -98,7 +98,7 @@ public class Contact {
         this.bio = bio;
     }
 
-    @Column(name = "PictureURL")
+    @Column(name = "PictureURL", nullable = true)
     public String getPictureURL() {
         return pictureURL;
     }
@@ -108,7 +108,7 @@ public class Contact {
     }
 
     @OneToOne(fetch = FetchType.EAGER, targetEntity = Space.class)
-    @JoinColumn(name = "SpaceID")
+    @JoinColumn(name = "SpaceID", nullable = true)
     public Space getSpace() {
         return space;
     }
