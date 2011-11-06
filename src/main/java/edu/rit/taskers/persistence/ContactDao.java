@@ -37,7 +37,6 @@ public class ContactDao {
     @SuppressWarnings("unchecked")
 	@Transactional
     public List<Contact> findAll() {
-        sessionFactory.getCurrentSession();
         return this.sessionFactory.getCurrentSession().createQuery("FROM Contact").list();
     }
 
