@@ -4,6 +4,7 @@ import edu.rit.taskers.command.UpdateTaskCommand;
 import edu.rit.taskers.model.Actionable;
 import edu.rit.taskers.model.Task;
 import edu.rit.taskers.persistence.TaskDao;
+import edu.rit.taskers.persistence.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,6 +26,9 @@ public class TaskController {
 
     @Autowired
     private TaskDao taskDao;
+
+    @Autowired
+    private UserDao userDao;
 
 	private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
@@ -105,10 +110,12 @@ public class TaskController {
 	 * Create New Task from js function with form data parameters
 	 */
 	@RequestMapping(value="/new", method=RequestMethod.POST)
-	public @ResponseBody String createNewTask(@RequestParam(value="title") String taskName,
+	public @ResponseBody String createNewTask(Principal principal,
+                                 @RequestParam(value="title") String taskName,
 								 @RequestParam(value="targetdate") String targetDate,
 								 @RequestParam(value="priority") String priority,
-								 @RequestParam(value="description") String desc) {
+								 @RequestParam(value="description") String desc,
+                                 @CookieValue("SPACE") int spaceId) {
 		try {
 			DateFormat df = new SimpleDateFormat(Actionable.ACTION_UI_DATEFORMAT);
 			
@@ -124,6 +131,8 @@ public class TaskController {
 			newTask.setTargetDate(df.parse(targetDate));
 			newTask.setPriority(priority);
 			newTask.setDescription(desc);
+            newTask.setSpaceId(spaceId);
+            newTask.setCreator( userDao.findByUsername(principal.getName()).getPrimaryContact() );
 
             UpdateTaskCommand command = new UpdateTaskCommand(newTask, taskDao);
 

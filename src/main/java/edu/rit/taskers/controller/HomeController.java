@@ -32,7 +32,10 @@ public class HomeController {
 	public String goHome(HttpServletResponse response, Model m, Principal principal) {
         String username = principal.getName();
 
+        principal.getName();
+
         Integer lastViewedId = userDao.findByUsername(username).getLastViewedSpace();
+
         if (lastViewedId != null) {
         	response.addCookie(new Cookie("SPACE", lastViewedId + ""));
         	m.addAttribute("username", username);

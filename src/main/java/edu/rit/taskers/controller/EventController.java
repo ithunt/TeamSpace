@@ -4,6 +4,7 @@ import edu.rit.taskers.command.UpdateEventCommand;
 import edu.rit.taskers.model.Actionable;
 import edu.rit.taskers.model.Event;
 import edu.rit.taskers.persistence.EventDao;
+import edu.rit.taskers.persistence.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,6 +30,9 @@ public class EventController {
 
 	@Autowired
 	private EventDao eventDao;
+
+    @Autowired
+    private UserDao userDao;
 
 	/**
 	 * Fetch all events that belong to session space id
@@ -107,10 +112,12 @@ public class EventController {
 	 * Create New Event from js function with form data parameters
 	 */
 	@RequestMapping(value="/new", method=RequestMethod.POST)
-	public @ResponseBody String createNewEvent(@RequestParam(value="title") String eventName,
+	public @ResponseBody String createNewEvent(Principal principal,
+            @RequestParam(value="title") String eventName,
 			@RequestParam(value="targetdate") String targetDate,
 			@RequestParam(value="targettime") String targetTime,
-			@RequestParam(value="description") String desc) {
+			@RequestParam(value="description") String desc,
+            @CookieValue("SPACE") int spaceId) {
 
 		if ( isEmpty( eventName ) ) {
 			return "Please specify a title.";
@@ -130,6 +137,9 @@ public class EventController {
 		newEvent.setName( eventName ) ;
 		newEvent.setTargetDate( dateTimeResult );
 		newEvent.setDescription( desc );
+        newEvent.setSpaceId( spaceId );
+        newEvent.setCreator( userDao.findByUsername(principal.getName()).getPrimaryContact() );
+
 
         UpdateEventCommand command = new UpdateEventCommand(newEvent, eventDao);
 

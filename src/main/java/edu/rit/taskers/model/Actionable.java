@@ -19,7 +19,7 @@ public abstract class Actionable {
 	
 
     protected int id;
-    //TODO space id
+    protected int spaceId;
 	protected Contact creator;
     protected String name;
 	protected Date created;
@@ -42,6 +42,15 @@ public abstract class Actionable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Column(name = "SpaceID")
+    public int getSpaceId() {
+        return spaceId;
+    }
+
+    public void setSpaceId(int spaceId) {
+        this.spaceId = spaceId;
     }
 
     @Column(name="Name")
