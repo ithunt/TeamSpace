@@ -18,6 +18,7 @@ public class Contact {
     protected String pictureURL;
 
     protected Integer spaceId;
+    protected Integer userId;
 
     public Contact() {
 
@@ -105,5 +106,13 @@ public class Contact {
         this.spaceId = spaceId;
     }
 
+    @Column(name = "UserID", nullable = true)
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
 }

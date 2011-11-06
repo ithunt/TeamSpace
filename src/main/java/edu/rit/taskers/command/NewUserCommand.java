@@ -45,10 +45,12 @@ public class NewUserCommand {
 	        u.setLogin( newUser.getLogin() );
 	        u.setPassword( newUser.getPassword() );
 	        u.setCreated( Calendar.getInstance().getTime() );
-	        System.out.println(contactDao);
-	        contactDao.save(c);
-	        u.setPrimaryContact( c );
 	        userDao.save(u);
+	        
+	        User savedUser = userDao.findByUsername(newUser.getLogin());
+	        
+	        c.setUserId(savedUser.getId());
+	        contactDao.save(c);	        
         }
     }
 
