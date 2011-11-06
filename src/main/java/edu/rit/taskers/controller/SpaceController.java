@@ -43,6 +43,16 @@ public class SpaceController {
 				spaceDao.findAll());
 		return spaces;
 	}
+
+	/**
+	 * Create New Space page requested
+	 */
+	@RequestMapping(value="/new", method=RequestMethod.GET)
+	public ModelAndView getCreateSpacePage() {
+		ModelAndView newSpacePage = new ModelAndView("newspace");
+		return newSpacePage;
+	}
+
 	
 	/**
 	 * User has selected a space, change DB and switch to home view
@@ -90,7 +100,7 @@ public class SpaceController {
 	 */
 	@RequestMapping(value="/new", method=RequestMethod.POST)
 	public @ResponseBody String createSpace(Principal principal,
-			                     @RequestParam(value="name") String spaceName,
+			                     @RequestParam(value="title") String spaceName,
 								 @RequestParam(value="description") String desc) {
 			
 			String username = principal.getName();

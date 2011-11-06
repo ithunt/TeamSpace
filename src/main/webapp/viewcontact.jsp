@@ -20,7 +20,7 @@
 							    <img height="32" width="32" src="${contact.pictureURL}" alt="Portrait" /></td>
 							</c:if>
                             
-                        <td><h2>${contact.firstName} ${contact.lastName}</h2></td>
+                        <td><h2>${contact.name}</h2></td>
                     </tr>
                     <tr class="bottomborder">
                         <td class="firstcol">Role:</td>
