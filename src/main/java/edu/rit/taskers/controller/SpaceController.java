@@ -1,27 +1,19 @@
 package edu.rit.taskers.controller;
 
-import java.security.Principal;
-import java.util.Date;
-
+import edu.rit.taskers.command.UpdateSpaceCommand;
+import edu.rit.taskers.model.Contact;
+import edu.rit.taskers.model.Space;
+import edu.rit.taskers.model.User;
+import edu.rit.taskers.persistence.SpaceDao;
+import edu.rit.taskers.persistence.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.rit.taskers.command.UpdateSpaceCommand;
-import edu.rit.taskers.model.Actionable;
-import edu.rit.taskers.model.Contact;
-import edu.rit.taskers.model.Space;
-import edu.rit.taskers.model.Task;
-import edu.rit.taskers.model.User;
-import edu.rit.taskers.persistence.SpaceDao;
-import edu.rit.taskers.persistence.UserDao;
+import java.security.Principal;
 
 /**
  * Handles requests with space creation/listing/management.
@@ -86,7 +78,7 @@ public class SpaceController {
 		tempSpace.setName(spaceName);
 		tempSpace.setDescription(desc);
 		
-		UpdateSpaceCommand command = new UpdateSpaceCommand(tempSpace);
+		UpdateSpaceCommand command = new UpdateSpaceCommand(tempSpace, spaceDao);
 		
 		command.execute();
 		return "Space updated successfully!";
@@ -115,10 +107,9 @@ public class SpaceController {
 			Space newSpace = new Space();
 			newSpace.setName(spaceName);
 			newSpace.setDescription(desc);
-			newSpace.setCreated(new Date());
 			newSpace.setCreator(creator);
 			
-			UpdateSpaceCommand command =  new UpdateSpaceCommand(newSpace);
+			UpdateSpaceCommand command =  new UpdateSpaceCommand(newSpace, spaceDao);
 			
 			command.execute();			
 			return "Space successfully created!"; 

@@ -1,5 +1,6 @@
 package edu.rit.taskers.controller;
 
+import edu.rit.taskers.persistence.ContactDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class AccountController {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private ContactDao contactDao;
 
 	/**
 	 * Create New Account page requested
@@ -72,7 +76,7 @@ public class AccountController {
 		newuser.setBio(bio);
 		newuser.setPictureURL(pictureURL);
 		
-		NewUserCommand command = new NewUserCommand(newuser);
+		NewUserCommand command = new NewUserCommand(newuser, userDao, contactDao);
 
 		//TODO error checking
 		command.execute();		
@@ -97,4 +101,6 @@ public class AccountController {
 	private boolean isEmpty(String s) {
 		return ( s == null ) || ( "".equals(s) ) || ( s.length() == 0 );
 	}
+
+
 }

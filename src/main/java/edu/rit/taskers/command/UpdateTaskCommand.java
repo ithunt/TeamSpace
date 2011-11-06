@@ -7,7 +7,6 @@ package edu.rit.taskers.command;
 
 import edu.rit.taskers.model.Task;
 import edu.rit.taskers.persistence.TaskDao;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Calendar;
 
@@ -15,12 +14,11 @@ import java.util.Calendar;
 public class UpdateTaskCommand{
 
     private Task task;
-
-    @Autowired
     private TaskDao taskdao;
 
-    public UpdateTaskCommand(Task task){
+    public UpdateTaskCommand(Task task, TaskDao taskdao) {
         this.task = task;
+        this.taskdao = taskdao;
     }
 
     public void execute() {
@@ -32,7 +30,4 @@ public class UpdateTaskCommand{
         }
     }
 
-    public void setTaskdao(TaskDao taskdao) {
-        this.taskdao = taskdao;
-    }
 }

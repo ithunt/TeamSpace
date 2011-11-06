@@ -1,24 +1,19 @@
 package edu.rit.taskers.controller;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
+import edu.rit.taskers.command.UpdateTaskCommand;
+import edu.rit.taskers.model.Actionable;
+import edu.rit.taskers.model.Task;
+import edu.rit.taskers.persistence.TaskDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.rit.taskers.model.Actionable;
-import edu.rit.taskers.model.Task;
-import edu.rit.taskers.persistence.TaskDao;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  * Handles requests with a space related to tasks.
@@ -85,8 +80,10 @@ public class TaskController {
 			fetchedTask.setTargetDate(df.parse(targetDate));
 			fetchedTask.setPriority(priority);
 			fetchedTask.setDescription(desc);
-	
-			taskDao.update( fetchedTask );
+
+            UpdateTaskCommand cmd = new UpdateTaskCommand(fetchedTask, taskDao);
+            cmd.execute();
+
 			return "Task successfully updated!"; 
 			
 		} catch (ParseException e) {
@@ -127,8 +124,12 @@ public class TaskController {
 			newTask.setTargetDate(df.parse(targetDate));
 			newTask.setPriority(priority);
 			newTask.setDescription(desc);
+
+            UpdateTaskCommand command = new UpdateTaskCommand(newTask, taskDao);
+
+            command.execute();
 	
-			taskDao.save( newTask );
+			//taskDao.save( newTask );
 			return "Task successfully created!"; 
 			
 		} catch (ParseException e) {

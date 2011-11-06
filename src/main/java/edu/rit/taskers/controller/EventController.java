@@ -1,26 +1,21 @@
 package edu.rit.taskers.controller;
 
+import edu.rit.taskers.command.UpdateEventCommand;
+import edu.rit.taskers.model.Actionable;
+import edu.rit.taskers.model.Event;
+import edu.rit.taskers.persistence.EventDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
-import edu.rit.taskers.model.Actionable;
-import edu.rit.taskers.model.Event;
-import edu.rit.taskers.persistence.EventDao;
 
 /**
  * Handles requests with a space related to events.
@@ -91,7 +86,11 @@ public class EventController {
 		fetchedEvent.setTargetDate( dateTimeResult );
 		fetchedEvent.setDescription( desc );
 
-		eventDao.update( fetchedEvent );
+        UpdateEventCommand command = new UpdateEventCommand(fetchedEvent, eventDao);
+
+        command.execute();
+
+		//eventDao.update( fetchedEvent );
 		return "Event successfully updated!";
 	}
 
@@ -132,7 +131,11 @@ public class EventController {
 		newEvent.setTargetDate( dateTimeResult );
 		newEvent.setDescription( desc );
 
-		eventDao.save( newEvent );
+        UpdateEventCommand command = new UpdateEventCommand(newEvent, eventDao);
+
+        command.execute();
+
+		//eventDao.save( newEvent );
 		return "Event successfully created!";
 	}
 
