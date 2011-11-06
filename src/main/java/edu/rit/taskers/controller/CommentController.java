@@ -1,23 +1,17 @@
 package edu.rit.taskers.controller;
 
-import java.security.Principal;
-import java.util.Date;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import edu.rit.taskers.command.UpdateCommentCommand;
 import edu.rit.taskers.model.Comment;
 import edu.rit.taskers.model.Contact;
 import edu.rit.taskers.persistence.CommentDao;
 import edu.rit.taskers.persistence.UserDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 /**
  * Handles requests with space creation/listing/management.
@@ -50,7 +44,7 @@ public class CommentController {
 	 * Update a comment given details.  
 	 * @return if the comment was updated successfully
 	 */
-	@RequestMapping(value="/new", method=RequestMethod.POST)
+	@RequestMapping(value="/{id}", method=RequestMethod.POST)
 	public @ResponseBody String updateComment(Principal principal,
 								 @PathVariable int id,
 			                     @RequestParam(value="text") String text,
@@ -70,13 +64,11 @@ public class CommentController {
 			} else if ( itemId == 0 ) {
 				return "Missing item (task or event) to attach comment to.";
 			}
-	
-			// Create the new task object and persist it
+
 			Comment newComment = new Comment();
 			newComment.setText(text);
 			newComment.setItem(itemId);
-			newComment.setCreated(new Date());
-			
+
 			UpdateCommentCommand command =  new UpdateCommentCommand(newComment, commentDao);
 			
 			command.execute();			
@@ -101,8 +93,7 @@ public class CommentController {
 			} else if ( itemId == 0 ) {
 				return "Missing item (task or event) to attach comment to.";
 			}
-	
-			// Create the new task object and persist it
+
 			Comment newComment = new Comment();
 			newComment.setText(text);
 			newComment.setItem(itemId);
