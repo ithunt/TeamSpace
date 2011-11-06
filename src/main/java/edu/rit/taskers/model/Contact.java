@@ -17,7 +17,7 @@ public class Contact {
     protected String bio;
     protected String pictureURL;
 
-    protected Space space;
+    protected Integer spaceId;
 
     public Contact() {
 
@@ -96,26 +96,14 @@ public class Contact {
         this.pictureURL = pictureURL;
     }
 
-    @OneToOne(fetch = FetchType.EAGER, targetEntity = Space.class)
-    @JoinColumn(name = "SpaceID", nullable = true)
-    public Space getSpace() {
-        return space;
+    @Column(name = "SpaceID", nullable = true)
+    public Integer getSpaceId() {
+        return spaceId;
     }
 
-    public void setSpace(Space space) {
-        this.space = space;
+    public void setSpaceId(Integer spaceId) {
+        this.spaceId = spaceId;
     }
 
-    @Override
-    public String toString() {
-        return "Contact{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
-                ", bio='" + bio + '\'' +
-                ", pictureURL='" + pictureURL + '\'' +
-                '}';
-    }
+
 }
