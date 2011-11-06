@@ -70,9 +70,26 @@ public class SpaceController {
 	 * @return if Space was updated successfully
 	 */
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
-	public boolean updateSpace() {
-		//TODO figure out if PUT is the best option
-		return true;
+	public String updateSpace(@PathVariable int id, 
+			 @RequestParam(value="name") String spaceName,
+			 @RequestParam(value="description") String desc) {
+		
+		//TODO - Security Check
+		
+		if ( isEmpty(spaceName) ) {
+			return "Please provide a spacename.";
+		} else if ( isEmpty(desc) ) {
+			return "Please provide a description.";
+		}
+		
+		Space tempSpace = spaceDao.findById(id);
+		tempSpace.setName(spaceName);
+		tempSpace.setDescription(desc);
+		
+		UpdateSpaceCommand command = new UpdateSpaceCommand(tempSpace);
+		
+		command.execute();
+		return "Space updated successfully!";
 	}
 	
 	/**
@@ -87,6 +104,12 @@ public class SpaceController {
 			String username = principal.getName();
 			
 			Contact creator = userDao.findByUsername(username).getPrimaryContact();
+			
+			if ( isEmpty(spaceName) ) {
+				return "Please provide a spacename.";
+			} else if ( isEmpty(desc) ) {
+				return "Please provide a description.";
+			}
 	
 			// Create the new task object and persist it
 			Space newSpace = new Space();
@@ -98,7 +121,13 @@ public class SpaceController {
 			UpdateSpaceCommand command =  new UpdateSpaceCommand(newSpace);
 			
 			command.execute();			
-			return "Task successfully created!"; 
+			return "Space successfully created!"; 
 	}
-
+	
+	/**
+	 * String isEmpty helper method
+	 */
+	private boolean isEmpty(String s) {
+		return ( s == null ) || ( "".equals(s) ) || ( s.length() == 0 );
+	}
 }
