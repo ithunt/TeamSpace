@@ -3,6 +3,7 @@ package edu.rit.taskers.persistence;
 import edu.rit.taskers.model.Comment;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  * @author ian hunt
  * @date 11/6/11
  */
+@Repository
 public class CommentDao {
 
     @Autowired
