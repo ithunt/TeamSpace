@@ -106,17 +106,14 @@ public class Space {
         this.events = events;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Space{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", created=" + created +
-//                ", description='" + description + '\'' +
-//                ", creator=" + creator +
-//                ", users=" + users +
-//                ", tasks=" + tasks +
-//                ", events=" + events +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Space{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", created=" + created +
+                ", description='" + description + '\'' +
+                ", creator=" + creator +
+                '}';
+    }
 }

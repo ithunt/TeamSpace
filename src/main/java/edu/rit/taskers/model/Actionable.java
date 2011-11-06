@@ -83,7 +83,7 @@ public abstract class Actionable {
     }
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Contact.class)
-    @JoinColumn(name = "AssignedTo")
+    @JoinColumn(name = "AssignedTo", nullable = true)
     public Contact getAssignedTo() {
         return assignedTo;
     }
@@ -101,7 +101,7 @@ public abstract class Actionable {
 //    }
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Comment.class)
-    @JoinColumn(name = "ItemID")
+    @JoinColumn(name = "ItemID", nullable = true)
     public Set<Comment> getComments() {
         return comments;
     }
@@ -110,7 +110,7 @@ public abstract class Actionable {
         this.comments = comments;
     }
     
-    @Column(name="TargetDate")
+    @Column(name="TargetDate", nullable = true)
     public Date getTargetDate() {
     	return targetdate;
     }

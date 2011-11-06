@@ -15,7 +15,7 @@ public class User implements Serializable {
     protected String login;
     protected String password;
     protected Contact primaryContact;
-    protected int lastViewedSpace;
+    protected Integer lastViewedSpace;
     protected Date created;
 
 
@@ -48,12 +48,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    @Column(name = "LastViewedSpace")
-    public int getLastViewedSpace() {
+    @Column(name = "LastViewedSpace", nullable = true)
+    public Integer getLastViewedSpace() {
         return lastViewedSpace;
     }
 
-    public void setLastViewedSpace(int lastViewedSpace) {
+    public void setLastViewedSpace(Integer lastViewedSpace) {
         this.lastViewedSpace = lastViewedSpace;
     }
 
