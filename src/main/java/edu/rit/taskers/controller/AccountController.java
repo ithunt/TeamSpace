@@ -67,7 +67,7 @@ public class AccountController {
 			@RequestParam(value="email") String email,
 			@RequestParam(value="role") String role,
 			@RequestParam(value="bio") String bio,
-			@RequestParam(value="pictureURL") String picutreURL){
+			@RequestParam(value="pictureURL") String pictureURL){
 
 			if ( isEmpty( username ) ) {
 				return "Please specify a username.";
