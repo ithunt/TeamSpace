@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import edu.rit.taskers.command.NewUserCommand;
 import edu.rit.taskers.data.NewUser;
@@ -26,13 +27,12 @@ public class AccountController {
     private UserDao userDao;
 
 	/**
-	 * Update the session user's account
-	 * @return if Account was updated successfully
+	 * Create New Account page requested
 	 */
-	@RequestMapping(method = RequestMethod.PUT)
-	public boolean updateAccount() {
-		//TODO figure out if PUT is the best option
-		return true;
+	@RequestMapping(value="/new", method=RequestMethod.GET)
+	public ModelAndView getCreateAccountPage() {
+		ModelAndView newAccountPage = new ModelAndView("newaccount");
+		return newAccountPage;
 	}
 	
 	/**
@@ -40,7 +40,7 @@ public class AccountController {
 	 * @return if Account was created successfully
 	 */
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public @ResponseBody String createNewTask(@RequestParam(value="login") String login,
+	public @ResponseBody String createNewUser(@RequestParam(value="login") String login,
 			@RequestParam(value="password") String password,
 			@RequestParam(value="name") String name,
 			@RequestParam(value="phone") String phone,
@@ -71,7 +71,8 @@ public class AccountController {
 		newuser.setPictureURL(pictureURL);
 		
 		NewUserCommand command = new NewUserCommand(newuser);
-		
+
+		//TODO error checking
 		command.execute();		
 		return "User successfully created!"; 
 	}

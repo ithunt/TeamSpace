@@ -27,9 +27,13 @@
                     <input type="password" name="j_password" id="password"/>
                 </div>
 
-                <input type="submit" name="login" value="Submit" data-theme="b" />
+                <input type="submit" name="login" value="Login" data-theme="b" />
                 
             </form>
+            
+            <p>New to Teamspace?<p>
+            <a href="/account/new" data-role="button" data-theme="b" data-icon="plus" >Get Started</a>
+            
         </div>
 
         <%@ include file="footer.htm" %>
