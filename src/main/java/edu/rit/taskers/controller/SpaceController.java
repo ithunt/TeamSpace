@@ -69,7 +69,7 @@ public class SpaceController {
 	 * Update the space details
 	 * @return if Space was updated successfully
 	 */
-	@RequestMapping(method = RequestMethod.PUT)
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
 	public boolean updateSpace() {
 		//TODO figure out if PUT is the best option
 		return true;
