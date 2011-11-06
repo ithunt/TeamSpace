@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.rit.taskers.command.UpdateEventCommand;
 import edu.rit.taskers.model.Actionable;
 import edu.rit.taskers.model.Event;
 import edu.rit.taskers.persistence.EventDao;
@@ -91,7 +92,11 @@ public class EventController {
 		fetchedEvent.setTargetDate( dateTimeResult );
 		fetchedEvent.setDescription( desc );
 
-		eventDao.update( fetchedEvent );
+        UpdateEventCommand command = new UpdateEventCommand(fetchedEvent);
+
+        command.execute();
+
+		//eventDao.update( fetchedEvent );
 		return "Event successfully updated!";
 	}
 
@@ -132,7 +137,11 @@ public class EventController {
 		newEvent.setTargetDate( dateTimeResult );
 		newEvent.setDescription( desc );
 
-		eventDao.save( newEvent );
+        UpdateEventCommand command = new UpdateEventCommand(newEvent);
+
+        command.execute();
+
+		//eventDao.save( newEvent );
 		return "Event successfully created!";
 	}
 

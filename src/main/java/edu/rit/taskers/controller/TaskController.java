@@ -125,8 +125,11 @@ public class TaskController {
 			newTask.setPriority(priority);
 			newTask.setDescription(desc);
 
+            UpdateTaskCommand command = new UpdateTaskCommand(newTask, taskDao);
+
+            command.execute();
 	
-			taskDao.save( newTask );
+			//taskDao.save( newTask );
 			return "Task successfully created!"; 
 			
 		} catch (ParseException e) {
