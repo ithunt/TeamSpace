@@ -12,8 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import edu.rit.taskers.command.NewUserCommand;
+import edu.rit.taskers.data.NewUser;
+import edu.rit.taskers.model.Actionable;
+import edu.rit.taskers.model.Task;
 import edu.rit.taskers.model.User;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -53,9 +60,45 @@ public class AccountController {
 	 * @return if Account was created successfully
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public boolean createAccount(@RequestBody MultiValueMap<String,String> request) {
-		//TODO
-		return true;
+	public @ResponseBody String createNewTask(@RequestParam(value="login") String login,
+			@RequestParam(value="password") String password,
+			@RequestParam(value="name") String name,
+			@RequestParam(value="phone") String phone,
+			@RequestParam(value="email") String email,
+			@RequestParam(value="role") String role,
+			@RequestParam(value="bio") String bio,
+			@RequestParam(value="pictureURL") String pictureURL){
+
+			if ( isEmpty( username ) ) {
+				return "Please specify a username.";
+			} else if ( isEmpty( password ) ) {
+				return "Please specify a password.";
+			} else if ( isEmpty( email ) ) {
+				return "Please specify your email.";
+			} else if ( isEmpty( phone ) ) {
+				return "Please specify your phone number.";
+			}
+
+			// Create the NewUser object and persist it
+			NewUser newuser = new NewUser();
+			newuser.setLogin(login);
+			newuser.setPassword(password);
+			newuser.setName(name);
+			newuser.setEmail(email);
+			newuser.setPhone(phone);
+			newuser.setRole(role);
+			newuser.setBio(bio);
+			newuser.setPictureURL(pictureURL);
+			
+			NewUserCommand command = new NewUserCommand(newuser);
+			
+			command.execute();		
+			return "User successfully created!"; 
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return "Invalid date specified.";
+		}
 	}
 	
 	/**
