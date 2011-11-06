@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.rit.taskers.command.UpdateTaskCommand;
 import edu.rit.taskers.model.Actionable;
 import edu.rit.taskers.model.Task;
 import edu.rit.taskers.persistence.TaskDao;
@@ -85,8 +86,12 @@ public class TaskController {
 			fetchedTask.setTargetDate(df.parse(targetDate));
 			fetchedTask.setPriority(priority);
 			fetchedTask.setDescription(desc);
+
+            UpdateTaskCommand command = new UpdateTaskCommand(fetchedTask);
+
+            command.execute();
 	
-			taskDao.update( fetchedTask );
+			//taskDao.update(fetchedTask);
 			return "Task successfully updated!"; 
 			
 		} catch (ParseException e) {
@@ -127,8 +132,12 @@ public class TaskController {
 			newTask.setTargetDate(df.parse(targetDate));
 			newTask.setPriority(priority);
 			newTask.setDescription(desc);
+
+            UpdateTaskCommand command = new UpdateTaskCommand(newTask);
+
+            command.execute();
 	
-			taskDao.save( newTask );
+			//taskDao.save( newTask );
 			return "Task successfully created!"; 
 			
 		} catch (ParseException e) {
