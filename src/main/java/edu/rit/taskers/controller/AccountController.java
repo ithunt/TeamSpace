@@ -1,12 +1,9 @@
 package edu.rit.taskers.controller;
 
-import edu.rit.taskers.persistence.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,14 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.rit.taskers.command.NewUserCommand;
 import edu.rit.taskers.data.NewUser;
-import edu.rit.taskers.model.Actionable;
-import edu.rit.taskers.model.Task;
-import edu.rit.taskers.model.User;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
+import edu.rit.taskers.persistence.UserDao;
 
 /**
  * Handles requests with a user account.
@@ -34,16 +24,6 @@ public class AccountController {
 
     @Autowired
     private UserDao userDao;
-
-    @RequestMapping(value = "/hello")
-    public @ResponseBody String helloWorld() {
-        return "Hello, World!";
-    }
-
-    @RequestMapping(value = "/one")
-    public @ResponseBody User getUser() {
-        return userDao.findAll().get(0);
-    }
 
 	/**
 	 * Update the session user's account
@@ -59,7 +39,7 @@ public class AccountController {
 	 * Create a new account given details
 	 * @return if Account was created successfully
 	 */
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public @ResponseBody String createNewTask(@RequestParam(value="login") String login,
 			@RequestParam(value="password") String password,
 			@RequestParam(value="name") String name,
@@ -68,37 +48,32 @@ public class AccountController {
 			@RequestParam(value="role") String role,
 			@RequestParam(value="bio") String bio,
 			@RequestParam(value="pictureURL") String pictureURL){
-
-			if ( isEmpty( username ) ) {
-				return "Please specify a username.";
-			} else if ( isEmpty( password ) ) {
-				return "Please specify a password.";
-			} else if ( isEmpty( email ) ) {
-				return "Please specify your email.";
-			} else if ( isEmpty( phone ) ) {
-				return "Please specify your phone number.";
-			}
-
-			// Create the NewUser object and persist it
-			NewUser newuser = new NewUser();
-			newuser.setLogin(login);
-			newuser.setPassword(password);
-			newuser.setName(name);
-			newuser.setEmail(email);
-			newuser.setPhone(phone);
-			newuser.setRole(role);
-			newuser.setBio(bio);
-			newuser.setPictureURL(pictureURL);
-			
-			NewUserCommand command = new NewUserCommand(newuser);
-			
-			command.execute();		
-			return "User successfully created!"; 
-
-		} catch (ParseException e) {
-			e.printStackTrace();
-			return "Invalid date specified.";
+		
+		if ( isEmpty( login ) ) {
+			return "Please specify a username.";
+		} else if ( isEmpty( password ) ) {
+			return "Please specify a password.";
+		} else if ( isEmpty( email ) ) {
+			return "Please specify an email.";
+		} else if ( isEmpty( phone ) ) {
+			return "Please specify a phone number.";
 		}
+
+		// Create the NewUser object and persist it
+		NewUser newuser = new NewUser();
+		newuser.setLogin(login);
+		newuser.setPassword(password);
+		newuser.setName(name);
+		newuser.setEmail(email);
+		newuser.setPhone(phone);
+		newuser.setRole(role);
+		newuser.setBio(bio);
+		newuser.setPictureURL(pictureURL);
+		
+		NewUserCommand command = new NewUserCommand(newuser);
+		
+		command.execute();		
+		return "User successfully created!"; 
 	}
 	
 	/**
@@ -111,5 +86,12 @@ public class AccountController {
 
 		//TODO
 		return true;
+	}
+
+	/**
+	 * String isEmpty helper method
+	 */
+	private boolean isEmpty(String s) {
+		return ( s == null ) || ( "".equals(s) ) || ( s.length() == 0 );
 	}
 }
