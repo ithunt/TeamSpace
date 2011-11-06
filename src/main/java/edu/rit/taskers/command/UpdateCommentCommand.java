@@ -11,13 +11,11 @@ import java.util.Calendar;
  * @author ian hunt
  */
 public class UpdateCommentCommand {
-
-    private Actionable actionable;
+	
     private Comment comment;
     private CommentDao commentDao;
 
-    public UpdateCommentCommand(Actionable actionable, Comment comment, CommentDao commentDao) {
-        this.actionable = actionable;
+    public UpdateCommentCommand(Comment comment, CommentDao commentDao) {
         this.comment = comment;
         this.commentDao = commentDao;
     }
@@ -28,7 +26,6 @@ public class UpdateCommentCommand {
             commentDao.update(this.comment);
         } else {
             this.comment.setCreated(Calendar.getInstance().getTime());
-            this.comment.setItem(this.actionable.getId());
             commentDao.save(comment);
         }
     }
