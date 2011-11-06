@@ -2,6 +2,7 @@ package edu.rit.taskers.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "User")
@@ -15,6 +16,7 @@ public class User implements Serializable {
     protected String password;
     protected Contact primaryContact;
     protected int lastViewedSpace;
+    protected Date created;
 
 
     @Id
@@ -63,6 +65,15 @@ public class User implements Serializable {
 
     public void setPrimaryContact(Contact primaryContact) {
         this.primaryContact = primaryContact;
+    }
+
+    @Column(name = "Created")
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
     @Override

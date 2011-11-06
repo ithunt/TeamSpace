@@ -24,15 +24,15 @@ public class UpdateTaskCommand{
     }
 
     public void execute() {
-
-        //TODO: task.setCreator( )
-        task.setCreated(Calendar.getInstance().getTime());
-
         if(task.getId() != 0) {
             taskdao.update(task);
         } else {
+            task.setCreated(Calendar.getInstance().getTime());
             taskdao.save(task);
         }
+    }
 
+    public void setTaskdao(TaskDao taskdao) {
+        this.taskdao = taskdao;
     }
 }

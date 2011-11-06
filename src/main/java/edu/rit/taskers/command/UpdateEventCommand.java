@@ -25,16 +25,16 @@ public class UpdateEventCommand{
     }
 
     public void execute() {
-
-        event.setCreated(Calendar.getInstance().getTime());
-
         if(event.getId() != 0) {
             eventdao.update(event);
         } else {
+            event.setCreated(Calendar.getInstance().getTime());
             eventdao.save(event);
         }
 
     }
 
-
+    public void setEventdao(EventDao eventdao) {
+        this.eventdao = eventdao;
+    }
 }

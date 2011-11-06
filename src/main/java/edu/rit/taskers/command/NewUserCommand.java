@@ -7,6 +7,8 @@ import edu.rit.taskers.persistence.ContactDao;
 import edu.rit.taskers.persistence.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Calendar;
+
 /**
  * @author ian hunt
  * @date 11/4/11
@@ -45,6 +47,7 @@ public class NewUserCommand {
         User u = new User();
         u.setLogin( newUser.getLogin() );
         u.setPassword( newUser.getPassword() );
+        u.setCreated( Calendar.getInstance().getTime() );
 
         u.setPrimaryContact( c );
 
@@ -52,4 +55,11 @@ public class NewUserCommand {
         userDao.save(u);
     }
 
+    public void setContactDao(ContactDao contactDao) {
+        this.contactDao = contactDao;
+    }
+
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
 }

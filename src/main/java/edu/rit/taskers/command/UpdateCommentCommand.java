@@ -6,6 +6,11 @@ import edu.rit.taskers.model.Comment;
 import edu.rit.taskers.persistence.CommentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Calendar;
+
+/**
+ * @author ian hunt, nsama chipalo
+ */
 public class UpdateCommentCommand {
 
     private Actionable actionable;
@@ -19,10 +24,18 @@ public class UpdateCommentCommand {
         this.actionable = actionable;
     }
 
-    public void execute(){
+    public void execute() {
 
+        if(comment.getId() != 0 ) {
+            commentDao.update(this.comment);
+        } else {
+            this.comment.setCreated(Calendar.getInstance().getTime());
+            this.comment.setItem(this.actionable);
+            commentDao.save(comment);
+        }
     }
 
-
-
+    public void setCommentDao(CommentDao commentDao) {
+        this.commentDao = commentDao;
+    }
 }

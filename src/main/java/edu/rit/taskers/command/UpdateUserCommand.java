@@ -8,25 +8,30 @@ package edu.rit.taskers.command;
 import edu.rit.taskers.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import edu.rit.taskers.persistence.UserDao;
-public class UpdateUserCommand{
+
+public class UpdateUserCommand {
 
     private User user;
 
     @Autowired
-    private UserDao userdao;
+    private UserDao userDao;
 
 
-    public UpdateUserCommand(User user){
+    public UpdateUserCommand(User user) {
         this.user = user;
     }
 
-    public void execute(){
-        if(user.getId() != 0){
-            userdao.update(user);
-        } else {
-            userdao.save(user);
+    public void execute() {
+
+        if (user.getId() != 0) {
+            userDao.update(user);
         }
 
+        //Note: new users use new user command
+    }
+
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
     }
 
 }
