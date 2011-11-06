@@ -167,6 +167,19 @@ public class EventController {
 			return null;
 		}
 	}
+	
+	/**
+	 * Retrieve the event details from a selected event in the list
+	 */
+	@RequestMapping(value="/{id}/comments", method=RequestMethod.GET)
+	public String getEventComments(@PathVariable int id) {
+		eventDao.findById(id).getComments(); //Use this for whatever we're returning.
+		
+		//TODO - Hook into JSP?
+		//ModelAndView eventDetailsEditPage = new ModelAndView("editevent", "event", eventDao.findById(id));		
+		//return eventDetailsEditPage;
+		return "TBD";
+	}
 
 	/**
 	 * String isEmpty helper method
