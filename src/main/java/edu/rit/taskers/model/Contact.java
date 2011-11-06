@@ -10,8 +10,7 @@ public class Contact {
 
 
     private int id;
-    protected String firstName;
-    protected String lastName;
+    protected String name;
     protected String phone;
     protected String email;
     protected String role;
@@ -24,9 +23,8 @@ public class Contact {
 
     }
 
-    public Contact(String firstName, String lastName, String phone, String email, String role, String bio, String pictureURL) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Contact(String name, String phone, String email, String role, String bio, String pictureURL) {
+        this.name = name;
         this.phone = phone;
         this.email = email;
         this.role = role;
@@ -44,22 +42,13 @@ public class Contact {
         this.id = id;
     }
 
-    @Column(name = "FirstName")
-    public String getFirstName() {
-        return firstName;
+    @Column(name = "Name")
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    @Column(name = "LastName")
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Column(name = "Phone")
@@ -121,8 +110,7 @@ public class Contact {
     public String toString() {
         return "Contact{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +

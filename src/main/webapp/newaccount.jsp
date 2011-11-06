@@ -1,68 +1,63 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="header.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="header.jsp"%>
 <body>
-    <div data-role="page" id="register" data-title="TeamSpace | Register">
-    
-        <div data-role="header" data-theme="c" >
-            <a href="index.htm" data-theme="a" data-rel="back" data-icon="arrow-l" data-iconpos="notext">Back</a>
-            <h1>New Account</h1>
-        </div>
+	<div data-role="page" id="register" data-title="TeamSpace | Register">
 
-        <div data-role="content">
-            <form action="/account/new" method="post">
+		<div data-role="header" data-theme="c">
+			<a href="index.htm" data-theme="a" data-rel="back"
+				data-icon="arrow-l" data-iconpos="notext">Back</a>
+			<h1>New Account</h1>
+		</div>
 
-                <div data-role="fieldcontain">
-                    <label for="login">Username:</label>
-                    <input type="text" id="login" />
-                </div>
+		<div data-role="content">
 
-                <div data-role="fieldcontain">
-                    <label for="email">Email:</label>
-                    <input type="text" id="email" />
-                </div>
+			<div data-role="fieldcontain">
+				<label for="loginname">Username:</label> <input type="text" id="loginname" />
+			</div>
 
-                <div data-role="fieldcontain">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" />
-                </div>
+			<div data-role="fieldcontain">
+				<label for="email">Email:</label> <input type="text" id="email" />
+			</div>
 
-                <div data-role="fieldcontain">
-                    <label for="name">Real Name:</label>
-                    <input type="text" id="name" />
-                </div>
+			<div data-role="fieldcontain">
+				<label for="userpassword">Password:</label> <input type="password"
+					id="userpassword" />
+			</div>
 
-                <div data-role="fieldcontain">
-                    <label for="phone">Phone:</label>
-                    <input type="tel" id="phone" />
-                </div>
+			<div data-role="fieldcontain">
+				<label for="name">Real Name:</label> <input type="text" id="name" />
+			</div>
 
-                <div data-role="fieldcontain">
-                    <label for="role">Role:</label>
-                    <input type="text" id="role" />
-                </div>
+			<div data-role="fieldcontain">
+				<label for="phone">Phone:</label> <input type="tel" id="phone" />
+			</div>
 
-                <div data-role="fieldcontain">
-                    <label for="pictureURL">Picture URL:</label>
-                    <input type="url" id="pictureURL" />
-                </div>
+			<div data-role="fieldcontain">
+				<label for="role">Role:</label> <input type="text" id="role" />
+			</div>
 
-				<div data-role="fieldcontain">
-					<label for="bio">Bio:</label>
-					<textarea cols="40" rows="8" id="bio"></textarea>
-				</div>
-				
+			<div data-role="fieldcontain">
+				<label for="pictureURL">Picture URL:</label> <input type="text"
+					id="pictureURL" />
+			</div>
+
+			<div data-role="fieldcontain">
+				<label for="bio">Bio:</label>
+				<textarea cols="40" rows="8" id="bio"></textarea>
+			</div>
+
 			<button type="submit" data-icon="check" data-theme="b"
 				value="newuser" onclick="getResult()">Get Started</button>
-                
-            </form>
-        </div>
+
+		</div>
 
 		<script type="text/javascript">
 			function getResult() {
 				jq(function() {
 					jq.post("/account/new", {
-						login : jq("#login").val(),
-						password : jq("#password").val(),
+						loginname : jq("#loginname").val(),
+						userpassword : jq("#userpassword").val(),
 						name : jq("#name").val(),
 						phone : jq("#phone").val(),
 						email : jq("#email").val(),
@@ -85,8 +80,8 @@
 			}
 		</script>
 
-        <%@ include file="footer.htm" %>
+		<%@ include file="footer.htm"%>
 
-    </div>
+	</div>
 </body>
 </html>

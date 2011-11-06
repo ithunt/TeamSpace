@@ -40,8 +40,8 @@ public class AccountController {
 	 * @return if Account was created successfully
 	 */
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public @ResponseBody String createNewUser(@RequestParam(value="login") String login,
-			@RequestParam(value="password") String password,
+	public @ResponseBody String createNewUser(@RequestParam(value="loginname") String login,
+			@RequestParam(value="userpassword") String password,
 			@RequestParam(value="name") String name,
 			@RequestParam(value="phone") String phone,
 			@RequestParam(value="email") String email,
@@ -57,6 +57,8 @@ public class AccountController {
 			return "Please specify an email.";
 		} else if ( isEmpty( phone ) ) {
 			return "Please specify a phone number.";
+		} else if ( isEmpty( name ) ) {
+			return "Please specify your name.";
 		}
 
 		// Create the NewUser object and persist it
