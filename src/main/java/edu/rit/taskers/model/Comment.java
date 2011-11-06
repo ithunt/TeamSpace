@@ -16,7 +16,8 @@ public class Comment implements Serializable {
     protected Contact creator;
     protected Date created;
     protected String text;
-    protected Actionable item;
+    protected Integer item;
+    
 
     public Comment() {
 
@@ -61,14 +62,12 @@ public class Comment implements Serializable {
         this.text = text;
     }
 
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ItemID")
-    public Actionable getItem() {
+    @Column(name = "ItemID")
+    public Integer getItem() {
         return item;
     }
 
-    public void setItem(Actionable item) {
+    public void setItem(Integer item) {
         this.item = item;
     }
 
@@ -79,6 +78,7 @@ public class Comment implements Serializable {
                 ", creator=" + creator +
                 ", created=" + created +
                 ", text='" + text + '\'' +
+                ", actionableId=" + item +
                 '}';
     }
 }
