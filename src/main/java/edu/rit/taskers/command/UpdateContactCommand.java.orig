@@ -1,11 +1,25 @@
 package edu.rit.taskers.command;
 
+<<<<<<< HEAD
 
 import edu.rit.taskers.model.Contact;
 import edu.rit.taskers.persistence.ContactDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
+=======
+/**
+ * User: Nsama
+ * Date: 11/4/11
+ */
+import org.springframework.beans.factory.annotation.Autowired;
+
+import edu.rit.taskers.model.Contact;
+import edu.rit.taskers.persistence.ContactDao;
+>>>>>>> 50238b42d9712f0d6e1bd569835b27a293000eac
 public class UpdateContactCommand {
+	
+	@Autowired
+	private ContactDao contactDao;
 
     private Contact contact;
 
@@ -17,11 +31,20 @@ public class UpdateContactCommand {
     }
 
     public void execute() {
+<<<<<<< HEAD
         if(contact.getId() != 0) {
             contactDao.update(contact);
         } else {
             contactDao.save(contact);
         }
+=======
+    	if(contact.getId() != 0){
+            contactDao.update(contact);
+        }else{
+        	contactDao.save(contact);
+        }
+    }
+>>>>>>> 50238b42d9712f0d6e1bd569835b27a293000eac
 
     }
 
