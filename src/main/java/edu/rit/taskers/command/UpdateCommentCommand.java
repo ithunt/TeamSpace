@@ -28,7 +28,7 @@ public class UpdateCommentCommand {
             commentDao.update(this.comment);
         } else {
             this.comment.setCreated(Calendar.getInstance().getTime());
-            this.comment.setItem(this.actionable);
+            this.comment.setItem(this.actionable.getId());
             commentDao.save(comment);
         }
     }
