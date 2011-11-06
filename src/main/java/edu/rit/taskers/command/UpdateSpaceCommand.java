@@ -7,20 +7,19 @@ package edu.rit.taskers.command;
 
 import edu.rit.taskers.model.Space;
 import edu.rit.taskers.persistence.SpaceDao;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Calendar;
 
 public class UpdateSpaceCommand {
-    private Space space;
 
-    @Autowired
+
+    private Space space;
     private SpaceDao spacedao;
 
-    public UpdateSpaceCommand(Space space){
+    public UpdateSpaceCommand(Space space, SpaceDao spacedao) {
         this.space = space;
+        this.spacedao = spacedao;
     }
-
 
     public void execute(){
         if(space.getId() != 0) {
@@ -31,7 +30,4 @@ public class UpdateSpaceCommand {
         }
     }
 
-    public void setSpacedao(SpaceDao spacedao) {
-        this.spacedao = spacedao;
-    }
 }

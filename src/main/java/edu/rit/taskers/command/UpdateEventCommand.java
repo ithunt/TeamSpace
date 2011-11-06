@@ -2,7 +2,6 @@ package edu.rit.taskers.command;
 
 import edu.rit.taskers.model.Event;
 import edu.rit.taskers.persistence.EventDao;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Calendar;
 
@@ -16,12 +15,11 @@ public class UpdateEventCommand{
 
 
     private Event event;
-
-    @Autowired
     private EventDao eventdao;
 
-    public UpdateEventCommand(Event event){
+    public UpdateEventCommand(Event event, EventDao eventdao) {
         this.event = event;
+        this.eventdao = eventdao;
     }
 
     public void execute() {
@@ -34,7 +32,4 @@ public class UpdateEventCommand{
 
     }
 
-    public void setEventdao(EventDao eventdao) {
-        this.eventdao = eventdao;
-    }
 }

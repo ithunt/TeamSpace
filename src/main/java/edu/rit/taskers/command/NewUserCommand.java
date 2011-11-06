@@ -1,15 +1,12 @@
 package edu.rit.taskers.command;
 
-import java.util.Calendar;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.stereotype.Service;
 import edu.rit.taskers.data.NewUser;
 import edu.rit.taskers.model.Contact;
 import edu.rit.taskers.model.User;
 import edu.rit.taskers.persistence.ContactDao;
 import edu.rit.taskers.persistence.UserDao;
+
+import java.util.Calendar;
 
 /**
  * @author ian hunt
@@ -18,15 +15,13 @@ import edu.rit.taskers.persistence.UserDao;
 public class NewUserCommand {
 
     private NewUser newUser;
-
-    @Autowired
     private UserDao userDao;
-
-    @Autowired
     private ContactDao contactDao;
 
-    public NewUserCommand(NewUser newUser) {
+    public NewUserCommand(NewUser newUser, UserDao userDao, ContactDao contactDao) {
         this.newUser = newUser;
+        this.userDao = userDao;
+        this.contactDao = contactDao;
     }
 
     public void execute() {
@@ -57,11 +52,4 @@ public class NewUserCommand {
         }
     }
 
-    public void setContactDao(ContactDao contactDao) {
-        this.contactDao = contactDao;
-    }
-
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
 }

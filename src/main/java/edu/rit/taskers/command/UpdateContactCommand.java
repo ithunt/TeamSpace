@@ -3,17 +3,15 @@ package edu.rit.taskers.command;
 
 import edu.rit.taskers.model.Contact;
 import edu.rit.taskers.persistence.ContactDao;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class UpdateContactCommand {
 
     private Contact contact;
-
-    @Autowired
     private ContactDao contactDao;
 
-    public UpdateContactCommand(Contact contact){
+    public UpdateContactCommand(Contact contact, ContactDao contactDao) {
         this.contact = contact;
+        this.contactDao = contactDao;
     }
 
     public void execute() {
@@ -25,8 +23,5 @@ public class UpdateContactCommand {
 
     }
 
-    public void setContactDao(ContactDao contactDao) {
-        this.contactDao = contactDao;
-    }
 }
 

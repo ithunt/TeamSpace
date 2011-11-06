@@ -4,24 +4,22 @@ package edu.rit.taskers.command;
 import edu.rit.taskers.model.Actionable;
 import edu.rit.taskers.model.Comment;
 import edu.rit.taskers.persistence.CommentDao;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Calendar;
 
 /**
- * @author ian hunt, nsama chipalo
+ * @author ian hunt
  */
 public class UpdateCommentCommand {
 
     private Actionable actionable;
     private Comment comment;
-
-    @Autowired
     private CommentDao commentDao;
 
-    public UpdateCommentCommand(Comment comment,Actionable actionable){
-        this.comment = comment;
+    public UpdateCommentCommand(Actionable actionable, Comment comment, CommentDao commentDao) {
         this.actionable = actionable;
+        this.comment = comment;
+        this.commentDao = commentDao;
     }
 
     public void execute() {
@@ -35,7 +33,4 @@ public class UpdateCommentCommand {
         }
     }
 
-    public void setCommentDao(CommentDao commentDao) {
-        this.commentDao = commentDao;
-    }
 }

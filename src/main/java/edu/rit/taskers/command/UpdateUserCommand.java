@@ -6,19 +6,17 @@ package edu.rit.taskers.command;
  */
 
 import edu.rit.taskers.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import edu.rit.taskers.persistence.UserDao;
 
 public class UpdateUserCommand {
 
     private User user;
-
-    @Autowired
     private UserDao userDao;
 
 
-    public UpdateUserCommand(User user) {
+    public UpdateUserCommand(User user, UserDao userDao) {
         this.user = user;
+        this.userDao = userDao;
     }
 
     public void execute() {
