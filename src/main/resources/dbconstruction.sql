@@ -89,15 +89,6 @@ CREATE TABLE `teamspace`.`Dependency` (
 )
 ENGINE = MyISAM;
 
-DROP TABLE IF EXISTS `teamspace`.`Invited`;
-CREATE TABLE `teamspace`.`Invited` (
-  `InvitationID` INT  NOT NULL AUTO_INCREMENT,
-  `EventID` INT  NOT NULL,
-  `InviteeID` INT  NOT NULL,
-  PRIMARY KEY (`InvitationID`)
-)
-ENGINE = MyISAM;
-
 DROP TABLE IF EXISTS `teamspace`.`Attended`;
 CREATE TABLE `teamspace`.`Attended` (
   `AttendID` INT  NOT NULL AUTO_INCREMENT,
@@ -120,15 +111,6 @@ CREATE TABLE `teamspace`.`User` (
   PRIMARY KEY (`UserID`)
 )
 ENGINE = MyISAM;
-
-DROP TABLE IF EXISTS `teamspace`.`UserRoles`;
-CREATE TABLE `teamspace`.`UserRoles` (
-  `RoleID` int(10) unsigned NOT NULL,
-  `UserID` int(10) unsigned NOT NULL,
-  `Authority` varchar(45) NOT NULL,
-  PRIMARY KEY (`RoleID`)
-) 
-ENGINE=MyISAM;
 
 DROP TABLE IF EXISTS `teamspace`.`Invitation`;
 CREATE TABLE `Invitation` (
