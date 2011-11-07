@@ -35,7 +35,7 @@
                     
                     <!-- TODO: Creator name -->
                     
-                    <p><b>from Anthony Barone (Static)</b></p>
+                    <p><b>from ${event.creator.name}</b></p>
                     <p>${event.description}</p>
                		</a></li>
 				</c:forEach>

@@ -24,29 +24,6 @@
             	<c:forEach items="${allcontacts}" var="contact">
 					<li><a href="/people/${contact.id}">${contact.name}</a></li>
 				</c:forEach>
-				<li><a href="viewcontact.htm">Adam Kinkaid</a></li>
-				<li><a href="viewcontact.htm">Alex Wickerham</a></li>
-				<li><a href="viewcontact.htm">Avery Johnson</a></li>
-				<li><a href="viewcontact.htm">Bob Cabot</a></li>
-				<li><a href="viewcontact.htm">Caleb Booth</a></li>
-				<li><a href="viewcontact.htm">Christopher Adams</a></li>
-				<li><a href="viewcontact.htm">Culver James</a></li>
-				<li><a href="viewcontact.htm">David Walsh</a></li>
-				<li><a href="viewcontact.htm">Drake Alfred</a></li>
-				<li><a href="viewcontact.htm">Elizabeth Bacon</a></li>
-				<li><a href="viewcontact.htm">Emery Parker</a></li>
-				<li><a href="viewcontact.htm">Enid Voldon</a></li>
-				<li><a href="viewcontact.htm">Francis Wall</a></li>
-				<li><a href="viewcontact.htm">Graham Smith</a></li>
-				<li><a href="viewcontact.htm">Greta Peete</a></li>
-				<li><a href="viewcontact.htm">Harvey Walls</a></li>
-				<li><a href="viewcontact.htm">Mike Farnsworth</a></li>
-				<li><a href="viewcontact.htm">Murray Vanderbuilt</a></li>
-				<li><a href="viewcontact.htm">Nathan Williams</a></li>
-				<li><a href="viewcontact.htm">Paul Baker</a></li>
-				<li><a href="viewcontact.htm">Pete Mason</a></li>
-				<li><a href="viewcontact.htm">Rod Tarker</a></li>
-				<li><a href="viewcontact.htm">Sawyer Wakefield</a></li>
 			</ul>
         </div>
 
