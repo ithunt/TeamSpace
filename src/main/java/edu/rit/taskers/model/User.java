@@ -17,6 +17,7 @@ public class User implements Serializable {
     protected Contact primaryContact;
     protected Integer lastViewedSpace;
     protected Date created;
+    protected String role;
 
 
     @Id
@@ -74,6 +75,15 @@ public class User implements Serializable {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    @Column(name = "Role")
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override
