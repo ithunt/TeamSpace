@@ -115,4 +115,18 @@ public class Contact {
         this.userId = userId;
     }
 
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                ", bio='" + bio + '\'' +
+                ", pictureURL='" + pictureURL + '\'' +
+                ", spaceId=" + spaceId +
+                ", userId=" + userId +
+                '}';
+    }
 }

@@ -1,13 +1,13 @@
 package edu.rit.taskers.persistence;
 
-import java.util.List;
-
+import edu.rit.taskers.model.Contact;
+import edu.rit.taskers.model.Event;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.rit.taskers.model.Event;
+import java.util.List;
 
 /**
  * @author Ian Hunt, Anthony Barone
@@ -24,8 +24,8 @@ public class EventDao {
     }
 
     @Transactional
-    public void save(Event event) {
-        this.sessionFactory.getCurrentSession().save(event);
+    public Integer save(Event event) {
+        return (Integer)this.sessionFactory.getCurrentSession().save(event);
     }
 
     @Transactional
@@ -57,5 +57,36 @@ public class EventDao {
         return this.sessionFactory.getCurrentSession()
                 .createQuery("FROM Actionable WHERE TypeID=2").list();
     }
+
+
+    @Transactional
+    public List<Contact> findInvited(Event event) {
+        return findInvited(event.getId());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Transactional
+    public List<Contact> findInvited(Integer eventId) {
+        return this.sessionFactory.getCurrentSession()
+                .createSQLQuery("SELECT c.ContactID, c.UserID, c.Name, c.Phone, c.Email, c.Role, c.Bio, c.PictureURL, c.SpaceID " +
+                        "FROM Contact c JOIN Invitation i ON c.ContactID = i.ContactID where i.EventID = ?")
+                .addEntity("c", Contact.class).setParameter(0, eventId).list();
+    }
+
+    @Transactional
+    public void addInvitees(Integer eventId, List<Integer> contactIds) {
+        for(Integer id : contactIds) {
+            this.sessionFactory.getCurrentSession().createSQLQuery("INSERT INTO Invitation (EventID, ContactID) VALUES (?,?)")
+                    .setParameter(0, eventId).setParameter(1, id).executeUpdate();
+        }
+    }
+
+    @Transactional
+    public void clearInvitees(Integer eventId) {
+        this.sessionFactory.getCurrentSession().createSQLQuery("DELETE FROM Invitation WHERE EventID = ?").setParameter(0, eventId).executeUpdate();
+    }
+
+
+
 
 }

@@ -10,6 +10,7 @@ import edu.rit.taskers.persistence.ContactDao;
 import edu.rit.taskers.persistence.UserDao;
 
 /**
+ * Handles logic related to new user creation
  * @author ian hunt
  * @date 11/4/11
  */
@@ -25,6 +26,10 @@ public class NewUserCommand {
         this.contactDao = contactDao;
     }
 
+    /**
+     * Create User and Contact objects from NewUser
+     * Contact become primaryContact of User
+     */
     public void execute() {
 
         if(newUser == null) {

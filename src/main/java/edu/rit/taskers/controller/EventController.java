@@ -1,30 +1,26 @@
 package edu.rit.taskers.controller;
 
-import java.security.Principal;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import edu.rit.taskers.command.UpdateEventCommand;
 import edu.rit.taskers.model.Actionable;
 import edu.rit.taskers.model.Event;
 import edu.rit.taskers.persistence.ContactDao;
 import edu.rit.taskers.persistence.EventDao;
 import edu.rit.taskers.persistence.UserDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.security.Principal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Handles requests with a space related to events.
@@ -61,7 +57,7 @@ public class EventController {
 	public ModelAndView getEventDetails(@PathVariable int id, @CookieValue("SPACE") int spaceId) {
 		ModelAndView eventDetailsEditPage = new ModelAndView("editevent", "event", eventDao.findById(id));
 		eventDetailsEditPage.addObject("allcontacts", contactDao.findBySpace(spaceId));
-		//TODO Add collection of ids who have been invited so I can pre-select on UI
+        eventDetailsEditPage.addObject("invitedcontacts", eventDao.findInvited(id));
 		return eventDetailsEditPage;
 	}
 
@@ -105,11 +101,18 @@ public class EventController {
 		fetchedEvent.setTargetDate( dateTimeResult );
 		fetchedEvent.setDescription( desc );
 
-        UpdateEventCommand command = new UpdateEventCommand(fetchedEvent, eventDao);
+        //parse list of contact ids
+        List<Integer> contactIds = new ArrayList<Integer>();
+        String[] ids = invitedcontacts.split(",");
+        for(String contactId : ids) {
+            contactIds.add(Integer.parseInt(contactId));
+        }
+
+        UpdateEventCommand command = new UpdateEventCommand(fetchedEvent, eventDao, contactIds);
 
         command.execute();
-        
-		//TODO PARSE CSV OF CONTACT IDS AND INSERT INTO INVITED TABLE
+
+
 
 		return "Event successfully updated!";
 	}
@@ -157,16 +160,35 @@ public class EventController {
         newEvent.setSpaceId( spaceId );
         newEvent.setCreator( userDao.findByUsername(principal.getName()).getPrimaryContact() );
 
+        //parse list of contact ids
+        List<Integer> contactIds = new ArrayList<Integer>();
+        String[] ids = invitedcontacts.split(",");
+        for(String contactId : ids) {
+            contactIds.add(Integer.parseInt(contactId));
+        }
 
-        UpdateEventCommand command = new UpdateEventCommand(newEvent, eventDao);
+        UpdateEventCommand command = new UpdateEventCommand(newEvent, eventDao, contactIds);
 
         command.execute();
 
 		//eventDao.save( newEvent );
 		return "Event successfully created!";
 	}
-
+	
 	/**
+	 * Retrieve the event details from a selected event in the list
+	 */
+	@RequestMapping(value="/{id}/comments", method=RequestMethod.GET)
+	public String getEventComments(@PathVariable int id) {
+		eventDao.findById(id).getComments(); //Use this for whatever we're returning.
+		
+		//TODO - Hook into JSP?
+		//ModelAndView eventDetailsEditPage = new ModelAndView("editevent", "event", eventDao.findById(id));		
+		//return eventDetailsEditPage;
+		return "TBD";
+	}
+
+    /**
 	 * Combine the date and time fields to create one Datetime
 	 */
 	private Date combineDateAndTime( String targetDate, String targetTime ) {
@@ -196,19 +218,6 @@ public class EventController {
 			e.printStackTrace();
 			return null;
 		}
-	}
-	
-	/**
-	 * Retrieve the event details from a selected event in the list
-	 */
-	@RequestMapping(value="/{id}/comments", method=RequestMethod.GET)
-	public String getEventComments(@PathVariable int id) {
-		eventDao.findById(id).getComments(); //Use this for whatever we're returning.
-		
-		//TODO - Hook into JSP?
-		//ModelAndView eventDetailsEditPage = new ModelAndView("editevent", "event", eventDao.findById(id));		
-		//return eventDetailsEditPage;
-		return "TBD";
 	}
 
 	/**

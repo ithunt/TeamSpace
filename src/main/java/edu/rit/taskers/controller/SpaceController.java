@@ -71,6 +71,8 @@ public class SpaceController {
 		String username = principal.getName();
 		User tempUser = userDao.findByUsername(username);
 		tempUser.setLastViewedSpace(id);
+
+
 		userDao.update(tempUser);
 		Contact tempContact = tempUser.getPrimaryContact();
 		tempContact.setSpaceId(id);

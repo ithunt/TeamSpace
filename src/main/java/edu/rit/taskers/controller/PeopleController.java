@@ -1,16 +1,14 @@
 package edu.rit.taskers.controller;
 
+import edu.rit.taskers.command.UpdateContactCommand;
+import edu.rit.taskers.model.Contact;
+import edu.rit.taskers.persistence.ContactDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import edu.rit.taskers.persistence.ContactDao;
 
 /**
  * Handles requests within a space related to people (contact cards).
@@ -51,6 +49,34 @@ public class PeopleController {
 		ModelAndView inviteContactPage = new ModelAndView("invite");
 		return inviteContactPage;
 	}
+
+
+    @RequestMapping(value="/{id]", method = RequestMethod.POST)
+    public @ResponseBody String updateContact(@PathVariable int id,
+                                              @RequestParam(value="name") String name,
+                                              @RequestParam(value="phone") String phone,
+                                              @RequestParam(value="email") String email,
+                                              @RequestParam(value="bio") String bio,
+                                              @RequestParam(value="pictureurl") String pictureUrl) {
+
+        if( isEmpty(name) || isEmpty(phone) || isEmpty(email) )
+            return "name, phone, email cannot be empty";
+
+        Contact c = contactDao.findById(id);
+        c.setName(name);
+        c.setPhone(phone);
+        c.setEmail(email);
+        c.setBio(bio);
+        c.setPictureURL(pictureUrl);
+
+        UpdateContactCommand cmd = new UpdateContactCommand(c, contactDao);
+        cmd.execute();
+
+        return "Comment Updated";
+    }
+
+
+
 	
 	/**
 	 * Search contacts for with email address specified by client
@@ -61,4 +87,11 @@ public class PeopleController {
 //		logger.info("Searching contacts with inputted email address [email:" + email + "]");
 //		return true;
 //	}
+
+    /**
+	 * String isEmpty helper method
+	 */
+	private boolean isEmpty(String s) {
+		return ( s == null ) || ( "".equals(s) ) || ( s.length() == 0 );
+	}
 }
