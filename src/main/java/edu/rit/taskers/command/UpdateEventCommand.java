@@ -36,7 +36,7 @@ public class UpdateEventCommand{
             eventId = eventdao.save(event);
         }
 
-        if(invitees != null) {
+        if(invitees != null && !invitees.isEmpty()) {
             eventdao.addInvitees(eventId, invitees);
         }
     }

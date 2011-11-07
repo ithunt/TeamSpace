@@ -37,16 +37,20 @@
 						title : jq("#title").val(),
 						description : jq("#description").val()
 					}, function(data) {
-						jq(
-								"<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h1>"
-										+ data + "</h1></div>").css({
-							"display" : "block",
-							"opacity" : 0.96,
-							"top" : jq(window).scrollTop() + 100
-						}).appendTo(jq.mobile.pageContainer).delay(1700)
-								.fadeOut(1000, function() {
-									jq(this).remove();
-								});
+						if (data == 'success') {
+							window.location.replace("/spaces");
+						} else {
+							jq(
+									"<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h1>"
+											+ data + "</h1></div>").css({
+								"display" : "block",
+								"opacity" : 0.96,
+								"top" : jq(window).scrollTop() + 100
+							}).appendTo(jq.mobile.pageContainer).delay(1700)
+									.fadeOut(1000, function() {
+										jq(this).remove();
+									});
+						}
 					});
 				});
 			}

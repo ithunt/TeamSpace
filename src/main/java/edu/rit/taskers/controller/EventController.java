@@ -1,18 +1,5 @@
 package edu.rit.taskers.controller;
 
-import edu.rit.taskers.command.UpdateEventCommand;
-import edu.rit.taskers.model.Actionable;
-import edu.rit.taskers.model.Event;
-import edu.rit.taskers.persistence.ContactDao;
-import edu.rit.taskers.persistence.EventDao;
-import edu.rit.taskers.persistence.UserDao;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
 import java.security.Principal;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -21,6 +8,25 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import edu.rit.taskers.command.UpdateEventCommand;
+import edu.rit.taskers.model.Actionable;
+import edu.rit.taskers.model.Event;
+import edu.rit.taskers.persistence.ContactDao;
+import edu.rit.taskers.persistence.EventDao;
+import edu.rit.taskers.persistence.UserDao;
 
 /**
  * Handles requests with a space related to events.
@@ -103,18 +109,18 @@ public class EventController {
 
         //parse list of contact ids
         List<Integer> contactIds = new ArrayList<Integer>();
-        String[] ids = invitedcontacts.split(",");
-        for(String contactId : ids) {
-            contactIds.add(Integer.parseInt(contactId));
+        if (!invitedcontacts.equals("null")) {
+	        String[] ids = invitedcontacts.split(",");
+	        for(String contactId : ids) {
+	            contactIds.add(Integer.parseInt(contactId));
+	        }
         }
 
         UpdateEventCommand command = new UpdateEventCommand(fetchedEvent, eventDao, contactIds);
 
         command.execute();
 
-
-
-		return "Event successfully updated!";
+		return "success"; // This is coupled to javascript, must be "success" (re-design later)
 	}
 
 	/**
@@ -162,17 +168,18 @@ public class EventController {
 
         //parse list of contact ids
         List<Integer> contactIds = new ArrayList<Integer>();
-        String[] ids = invitedcontacts.split(",");
-        for(String contactId : ids) {
-            contactIds.add(Integer.parseInt(contactId));
+        if (!invitedcontacts.equals("null")) {
+	        String[] ids = invitedcontacts.split(",");
+	        for(String contactId : ids) {
+	            contactIds.add(Integer.parseInt(contactId));
+	        }
         }
 
         UpdateEventCommand command = new UpdateEventCommand(newEvent, eventDao, contactIds);
 
         command.execute();
 
-		//eventDao.save( newEvent );
-		return "Event successfully created!";
+		return "success"; // This is coupled to javascript, must be "success" (re-design later)
 	}
 	
 	/**

@@ -89,7 +89,7 @@ public class TaskController {
             UpdateTaskCommand cmd = new UpdateTaskCommand(fetchedTask, taskDao);
             cmd.execute();
 
-			return "Task successfully updated!"; 
+			return "success";
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -139,7 +139,7 @@ public class TaskController {
             command.execute();
 	
 			//taskDao.save( newTask );
-			return "Task successfully created!"; 
+			return "success"; 
 			
 		} catch (ParseException e) {
 			e.printStackTrace();

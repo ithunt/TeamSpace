@@ -80,7 +80,7 @@ public class AccountController {
 
 		//TODO error checking
 		command.execute();		
-		return "User successfully created!"; 
+		return "success"; 
 	}
 	
 	/**

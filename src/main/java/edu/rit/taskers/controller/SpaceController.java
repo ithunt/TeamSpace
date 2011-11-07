@@ -105,7 +105,7 @@ public class SpaceController {
 		UpdateSpaceCommand command = new UpdateSpaceCommand(tempSpace, spaceDao);
 		
 		command.execute();
-		return "Space updated successfully!";
+		return "success";
 	}
 	
 	/**
@@ -122,7 +122,7 @@ public class SpaceController {
 			Contact creator = userDao.findByUsername(username).getPrimaryContact();
 			
 			if ( isEmpty(spaceName) ) {
-				return "Please provide a spacename.";
+				return "Please provide a name.";
 			} else if ( isEmpty(desc) ) {
 				return "Please provide a description.";
 			}
@@ -136,7 +136,7 @@ public class SpaceController {
 			UpdateSpaceCommand command =  new UpdateSpaceCommand(newSpace, spaceDao);
 			
 			command.execute();			
-			return "Space successfully created!"; 
+			return "success"; 
 	}
 	
 	/**

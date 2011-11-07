@@ -22,7 +22,7 @@
         <div data-role="content">
             <p><i>Currently in space</i>:<br />&nbsp;&nbsp;<b>${spacename}</b></p>
             <div><button data-icon="plus" type="submit" data-theme="b">Invite User</button></div>
-            <div><button data-icon="delete" type="submit" data-theme="c">Delete Space</button></div>
+            <div><button data-icon="delete" type="submit" data-theme="a">Delete Space</button></div>
             <br /><hr />
             
             <p><i>More actions</i>: </p>
