@@ -1,23 +1,30 @@
 package edu.rit.taskers.controller;
 
-import edu.rit.taskers.command.UpdateEventCommand;
-import edu.rit.taskers.model.Actionable;
-import edu.rit.taskers.model.Event;
-import edu.rit.taskers.persistence.EventDao;
-import edu.rit.taskers.persistence.UserDao;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
 import java.security.Principal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import edu.rit.taskers.command.UpdateEventCommand;
+import edu.rit.taskers.model.Actionable;
+import edu.rit.taskers.model.Event;
+import edu.rit.taskers.persistence.ContactDao;
+import edu.rit.taskers.persistence.EventDao;
+import edu.rit.taskers.persistence.UserDao;
 
 /**
  * Handles requests with a space related to events.
@@ -34,6 +41,9 @@ public class EventController {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private ContactDao contactDao;
+
 	/**
 	 * Fetch all events that belong to session space id
 	 * @return Collection of events
@@ -48,8 +58,10 @@ public class EventController {
 	 * Retrieve the event details from a selected event in the list
 	 */
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ModelAndView getEventDetails(@PathVariable int id) {
+	public ModelAndView getEventDetails(@PathVariable int id, @CookieValue("SPACE") int spaceId) {
 		ModelAndView eventDetailsEditPage = new ModelAndView("editevent", "event", eventDao.findById(id));
+		eventDetailsEditPage.addObject("allcontacts", contactDao.findBySpace(spaceId));
+		//TODO Add collection of ids who have been invited so I can pre-select on UI
 		return eventDetailsEditPage;
 	}
 
@@ -70,7 +82,8 @@ public class EventController {
 	public @ResponseBody String updateEvent(@PathVariable int id, @RequestParam(value="title") String eventName,
 			@RequestParam(value="targetdate") String targetDate,
 			@RequestParam(value="targettime") String targetTime,
-			@RequestParam(value="description") String desc) {
+			@RequestParam(value="description") String desc,
+			@RequestParam(value="invitedcontacts") String invitedcontacts) {
 
 		if ( isEmpty( eventName ) ) {
 			return "Please specify a title.";
@@ -85,6 +98,7 @@ public class EventController {
 			return "Invalid date/time specified.";
 		}
 		
+		
 		// Create the new event object and persist it
 		Event fetchedEvent = eventDao.findById(id);
 		fetchedEvent.setName( eventName );
@@ -94,8 +108,9 @@ public class EventController {
         UpdateEventCommand command = new UpdateEventCommand(fetchedEvent, eventDao);
 
         command.execute();
+        
+		//TODO PARSE CSV OF CONTACT IDS AND INSERT INTO INVITED TABLE
 
-		//eventDao.update( fetchedEvent );
 		return "Event successfully updated!";
 	}
 
@@ -103,8 +118,9 @@ public class EventController {
 	 * Create New Event page requested
 	 */
 	@RequestMapping(value="/new", method=RequestMethod.GET)
-	public ModelAndView getCreateEventPage() {
+	public ModelAndView getCreateEventPage(@CookieValue("SPACE") int spaceId) {
 		ModelAndView newEventPage = new ModelAndView("newevent");
+		newEventPage.addObject("allcontacts", contactDao.findBySpace(spaceId));
 		return newEventPage;
 	}
 
@@ -117,8 +133,9 @@ public class EventController {
 			@RequestParam(value="targetdate") String targetDate,
 			@RequestParam(value="targettime") String targetTime,
 			@RequestParam(value="description") String desc,
+			@RequestParam(value="allcontacts") String invitedcontacts, /* CSV OF CONTACT IDS */
             @CookieValue("SPACE") int spaceId) {
-
+		
 		if ( isEmpty( eventName ) ) {
 			return "Please specify a title.";
 		} else if ( isEmpty( targetDate ) ) {

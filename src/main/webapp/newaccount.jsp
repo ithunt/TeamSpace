@@ -5,7 +5,7 @@
 	<div data-role="page" id="register" data-title="TeamSpace | Register">
 
 		<div data-role="header" data-theme="c">
-			<a href="index.htm" data-theme="a" data-rel="back"
+			<a href="/spaces" data-theme="a" data-rel="back"
 				data-icon="arrow-l" data-iconpos="notext">Back</a>
 			<h1>New Account</h1>
 		</div>
