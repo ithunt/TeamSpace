@@ -26,8 +26,9 @@
 		      from User where LoginName=?"
 
                                         authorities-by-username-query="
-		      select u.LoginName, ur.Authority from User u, UserRoles ur
-		      where u.UserID = ur.UserID and u.LoginName=?  "
+		      select LoginName, Role
+		      from User
+		      where LoginName=?"
 
                     />
         </security:authentication-provider>
