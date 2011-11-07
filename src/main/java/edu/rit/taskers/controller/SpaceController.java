@@ -1,19 +1,25 @@
 package edu.rit.taskers.controller;
 
-import edu.rit.taskers.command.UpdateSpaceCommand;
-import edu.rit.taskers.model.Contact;
-import edu.rit.taskers.model.Space;
-import edu.rit.taskers.model.User;
-import edu.rit.taskers.persistence.SpaceDao;
-import edu.rit.taskers.persistence.UserDao;
+import java.security.Principal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.security.Principal;
+import edu.rit.taskers.command.UpdateSpaceCommand;
+import edu.rit.taskers.model.Contact;
+import edu.rit.taskers.model.Space;
+import edu.rit.taskers.model.User;
+import edu.rit.taskers.persistence.ContactDao;
+import edu.rit.taskers.persistence.SpaceDao;
+import edu.rit.taskers.persistence.UserDao;
 
 /**
  * Handles requests with space creation/listing/management.
@@ -27,6 +33,9 @@ public class SpaceController {
     
     @Autowired
     private UserDao userDao;
+    
+    @Autowired
+    private ContactDao contactDao;
 
 	private static final Logger logger = LoggerFactory.getLogger(SpaceController.class);
 
@@ -63,6 +72,9 @@ public class SpaceController {
 		User tempUser = userDao.findByUsername(username);
 		tempUser.setLastViewedSpace(id);
 		userDao.update(tempUser);
+		Contact tempContact = tempUser.getPrimaryContact();
+		tempContact.setSpaceId(id);
+		contactDao.update(tempContact);
 		
 		return "redirect:/";
 	}
