@@ -24,13 +24,18 @@ public class ContactDao {
     }
 
     @Transactional
-    public void save(Contact contact) {
-        this.sessionFactory.getCurrentSession().save(contact);
+    public Integer save(Contact contact) {
+        return (Integer)this.sessionFactory.getCurrentSession().save(contact);
     }
 
     @Transactional
     public void update(Contact contact) {
         this.sessionFactory.getCurrentSession().update(contact);
+    }
+
+    @Transactional
+    public void delete(Contact contact) {
+        this.sessionFactory.getCurrentSession().delete(contact);
     }
 
     @SuppressWarnings("unchecked")

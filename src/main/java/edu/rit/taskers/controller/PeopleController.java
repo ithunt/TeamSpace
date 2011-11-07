@@ -75,6 +75,18 @@ public class PeopleController {
         return "Comment Updated";
     }
 
+    /**
+     * delete a contact
+     * @param id contact id
+     * @return redirect
+     */
+    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+    public String delete(@PathVariable int id) {
+        Contact c = contactDao.findById(id);
+        contactDao.delete(c);
+        return "redirect:/people";
+    }
+
 
 
 	

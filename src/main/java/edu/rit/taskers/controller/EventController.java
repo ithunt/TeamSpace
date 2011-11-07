@@ -51,8 +51,22 @@ public class EventController {
 	 * @return Collection of events
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView getAllEvents(@CookieValue("SPACE") int id) {
-		ModelAndView eventsMainPage = new ModelAndView("events", "allevents", eventDao.findBySpace(id));
+	public ModelAndView getAllEvents(@CookieValue("SPACE") int id, Principal principal) {
+
+        //Sort events so that events you're invited to appear above
+        int uid = userDao.findByUsername(principal.getName()).getPrimaryContact().getId();
+        List<Integer> invitedTo = eventDao.findEvents(uid);
+        List<Event> events = eventDao.findBySpace(id);
+        List<Event> eventsSorted = new ArrayList<Event>();
+        for(Event e : events) {
+            if(invitedTo.contains(e.getId())) {
+                eventsSorted.add(e);
+            }
+        }
+        events.removeAll(invitedTo);
+        eventsSorted.addAll(events);
+
+		ModelAndView eventsMainPage = new ModelAndView("events", "allevents", eventsSorted);
 		return eventsMainPage;
 	}
 
@@ -71,8 +85,13 @@ public class EventController {
 	 * Delete a event by id
 	 */
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public String delete(@PathVariable int id) {
+	public String delete(@PathVariable int id, Principal principal) {
 		Event retrievedEvent = eventDao.findById(id);
+        if(userDao.findByUsername(principal.getName()).getPrimaryContact().getId() !=
+                retrievedEvent.getCreator().getId()) {
+            return "Only Creator Can Delete.";
+        }
+
 		eventDao.delete(retrievedEvent);
 		return "redirect:/events";
 	}
@@ -226,6 +245,8 @@ public class EventController {
 			return null;
 		}
 	}
+
+
 
 	/**
 	 * String isEmpty helper method

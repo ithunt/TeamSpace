@@ -24,8 +24,8 @@ public class TaskDao {
     }
 
     @Transactional
-    public void save(Task task) {
-        this.sessionFactory.getCurrentSession().save(task);
+    public Integer save(Task task) {
+        return (Integer)this.sessionFactory.getCurrentSession().save(task);
     }
 
     @Transactional
@@ -42,7 +42,7 @@ public class TaskDao {
 	@Transactional
     public List<Task> findBySpace(int spaceId) {
         return this.sessionFactory.getCurrentSession()
-                .createQuery("FROM Actionable WHERE SpaceID=? AND TypeID=1")
+                .createQuery("FROM Actionable WHERE SpaceID=? AND TypeID=1 ORDER BY targetDate")
                 .setParameter(0, spaceId).list();
     }
 
@@ -53,6 +53,7 @@ public class TaskDao {
 
 	@SuppressWarnings("unchecked")
 	@Transactional
+    @Deprecated
     public List<Task> findAll() {
         return this.sessionFactory.getCurrentSession()
                 .createQuery("FROM Actionable WHERE TypeID=1").list();

@@ -1,18 +1,5 @@
 package edu.rit.taskers.controller;
 
-import java.security.Principal;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import edu.rit.taskers.command.UpdateSpaceCommand;
 import edu.rit.taskers.model.Contact;
 import edu.rit.taskers.model.Space;
@@ -20,6 +7,14 @@ import edu.rit.taskers.model.User;
 import edu.rit.taskers.persistence.ContactDao;
 import edu.rit.taskers.persistence.SpaceDao;
 import edu.rit.taskers.persistence.UserDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.security.Principal;
 
 /**
  * Handles requests with space creation/listing/management.
@@ -138,6 +133,13 @@ public class SpaceController {
 			command.execute();			
 			return "success"; 
 	}
+
+    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+    public String delete(@PathVariable int id) {
+        Space s = spaceDao.findById(id);
+        spaceDao.delete(s);
+        return "redirect:/";
+    }
 	
 	/**
 	 * String isEmpty helper method
