@@ -104,6 +104,20 @@ public class CommentController {
 			command.execute();			
 			return "Command successfully created!"; 
 	}
+
+    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+    public String delete(@PathVariable int id, Principal principal) {
+
+        Comment c = commentDao.findById(id);
+
+        if(userDao.findByUsername(principal.getName()).getPrimaryContact().getId() !=
+                c.getCreator().getId()) {
+            return "Only Creator Can Delete.";
+        }
+
+        commentDao.delete(c);
+        return "deleted comment";
+    }
 	
 	/**
 	 * String isEmpty helper method

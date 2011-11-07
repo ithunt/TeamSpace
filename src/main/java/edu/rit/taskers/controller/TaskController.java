@@ -55,8 +55,13 @@ public class TaskController {
 	 * Delete a task by id
 	 */
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public String delete(@PathVariable int id) {
+	public String delete(@PathVariable int id, Principal principal) {
 		Task retrievedTask = taskDao.findById(id);
+
+        if(userDao.findByUsername(principal.getName()).getPrimaryContact().getId() !=
+                retrievedTask.getCreator().getId()) {
+            return "Only Creator Can Delete.";
+        }
 		taskDao.delete(retrievedTask);
 		return "redirect:/tasks";
 	}

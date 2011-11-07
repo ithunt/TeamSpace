@@ -1,13 +1,13 @@
 package edu.rit.taskers.command;
 
-import java.util.Calendar;
-import java.util.List;
-
 import edu.rit.taskers.data.NewUser;
 import edu.rit.taskers.model.Contact;
 import edu.rit.taskers.model.User;
 import edu.rit.taskers.persistence.ContactDao;
 import edu.rit.taskers.persistence.UserDao;
+
+import java.util.Calendar;
+import java.util.List;
 
 /**
  * Handles logic related to new user creation
@@ -52,11 +52,9 @@ public class NewUserCommand {
 	        u.setPassword( newUser.getPassword() );
 	        u.setCreated( Calendar.getInstance().getTime() );
 	        u.setRole("ROLE_USER");
-	        userDao.save(u);
-	        
-	        User savedUser = userDao.findByUsername(newUser.getLogin());
-	        
-	        c.setUserId(savedUser.getId());
+	        Integer uid = userDao.save(u);
+
+	        c.setUserId(uid);
 	        contactDao.save(c);
 	        
 	        List<Contact> tempContact = contactDao.findByEmail(c.getEmail());

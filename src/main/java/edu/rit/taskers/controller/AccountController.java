@@ -1,6 +1,9 @@
 package edu.rit.taskers.controller;
 
+import edu.rit.taskers.command.NewUserCommand;
+import edu.rit.taskers.data.NewUser;
 import edu.rit.taskers.persistence.ContactDao;
+import edu.rit.taskers.persistence.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import edu.rit.taskers.command.NewUserCommand;
-import edu.rit.taskers.data.NewUser;
-import edu.rit.taskers.persistence.UserDao;
 
 /**
  * Handles requests with a user account.
