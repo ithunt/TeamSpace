@@ -34,7 +34,7 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, , cascade = CascadeType.DETACH)
     @JoinColumn(name = "Creator")
     public Contact getCreator() {
         return creator;

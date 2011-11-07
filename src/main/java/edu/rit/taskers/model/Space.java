@@ -66,7 +66,7 @@ public class Space {
         this.description = description;
     }
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinColumn(name = "Creator")
     public Contact getCreator() {
         return creator;
@@ -76,7 +76,7 @@ public class Space {
         this.creator = creator;
     }
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JoinColumn(name = "SpaceID")
     public List<Contact> getUsers() {
         return users;

@@ -62,7 +62,7 @@ public abstract class Actionable {
         this.name = name;
     }
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinColumn(name = "Creator")
     public Contact getCreator() {
         return creator;
@@ -91,7 +91,7 @@ public abstract class Actionable {
         this.description = description;
     }
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Contact.class)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH, targetEntity = Contact.class)
     @JoinColumn(name = "AssignedTo", nullable = true)
     public Contact getAssignedTo() {
         return assignedTo;
