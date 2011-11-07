@@ -26,7 +26,7 @@
 			<div data-role="fieldcontain">
 				<label for="targettime">Time:</label> <input name="targettime"
 					id="targettime" type="date" data-role="datebox"
-					data-options='{"pickPageButtonTheme": "c", "mode": "timebox",  "timeFormat": 12, "disableManualInput": true, "useDialogForceFalse": true}'>
+					data-options='{"pickPageButtonTheme": "c", "mode": "timebox", "disableManualInput": true, "useDialogForceFalse": true}'>
 			</div>
 
 			<div data-role="fieldcontain">

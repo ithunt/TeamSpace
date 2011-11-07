@@ -59,7 +59,7 @@ public class User implements Serializable {
     }
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "UserID")
+    @JoinColumn(name = "PrimaryContactID")
     public Contact getPrimaryContact() {
         return primaryContact;
     }

@@ -43,6 +43,15 @@ public class ContactDao {
     public Contact findById(int id) {
         return (Contact) sessionFactory.getCurrentSession().get(Contact.class, id);
     }
+
+    @SuppressWarnings("unchecked")
+	@Transactional
+    public List<Contact> findByEmail(String email) {
+        sessionFactory.getCurrentSession();
+        return this.sessionFactory.getCurrentSession()
+        		.createQuery("FROM Contact WHERE Email=?")
+                .setParameter(0, email).list();
+    }
     
     @SuppressWarnings("unchecked")
     @Transactional    

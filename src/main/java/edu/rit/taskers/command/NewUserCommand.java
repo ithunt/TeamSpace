@@ -1,12 +1,13 @@
 package edu.rit.taskers.command;
 
+import java.util.Calendar;
+import java.util.List;
+
 import edu.rit.taskers.data.NewUser;
 import edu.rit.taskers.model.Contact;
 import edu.rit.taskers.model.User;
 import edu.rit.taskers.persistence.ContactDao;
 import edu.rit.taskers.persistence.UserDao;
-
-import java.util.Calendar;
 
 /**
  * @author ian hunt
@@ -45,12 +46,20 @@ public class NewUserCommand {
 	        u.setLogin( newUser.getLogin() );
 	        u.setPassword( newUser.getPassword() );
 	        u.setCreated( Calendar.getInstance().getTime() );
+	        u.setRole("ROLE_USER");
 	        userDao.save(u);
 	        
 	        User savedUser = userDao.findByUsername(newUser.getLogin());
 	        
 	        c.setUserId(savedUser.getId());
-	        contactDao.save(c);	        
+	        contactDao.save(c);
+	        
+	        List<Contact> tempContact = contactDao.findByEmail(c.getEmail());
+	        for(Contact s : tempContact) {
+	        	u.setPrimaryContact(s);
+	        	break; //TODO fix this, I'm assuming email is unique for now
+	        }
+	        userDao.update(u);
         }
     }
 

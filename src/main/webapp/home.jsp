@@ -20,15 +20,15 @@
         </div>
 
         <div data-role="content">
-            <p><i>Currently in space</i>:<br />&nbsp;&nbsp;<b>Info Sys Project</b></p>
+            <p><i>Currently in space</i>:<br />&nbsp;&nbsp;<b>${spacename}</b></p>
             <div><button data-icon="plus" type="submit" data-theme="b">Invite User</button></div>
             <div><button data-icon="delete" type="submit" data-theme="c">Delete Space</button></div>
             <br /><hr />
             
             <p><i>More actions</i>: </p>
-            <div><button data-icon="plus" type="submit" data-theme="c">Create New Space</button></div>
+            <div><a href="/spaces/new" data-role="button" data-icon="plus" data-theme="c">Create New Space</a></div>
             <fieldset class="ui-grid-a">
-                <div class="ui-block-a"><button data-icon="refresh" type="submit" data-theme="c">Switch To..</button></div>
+                <div class="ui-block-a"><a href="/spaces" data-role="button" data-icon="refresh" data-theme="c">Switch To..</a></div>
                 <div class="ui-block-b"><button data-icon="gear" type="submit" data-theme="c">Settings</button></div>
             </fieldset>
         </div>

@@ -15,7 +15,7 @@ import java.util.Set;
 public abstract class Actionable {
 	
 	public static final String ACTION_UI_DATEFORMAT = "yyyy-MM-dd";
-	public static final String ACTION_UI_TIMEFORMAT = "h:m a";
+	public static final String ACTION_UI_TIMEFORMAT = "H:m";
 	
 
     protected int id;

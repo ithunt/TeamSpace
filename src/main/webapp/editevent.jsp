@@ -29,8 +29,8 @@
 			<div data-role="fieldcontain">
 				<label for="targettime">Time:</label> <input name="targettime"
 					id="targettime" type="date" data-role="datebox"
-					value="<fmt:formatDate value="${event.targetDate}" pattern="h:m a"/>"
-					data-options='{"pickPageButtonTheme": "c", "mode": "timebox",  "timeFormat": 12, "disableManualInput": true, "useDialogForceFalse": true}'>
+					value="<fmt:formatDate value="${event.targetDate}" pattern="H:m"/>"
+					data-options='{"pickPageButtonTheme": "c", "mode": "timebox", "disableManualInput": true, "useDialogForceFalse": true}'>
 			</div>
 
 			<div data-role="fieldcontain">
