@@ -40,35 +40,6 @@ CREATE TABLE `teamspace`.`Actionable` (
 )
 ENGINE = MyISAM;
 
-
-DROP TABLE IF EXISTS `teamspace`.`Task`;
-CREATE TABLE `teamspace`.`Task` (
-  `TaskID` INT  NOT NULL AUTO_INCREMENT,
-  `SpaceID` INT  NOT NULL,
-  `Creator` INT  NOT NULL,
-  `Name` VARCHAR(80)  NOT NULL,
-  `Created` DATETIME  NOT NULL,
-  `Description` VARCHAR(500)  NOT NULL,
-  `AssignedTo` INT  NOT NULL,
-  `Priority` VARCHAR(20)  NOT NULL,
-  PRIMARY KEY (`TaskID`)
-)
-ENGINE = MyISAM;
-
-DROP TABLE IF EXISTS `teamspace`.`Event`;
-CREATE TABLE `teamspace`.`Event` (
-  `EventID` INT  NOT NULL AUTO_INCREMENT,
-  `SpaceID` INT  NOT NULL,
-  `Creator` INT  NOT NULL,
-  `Name` VARCHAR(80)  NOT NULL,
-  `Created` DATETIME  NOT NULL,
-  `Description` VARCHAR(500)  NOT NULL,
-  `AssignedTo` INT  NOT NULL,
-  PRIMARY KEY (`EventID`)
-)
-ENGINE = MyISAM;
-
-
 DROP TABLE IF EXISTS `teamspace`.`Comment`;
 CREATE TABLE `teamspace`.`Comment` (
   `CommentID` INT  NOT NULL AUTO_INCREMENT,
