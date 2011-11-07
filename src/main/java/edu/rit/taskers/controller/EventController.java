@@ -63,7 +63,7 @@ public class EventController {
                 eventsSorted.add(e);
             }
         }
-        events.removeAll(invitedTo);
+        events.removeAll(eventsSorted);
         eventsSorted.addAll(events);
 
 		ModelAndView eventsMainPage = new ModelAndView("events", "allevents", eventsSorted);
