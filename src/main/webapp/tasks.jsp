@@ -40,7 +40,7 @@
                         <h3>${task.name}</h3>
                         
                         <!-- TODO: AssignedTo conditional -->
-                        
+                        <p><b>from ${task.creator.name}</b></p>
                         <p>${task.description}</p>
                         
                         <!-- TODO: Implement 'Mark Task Complete' -->
