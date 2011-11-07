@@ -79,7 +79,7 @@ public class EventController {
 			@RequestParam(value="targetdate") String targetDate,
 			@RequestParam(value="targettime") String targetTime,
 			@RequestParam(value="description") String desc,
-			@RequestParam(value="invitedcontacts") String invitedcontacts) {
+			@RequestParam(value="allcontacts") String invitedcontacts) {
 
 		if ( isEmpty( eventName ) ) {
 			return "Please specify a title.";

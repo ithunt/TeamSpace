@@ -37,6 +37,25 @@
 				<label for="description">Notes:</label>
 				<textarea cols="40" rows="8" name="description" id="description">${event.description}</textarea>
 			</div>
+			
+			<div data-role="fieldcontain">
+				<label for="allcontacts" class="select">Invite People:</label>
+				<select data-native-menu="false" multiple="multiple" name="allcontacts" id="allcontacts">
+					<c:forEach items="${allcontacts}" var="entry">
+						<option>Select...</option>
+						<option 
+						
+						<c:forEach items="${invitedcontacts}" var="item">
+							  <c:if test="${item.id eq entry.id}">
+							    	selected="selected" 
+							  </c:if>
+						</c:forEach>
+						
+						value="${entry.id}">${entry.name}</option>
+					
+					</c:forEach>
+				</select>
+			</div>
 
             <br />
 			<form method="delete">
@@ -53,7 +72,8 @@
 						title : jq("#title").val(),
 						targetdate : jq("#targetdate").val(),
 						targettime : jq("#targettime").val(),
-						description : jq("#description").val()
+						description : jq("#description").val(),
+						allcontacts : String(jq("#allcontacts").val())
 					}, function(data) {
 						jq(
 								"<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h1>"
