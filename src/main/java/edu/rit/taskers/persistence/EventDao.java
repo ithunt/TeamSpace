@@ -42,7 +42,7 @@ public class EventDao {
 	@Transactional
     public List<Event> findBySpace(int spaceId) {
         return this.sessionFactory.getCurrentSession()
-                .createQuery("FROM Actionable WHERE SpaceID=? AND TypeID=2")
+                .createQuery("FROM Actionable WHERE SpaceID=? AND TypeID=2 ORDER BY targetDate")
                 .setParameter(0, spaceId).list();
     }
 
@@ -84,6 +84,12 @@ public class EventDao {
     @Transactional
     public void clearInvitees(Integer eventId) {
         this.sessionFactory.getCurrentSession().createSQLQuery("DELETE FROM Invitation WHERE EventID = ?").setParameter(0, eventId).executeUpdate();
+    }
+
+    @Transactional
+    public List<Integer> findEvents(int contactId) {
+        return this.sessionFactory.getCurrentSession()
+                .createSQLQuery("SELECT EventID FROM Invitation WHERE ContactID =?").setParameter(0,contactId).list();
     }
 
 

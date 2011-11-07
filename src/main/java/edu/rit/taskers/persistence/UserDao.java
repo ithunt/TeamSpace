@@ -23,8 +23,8 @@ public class UserDao {
     }
 
     @Transactional
-    public void save(User user) {
-        this.sessionFactory.getCurrentSession().save(user);
+    public Integer save(User user) {
+        return (Integer)this.sessionFactory.getCurrentSession().save(user);
     }
 
     @Transactional
@@ -41,7 +41,7 @@ public class UserDao {
 
     @Transactional
     public User findById(int id) {
-        return (User) sessionFactory.getCurrentSession().get(User.class, id);
+        return (User)sessionFactory.getCurrentSession().get(User.class, id);
     }
     
     @Transactional

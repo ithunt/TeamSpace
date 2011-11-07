@@ -24,13 +24,18 @@ public class SpaceDao {
     }
 
     @Transactional
-    public void save(Space space) {
-        this.sessionFactory.getCurrentSession().save(space);
+    public Integer save(Space space) {
+        return (Integer)this.sessionFactory.getCurrentSession().save(space);
     }
 
     @Transactional
     public void update(Space space) {
         this.sessionFactory.getCurrentSession().update(space);
+    }
+
+    @Transactional
+    public void delete(Space space) {
+        this.sessionFactory.getCurrentSession().delete(space);
     }
 
     @SuppressWarnings("unchecked")

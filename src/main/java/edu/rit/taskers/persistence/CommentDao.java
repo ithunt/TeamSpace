@@ -24,13 +24,18 @@ public class CommentDao {
     }
 
     @Transactional
-    public void save(Comment comment) {
-        this.sessionFactory.getCurrentSession().save(comment);
+    public Integer save(Comment comment) {
+        return (Integer)this.sessionFactory.getCurrentSession().save(comment);
     }
 
     @Transactional
     public void update(Comment comment) {
         this.sessionFactory.getCurrentSession().update(comment);
+    }
+
+    @Transactional
+    public void delete(Comment comment) {
+        this.sessionFactory.getCurrentSession().delete(comment);
     }
 
     @SuppressWarnings("unchecked")
