@@ -23,7 +23,7 @@
 				<label for="targetdate">Date:</label> <input name="targetdate"
 					id="targetdate" type="date" data-role="datebox"
 					value="<fmt:formatDate value="${event.targetDate}" pattern="yyyy-MM-dd"/>"
-					data-options='{"pickPageButtonTheme": "b", "mode": "calbox", "afterToday": true, "disableManualInput": true, "useDialogForceFalse": true}'>
+					data-options='{"pickPageButtonTheme": "b", "mode": "calbox", "disableManualInput": true, "useDialogForceFalse": true}'>
 			</div>
 
 			<div data-role="fieldcontain">
